@@ -1,0 +1,37 @@
+<div class="header">
+  <nav role="navigation" class="navbar navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="header-nav pull-left left-nav">
+      <div layout="column" flex-sm="100" flex="33" layout-align="center center">
+        <md-menu md-offset="0 -5">
+          <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="vm.openMenu($mdOpenMenu, $event)">
+            <i class="fa fa-bars"></i>
+          </button>
+          <md-menu-content width="4">
+            <md-menu-item ng-repeat="item in [1, 2, 3]">
+              <md-button ng-click="vm.announceClick($index)"> <span md-menu-align-target="">Option</span> {{item}} </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
+    </div>
+    <div class="header-nav col-md-6 col-md-offset-3 center-nav">
+      <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">-->
+        <!--<i class="fa fa-user"></i>-->
+      <!--</button>-->
+      <span>New Web</span>
+    </div>
+    <div class="header-nav pull-right right-nav">
+      <!-- Icon button -->
+      <button class="mdl-button mdl-js-button mdl-button--icon positive-button">
+        <i class="fa fa-user"></i>
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--icon positive-button">
+        <!-- Number badge on icon -->
+        <span class="material-icons mdl-badge" data-badge="1">
+          <i class="fa fa-user"></i>
+        </span>
+      </button>
+    </div>
+  </nav>
+</div>

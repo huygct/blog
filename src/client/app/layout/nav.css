@@ -1,0 +1,13 @@
+.header .header-nav {
+  color: #fff;
+  display: inline;
+}
+.header .navbar {
+  margin-bottom: 0;
+}
+.header .positive-button {
+  top: 8px;
+}
+.header .center-nav {
+  top: 14px;
+}
