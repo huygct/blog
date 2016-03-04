@@ -15,7 +15,8 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
   <base href="/">
 
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- build:css styles/lib.css -->
   <!-- bower:css -->
@@ -26,6 +27,7 @@
   <link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
   <link rel="stylesheet" href="/bower_components/angular-chart.js/dist/angular-chart.css" />
   <link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css" />
+  <link rel="stylesheet" href="/bower_components/textAngular/dist/textAngular.css" />
   <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.css" />
   <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.theme.default.css" />
   <!-- endbower -->
@@ -33,6 +35,7 @@
 
   <!-- build:css styles/app.css -->
   <!-- inject:css -->
+  <link rel="stylesheet" href="/src/client/myComponents/componentStyles.css">
   <link rel="stylesheet" href="/src/client/myComponents/searchBox/mySearch.css">
   <link rel="stylesheet" href="/src/client/myComponents/progressBar/progressBar.css">
   <link rel="stylesheet" href="/src/client/app/_demo/owlCarousel/owlCarousel.css">
@@ -43,123 +46,10 @@
 </head>
 <body>
 <div>
-  <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
-    <main class="mdl-layout__content">
-      <div class="demo-blog__posts mdl-grid">
-        <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
-          <div class="mdl-card__media mdl-color-text--grey-50">
-            <h3><a href="entry.html">Coffee Pic</a></h3>
-          </div>
-          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-            <div class="minilogo"></div>
-            <div>
-              <strong>The Newist</strong>
-              <span>2 days ago</span>
-            </div>
-          </div>
-        </div>
-        <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
-          <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent">
-            <i class="material-icons mdl-color-text--white" role="presentation">add</i>
-            <span class="visuallyhidden">add</span>
-          </button>
-          <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
-            <img src="images/logo.png">
-            +1,337
-          </div>
-          <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-            <div>
-              <strong>The Newist</strong>
-            </div>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
-              <li class="mdl-menu__item">About</li>
-              <li class="mdl-menu__item">Message</li>
-              <li class="mdl-menu__item">Favorite</li>
-              <li class="mdl-menu__item">Search</li>
-            </ul>
-            <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">more_vert</i>
-              <span class="visuallyhidden">show menu</span>
-            </button>
-          </div>
-        </div>
-        <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50">
-            <h3><a href="entry.html">On the road again</a></h3>
-          </div>
-          <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
-            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-          </div>
-          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-            <div class="minilogo"></div>
-            <div>
-              <strong>The Newist</strong>
-              <span>2 days ago</span>
-            </div>
-          </div>
-        </div>
-        <div class="mdl-card amazing mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__title mdl-color-text--grey-50">
-            <h3 class="quote"><a href="entry.html">I couldn’t take any pictures but this was an amazing thing…</a></h3>
-          </div>
-          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-          </div>
-          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-            <div class="minilogo"></div>
-            <div>
-              <strong>The Newist</strong>
-              <span>2 days ago</span>
-            </div>
-          </div>
-        </div>
-        <div class="mdl-card shopping mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50">
-            <h3><a href="entry.html">Shopping</a></h3>
-          </div>
-          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-          </div>
-          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-            <div class="minilogo"></div>
-            <div>
-              <strong>The Newist</strong>
-              <span>2 days ago</span>
-            </div>
-          </div>
-        </div>
-        <nav class="demo-nav mdl-cell mdl-cell--12-col">
-          <div class="section-spacer"></div>
-          <a href="entry.html" class="demo-nav__button" title="show more">
-            More
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">arrow_forward</i>
-            </button>
-          </a>
-        </nav>
-      </div>
-      <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer--left-section">
-          <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter">
-            <span class="visuallyhidden">Twitter</span>
-          </button>
-          <button class="mdl-mini-footer--social-btn social-btn social-btn__blogger">
-            <span class="visuallyhidden">Facebook</span>
-          </button>
-          <button class="mdl-mini-footer--social-btn social-btn social-btn__gplus">
-            <span class="visuallyhidden">Google Plus</span>
-          </button>
-        </div>
-        <div class="mdl-mini-footer--right-section">
-          <button class="mdl-mini-footer--social-btn social-btn__share">
-            <i class="material-icons" role="presentation">share</i>
-            <span class="visuallyhidden">share</span>
-          </button>
-        </div>
-      </footer>
-    </main>
-    <div class="mdl-layout__obfuscator"></div>
-  </div>
+
+  <div class="main-view" ui-view></div>
+
+  <!--<my-header></my-header>-->
   <!--<div ng-include="'app/layout/shell.html'"></div>-->
   <!--<div id="splash-page" ng-show="showSplash">-->
     <!--<div class="page-splash">-->
@@ -171,7 +61,7 @@
       <!--</div>-->
     <!--</div>-->
   <!--</div>-->
-</div>
+<!--</div>-->
 
 <!-- build:js js/lib.js -->
 <!-- bower:js -->
@@ -188,7 +78,7 @@
 <script src="/bower_components/angular-material/angular-material.js"></script>
 <script src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 <script src="/bower_components/angular-messages/angular-messages.js"></script>
-<script src="/bower_components/i18next/i18next.js"></script>
+<script src="/bower_components/i18next/bin/index.js"></script>
 <script src="/bower_components/ng-i18next/dist/ng-i18next.js"></script>
 <script src="/bower_components/Chart.js/Chart.js"></script>
 <script src="/bower_components/angular-chart.js/dist/angular-chart.js"></script>
@@ -196,6 +86,15 @@
 <script src="/bower_components/material-design-lite/material.min.js"></script>
 <script src="/bower_components/lodash/lodash.js"></script>
 <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/bower_components/rangy/rangy-core.js"></script>
+<script src="/bower_components/rangy/rangy-classapplier.js"></script>
+<script src="/bower_components/rangy/rangy-highlighter.js"></script>
+<script src="/bower_components/rangy/rangy-selectionsaverestore.js"></script>
+<script src="/bower_components/rangy/rangy-serializer.js"></script>
+<script src="/bower_components/rangy/rangy-textrange.js"></script>
+<script src="/bower_components/textAngular/dist/textAngular.js"></script>
+<script src="/bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+<script src="/bower_components/textAngular/dist/textAngularSetup.js"></script>
 <script src="/bower_components/owl.carousel/dist/owl.carousel.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
@@ -206,12 +105,13 @@
 <script src="/src/client/myComponents/myComponents.module.js"></script>
 <script src="/src/client/app/app.module.js"></script>
 <script src="/src/client/app/_demo/owlCarousel/owlCarousel.module.js"></script>
-<script src="/src/client/app/admin/admin.module.js"></script>
+<script src="/src/client/app/appAdmin/admin/admin.module.js"></script>
+<script src="/src/client/app/appAdmin/dashboard/dashboard.module.js"></script>
+<script src="/src/client/app/appUser/blog/blog.module.js"></script>
 <script src="/src/client/app/blocks/exception/exception.module.js"></script>
 <script src="/src/client/app/blocks/logger/logger.module.js"></script>
 <script src="/src/client/app/blocks/router/router.module.js"></script>
 <script src="/src/client/app/core/core.module.js"></script>
-<script src="/src/client/app/dashboard/dashboard.module.js"></script>
 <script src="/src/client/app/detailItem/detailItem.module.js"></script>
 <script src="/src/client/app/layout/layout.module.js"></script>
 <script src="/src/client/app/widgets/widgets.module.js"></script>
@@ -219,8 +119,12 @@
 <script src="/src/client/app/_demo/owlCarousel/owlCarousel.route.js"></script>
 <script src="/src/client/app/_demo/owlCarousel/tab1/tab1.controller.js"></script>
 <script src="/src/client/app/_demo/owlCarousel/tab2/tab2.controller.js"></script>
-<script src="/src/client/app/admin/admin.controller.js"></script>
-<script src="/src/client/app/admin/admin.route.js"></script>
+<script src="/src/client/app/appAdmin/admin/admin.controller.js"></script>
+<script src="/src/client/app/appAdmin/admin/admin.route.js"></script>
+<script src="/src/client/app/appAdmin/dashboard/dashboard.controller.js"></script>
+<script src="/src/client/app/appAdmin/dashboard/dashboard.route.js"></script>
+<script src="/src/client/app/appUser/blog/blog.controller.js"></script>
+<script src="/src/client/app/appUser/blog/blog.route.js"></script>
 <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
 <script src="/src/client/app/blocks/exception/exception.js"></script>
 <script src="/src/client/app/blocks/logger/logger.js"></script>
@@ -228,11 +132,12 @@
 <script src="/src/client/app/core/config.js"></script>
 <script src="/src/client/app/core/constants.js"></script>
 <script src="/src/client/app/core/core.route.js"></script>
+<script src="/src/client/app/core/coreAdminController.js"></script>
+<script src="/src/client/app/core/coreUser.controller.js"></script>
 <script src="/src/client/app/core/dataservice.js"></script>
-<script src="/src/client/app/dashboard/dashboard.controller.js"></script>
-<script src="/src/client/app/dashboard/dashboard.route.js"></script>
 <script src="/src/client/app/detailItem/detailItem.controller.js"></script>
 <script src="/src/client/app/detailItem/detailItem.route.js"></script>
+<script src="/src/client/myComponents/header/header.js"></script>
 <script src="/src/client/myComponents/item/item.js"></script>
 <script src="/src/client/app/layout/carousel/carousel.controller.js"></script>
 <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
@@ -242,6 +147,7 @@
 <script src="/src/client/myComponents/searchBox/mySearch.js"></script>
 <script src="/src/client/app/widgets/ht-img-person.directive.js"></script>
 <script src="/src/client/app/widgets/ht-widget-header.directive.js"></script>
+<script src="/src/client/myComponents/widgetText/widgetText.js"></script>
 <!-- endinject -->
 
 <!-- inject:templates:js -->

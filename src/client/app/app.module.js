@@ -9,7 +9,9 @@
         'app.admin',
         'app.demo',
         'app.dashboard',
-        'app.layout'
+        'app.layout',
+
+        'app.user.blog'
     ]);
 
 })();
