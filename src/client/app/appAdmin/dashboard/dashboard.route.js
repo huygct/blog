@@ -16,7 +16,7 @@
       {
         state: 'appAdmin.dashboard',
         config: {
-          url: '/',
+          url: '/dashboard',
           templateUrl: 'app/appAdmin/dashboard/dashboard.html',
           controller: 'DashboardController',
           controllerAs: 'vm',

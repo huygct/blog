@@ -19,7 +19,7 @@
       {
         state: 'appUser.blog',
         config: {
-          url: '/blog',
+          url: '/',
           templateUrl: 'app/appUser/blog/blog.html',
           controller: 'BlogController',
           controllerAs: 'vm',
