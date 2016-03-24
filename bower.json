@@ -38,7 +38,8 @@
         "angular-bootstrap": "0.14.3",
         "textAngular": "1.5.0",
         "material-design-icons": "2.2.0",
-        "owl.carousel": "2.0.0-beta.3"
+        "owl.carousel": "2.0.0-beta.3",
+        "angular-ckeditor": "1.0.3"
     },
     "resolutions": {
         "angular": "1.3.17"

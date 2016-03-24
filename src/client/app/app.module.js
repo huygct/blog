@@ -4,6 +4,7 @@
     angular.module('app', [
         'ngMaterial',
         'ui.bootstrap',
+        'ckeditor',
         'app.core',
         'app.widgets',
         'app.admin',
