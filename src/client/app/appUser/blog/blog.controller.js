@@ -14,10 +14,23 @@
     var vm = this;
     vm.title = 'Blog';
 
-    activate();
+    vm.data = [
+      {
+        imageUrl: 'images/more-from-1.png',
+        name: 'SP 1',
+        cost: 200
+      },
+      {
+        imageUrl: 'images/more-from-1.png',
+        name: 'SP 1',
+        cost: 200
+      }
+    ];
 
     function activate() {
       logger.info('Activated Blog View');
     }
+
+    activate();
   }
 })();

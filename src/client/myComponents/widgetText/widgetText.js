@@ -1,36 +1,27 @@
 /**
  * Created by thuynghi on 04/03/2016.
  */
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('my-compoents')
-    .directive('myWidgetText', myWidgetText);
-
-  /* @ngInject */
-  function myWidgetText () {
-    var directive = {
-      bindToController: true,
+    .component('myWidgetText', {
       controller: WidgetTextController,
-      controllerAs: 'vm',
-      restrict: 'EA',
-      scope: false,
-      templateUrl: 'myComponents/widgetText/widgetText.html',
-      link: linkFunc
-    };
+      bindings: {
+        data: '<'
+      },
+      templateUrl: 'myComponents/widgetText/widgetText.html'
+    });
 
-    function linkFunc(scope, el, attr, ctrl) {
-
-    }
-
-    return directive;
-  }
 
   /* @ngInject */
   WidgetTextController.$inject = [];
-  function WidgetTextController() {
-    var vm = this;
+  function WidgetTextController($scope, $element, $attrs) {
+
+    var ctrl = this;
+
+    console.log('-- ', ctrl.data);
 
   }
 

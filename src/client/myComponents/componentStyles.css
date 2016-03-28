@@ -628,3 +628,6 @@ _:-ms-input-placeholder,
   -ms-flex-align: center;
   align-items: center;
 }
+.clear-padding-bottom {
+  padding-bottom: 0;
+}

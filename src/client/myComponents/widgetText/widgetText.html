@@ -1,12 +1,12 @@
-<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp" ng-repeat="i in [0, 1, 2, 3, 4, 5, 6 ]">
+<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp widget-text-box" ng-repeat="sp in $ctrl.data">
   <div class="mdl-card__media">
-    <img src="images/more-from-1.png">
+    <img src={{sp.imageUrl}}>
   </div>
-  <div class="mdl-card__title">
-    <h4 class="mdl-card__title-text">Get going on Android</h4>
+  <div class="mdl-card__title clear-padding-bottom">
+    <span class="mdl-card__title-text name-widget">{{sp.name}}</span>
   </div>
-  <div class="mdl-card__supporting-text">
-    <span class="mdl-typography--font-light mdl-typography--subhead">Four tips to make your switch to Android quick and easy</span>
+  <div class="mdl-card__supporting-text clear-padding-bottom">
+    <span class="mdl-typography--font-light mdl-typography--subhead name-widget">{{sp.cost}}</span>
   </div>
   <div class="mdl-card__actions">
     <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
