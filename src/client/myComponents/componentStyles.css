@@ -628,6 +628,12 @@ _:-ms-input-placeholder,
   -ms-flex-align: center;
   align-items: center;
 }
+.show-button-link {
+  cursor: pointer;
+}
 .clear-padding-bottom {
   padding-bottom: 0;
+}
+.clear-padding-top {
+  padding-top: 0;
 }
