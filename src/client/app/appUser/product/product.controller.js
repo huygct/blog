@@ -13,7 +13,16 @@
   function ProductController($q, logger, $scope) {
     var vm = this;
 
-    $scope.imagePath = 'https://cdn02.static-adayroi.com/resize/240_240/100/2015/6/13/76730_bn7_139_20150708_hh169_1_chon.jpg';
+    vm.quantity = 1;
+    vm.number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    vm.product = {
+      imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
+      name: 'Knight Zoro',
+      price: 200,
+      shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
+      description: ''
+    };
 
 
     function activate() {

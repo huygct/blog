@@ -1,15 +1,10 @@
-<div class="android-more-section" ng-cloak="" class="carddemoInCardActions">
+<div class="android-more-section product-view" ng-cloak="" class="carddemoInCardActions">
 
   <md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs="" flex-gt-xs="50" layout="column">
+    <div flex-xs="" flex-gt-xs="30" layout="column" class="product-card left-side-product-view">
       <md-card>
-        <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">In-card mixed actions</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="start center">
+        <img ng-src="{{vm.product.imagePath}}" class="md-card-image" alt="Washed Out">
+        <!--<md-card-actions layout="row" layout-align="start center">-->
           <!--<md-card-icon-actions>-->
             <!--<md-button class="md-icon-button" aria-label="Favorite">-->
               <!--<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>-->
@@ -18,36 +13,69 @@
               <!--<md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>-->
             <!--</md-button>-->
           <!--</md-card-icon-actions>-->
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-        </md-card-actions>
+          <!--<md-button>Action 1</md-button>-->
+          <!--<md-button>Action 2</md-button>-->
+        <!--</md-card-actions>-->
+      </md-card>
+    </div>
+    <div flex-xs="" flex-gt-xs="40" layout="column" class="product-card right side-product-view">
+      <md-card>
         <md-card-content>
+          <md-card-title>
+            <md-card-title-text class="margin-bottom-16">
+              <p class="margin-bottom-16">
+                <span class="md-headline">{{vm.product.name}}</span>
+                <span class="md-subhead">(còn hàng)</span>
+              </p>
+              <p class="margin-bottom-16">
+                <span class="md-headline text-red-color">{{vm.product.price}}</span>
+                <span class="md-subhead">(Giảm 30%)</span>
+              </p>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="start center">
+            <md-input-container style="margin-right: 10px;">
+              <md-select ng-model="vm.quantity">
+                <md-option ng-repeat="n in vm.number" value="{{n}}">{{n}}</md-option>
+              </md-select>
+            </md-input-container>
+            <md-button class="md-primary" aria-label="Use Android">
+              <i class="fa fa-cart-plus"></i>
+              Cho vào giỏ hàng
+            </md-button>
+          </md-card-actions>
+
+          <hr/>
           <p>
-            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+            {{vm.product.shortDescription}}
           </p>
+
         </md-card-content>
       </md-card>
     </div>
-    <div flex-xs="" flex-gt-xs="50" layout="column">
-      <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">In-card actions</span>
-            <span class="md-subhead">Description</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="start center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-        </md-card-actions>
-        <md-card-content>
-          <p>
-            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-          </p>
-        </md-card-content>
-      </md-card>
+    <div flex-xs="" flex-gt-xs="30" layout="column" class="product-card right side-product-view">
+      <!--<md-card >-->
+        <!--<md-card-content>-->
+          <!--<md-card-title>-->
+            <!--<md-card-title-text class="margin-bottom-16">-->
+              <!--<p class="margin-bottom-16">-->
+                <!--<span class="md-headline">{{vm.product.name}}</span>-->
+                <!--<span class="md-subhead">(còn hàng)</span>-->
+              <!--</p>-->
+              <!--<p class="margin-bottom-16">-->
+                <!--<span class="md-headline text-red-color">{{vm.product.price}}</span>-->
+                <!--<span class="md-subhead">(Giảm 30%)</span>-->
+              <!--</p>-->
+            <!--</md-card-title-text>-->
+          <!--</md-card-title>-->
+          <!--<md-card-actions layout="row" layout-align="start center">-->
+            <!--<md-button class="md-primary" aria-label="Use Android">-->
+              <!--<i class="fa fa-cart-plus"></i>-->
+              <!--Cho vào giỏ hàng-->
+            <!--</md-button>-->
+          <!--</md-card-actions>-->
+        <!--</md-card-content>-->
+      <!--</md-card>-->
     </div>
   </md-content>
 
