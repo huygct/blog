@@ -1,1 +1,40 @@
-<div ui-view layout="row" flex class="content-app"></div>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row">
+          <span class="android-title mdl-layout-title">
+            <img class="android-logo-image" src="images/android-logo.png">
+          </span>
+      <!-- Add spacer, to align navigation to the right in desktop -->
+      <div class="android-header-spacer mdl-layout-spacer"></div>
+      <div>
+        <div my-search="" ng-model="vm.searchDara"></div>
+      </div>
+      <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="1">
+        <i class="material-icons">shopping_cart</i>
+      </div>
+      <!-- Navigation -->
+      <!--<div class="android-navigation-container">-->
+      <!--<nav class="android-navigation mdl-navigation">-->
+      <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Phones</a>-->
+      <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Tablets</a>-->
+      <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>-->
+      <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">TV</a>-->
+      <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Auto</a>-->
+      <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">One</a>-->
+      <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Play</a>-->
+      <!--</nav>-->
+      <!--</div>-->
+          <span class="android-mobile-title mdl-layout-title">
+            <img class="android-logo-image" src="images/android-logo.png">
+          </span>
+    </div>
+  </div>
+
+  <div class="android-content mdl-layout__content">
+    <a name="top"></a>
+
+    <div ui-view layout="row" flex class="content-app"></div>
+  </div>
+
+</div>

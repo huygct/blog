@@ -8,13 +8,30 @@
 (function () {
   angular.module('my-compoents')
     .directive('mySearch', [function () {
+
       function SearchController () {
+        var searchCtrl = this;
+
+        searchCtrl.showInput = false;
+
+        function showInputBox() {
+          searchCtrl.showInput = !searchCtrl.showInput;
+          console.log(searchCtrl.showInput);
+        }
+
+        function close() {
+          searchCtrl.showInput = false;
+          searchCtrl.ngModel = '';
+        }
+
+        searchCtrl.showInputBox = showInputBox;
+        searchCtrl.close = close;
       }
+
       return {
         restrict: 'EA',
         scope: {
-          ngModel: '=',
-          close: '&'
+          ngModel: '='
         },
         controller: SearchController,
         controllerAs: 'searchCtrl',

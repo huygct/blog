@@ -1,46 +1,27 @@
 /* css for search */
-$dark-primary-color = #512DA8
-$primary-color = #673AB7
-$light-primary = #FFFFFF
-$text-icons = #D1C4E9
-$accent-color = #536DFE
-$primary-text = #212121
-$secondary-text = #727272
-$divider-color = #B6B6B6
 
 my-search:focus
   outline-color transparent
 
 .search-wrapper
-  background-color rgb(63,81,181)
+  background-color transparent
   position: relative;
   padding: 10px;
-
-.search-wrapper 
+  font-size 20px
   width: auto;
+  .button-search
+    font-size 20px
 
 .search-wrapper:focus
   outline 0
   outline-color transparent
 
-.search-box 
-  color: black;
-  width: 100%;
-  height: 30px;
-  font-size: 12px;
-  border-radius: 15px;
-
-.search-box:focus
-  outline: 0;
-  outline-color transparent
-
-
-.close-icon 
+.close-icon
   z-index 2
   position: absolute;
   color: black;
   border: 1px solid transparent;
-  background-color: transparent;
+  background-color transparent
   display: inline-block;
   right: 16px;
   top: 12px;
@@ -51,17 +32,15 @@ my-search:focus
   outline 0
   outline-color transparent
 
-.my-color-icon 
-  color: #fff
-
+.my-color-icon
+  color: #3F51B5
 
 .input-container-search
   padding 0
-  font-size 14px
 
 .input-container-search .md-input
   color $light-primary
 
 
-md-input-container:not(.md-input-invalid).input-container-search .md-input
-  border-color white
+//md-input-container:not(.md-input-invalid).input-container-search .md-input
+//  border-color white

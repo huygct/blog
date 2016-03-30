@@ -21,8 +21,6 @@
 
     var ctrl = this;
 
-    console.log('-- ', ctrl.data);
-
   }
 
 })();
