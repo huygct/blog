@@ -1,0 +1,48 @@
+.card-view .container-card .card-no-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-view .container-card .list-group-cart-item .list-group-cart-item-heading {
+  background: #f7f7f7;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  width: 100%;
+}
+.card-view .container-card .list-group-cart-item .cart-product {
+  display: block;
+  float: left;
+  width: 50%;
+}
+.card-view .container-card .list-group-cart-item .cart-price {
+  display: block;
+  float: left;
+  width: 15%;
+}
+.card-view .container-card .list-group-cart-item .cart-count {
+  display: block;
+  float: left;
+  width: 20%;
+}
+.card-view .container-card .list-group-cart-item .cart-prices {
+  display: block;
+  float: left;
+  width: 15%;
+}
+.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body {
+  max-height: 200px;
+  overflow: auto;
+}
+.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .line-separate-item {
+  border-bottom: 1px dotted #ccc;
+}
+.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .list-group-cart-item-body {
+  width: 100%;
+}
+.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .list-group-cart-item-body .cart-product .detail-item-card {
+  box-shadow: none;
+}
+.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .list-group-cart-item-body .cart-product .detail-item-card .button-remove-item {
+  max-width: 120px;
+}

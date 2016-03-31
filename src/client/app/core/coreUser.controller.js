@@ -17,12 +17,13 @@
 
     vm.items = [];
 
-    vm.open = function (size) {
+    vm.openYourCard = function (size) {
 
       var modalInstance = $uibModal.open({
-        animation: true,
+        animation: false,
         templateUrl: 'app/appUser/card/card.html',
         controller: 'CardController',
+        controllerAs: 'vm',
         size: size,
         resolve: {
           items: function () {
@@ -31,11 +32,13 @@
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, function () {
-        logger.info('Modal dismissed at: ' + new Date());
-      });
+      modalInstance.result.then(
+        function (selectedItem) {
+          $scope.selected = selectedItem;
+          console.log('--- ', selectedItem);
+        }, function () {
+          logger.info('Modal dismissed at: ' + new Date());
+        });
     };
 
   }

@@ -4,3 +4,13 @@
 .text-red-color {
   color: #f00;
 }
+.remove-padding {
+  padding: 0;
+}
+.width-auto {
+  width: auto;
+}
+#remove-margin-and-uppercase {
+  margin: 0;
+  text-transform: none;
+}

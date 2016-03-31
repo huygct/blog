@@ -7,10 +7,12 @@
         'ckeditor',
         'app.core',
         'app.widgets',
-        'app.admin',
-        'app.demo',
-        'app.dashboard',
         'app.layout',
+
+        'app.demo',
+
+        'app.admin',
+        'app.dashboard',
 
         'app.user.blog',
         'app.user.product'
