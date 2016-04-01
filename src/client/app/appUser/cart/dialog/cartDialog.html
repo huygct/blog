@@ -14,15 +14,15 @@
     <div ng-if="vm.items.length !== 0" class="card-had-item">
       <div class="list-group-cart-item">
         <ul class="list-group-cart-item-heading list-unstyled clearfix">
-          <li class="cart-product"><span>sản phẩm</span></li>
-          <li class="cart-price"><span>đơn giá</span></li>
-          <li class="cart-count"><span>số lượng</span></li>
-          <li class="cart-prices"><span>thành tiền</span></li>
+          <li class="column-format cart-product"><span>sản phẩm</span></li>
+          <li class="column-format text-in-right cart-price"><span>đơn giá</span></li>
+          <li class="column-format text-in-right cart-count"><span>số lượng</span></li>
+          <li class="column-format text-in-right cart-prices"><span>thành tiền</span></li>
         </ul>
-        <div class="list-group-cart-all-item-body">
+        <div class="list-group-cart-all-item-body" id="scroll-bar-type">
           <ul class="list-group-cart-item-body list-unstyled clearfix" ng-repeat="item in vm.items"
               ng-class="{'line-separate-item': !$last}">
-            <li class="cart-product">
+            <li class="column-format cart-product">
               <md-card class="detail-item-card">
                 <md-card-title class="remove-padding">
                   <md-card-title-media>
@@ -41,27 +41,34 @@
                 </md-card-title>
               </md-card>
             </li>
-            <li class="cart-price">
+            <li class="column-format text-in-right cart-price">
               <span>{{item.price}}</span>
             </li>
-            <li class="cart-count">
-              <select class="form-control width-auto" ng-model="item.quantity"
-                      ng-options="opt for opt in item.number"></select>
+            <li class="column-format text-in-right cart-count">
+              <input type="number" class="form-control max-width-100" ng-model="item.quantity">
             </li>
-            <li class="cart-prices"><span>{{item.price * item.quantity}}</span></li>
+            <li class="column-format text-in-right cart-prices">
+              <span>{{item.price * item.quantity}}</span>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="modal-footer" ng-if="vm.items.length !== 0">
+  <div class="modal-footer cart-footer" ng-if="vm.items.length !== 0">
     <md-button class="md-raised md-primary pull-left" aria-label="mua hang">
       <i class="fa fa-caret-left"></i>
       Tiếp tục mua hàng
     </md-button>
-    <md-button class="md-raised md-accent pull-right" aria-label="thanh toán">
-      Tiến hành thanh toán
-      <i class="fa fa-long-arrow-right"></i>
-    </md-button>
+    <div class="pull-right">
+      <p class="sum-money">
+        <span>Thành tiền: </span>
+        <span class="text-red-color">200000</span>
+      </p>
+      <md-button class="md-raised md-accent" aria-label="thanh toán">
+        Tiến hành thanh toán
+        <i class="fa fa-long-arrow-right"></i>
+      </md-button>
+    </div>
   </div>
 </div>

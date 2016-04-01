@@ -1,3 +1,7 @@
+.card-view .cart-footer .sum-money {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 .card-view .container-card .card-no-item {
   display: flex;
   flex-direction: column;
@@ -19,30 +23,44 @@
   display: block;
   float: left;
   width: 15%;
+  font-weight: bold;
 }
 .card-view .container-card .list-group-cart-item .cart-count {
   display: block;
   float: left;
-  width: 20%;
+  width: 15%;
+  font-weight: bold;
 }
 .card-view .container-card .list-group-cart-item .cart-prices {
   display: block;
   float: left;
-  width: 15%;
+  width: 20%;
+  font-weight: bold;
+}
+.card-view .container-card .list-group-cart-item .column-format {
+  padding: 8px 16px;
+}
+.card-view .container-card .list-group-cart-item .text-in-right {
+  text-align: right;
 }
 .card-view .container-card .list-group-cart-item .list-group-cart-all-item-body {
   max-height: 200px;
   overflow: auto;
 }
-.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .line-separate-item {
+.card-view .container-card .list-group-cart-item .line-separate-item {
   border-bottom: 1px dotted #ccc;
 }
-.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .list-group-cart-item-body {
+.card-view .container-card .list-group-cart-item .list-group-cart-item-body {
   width: 100%;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
-.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .list-group-cart-item-body .cart-product .detail-item-card {
+.card-view .container-card .list-group-cart-item .list-group-cart-item-body .cart-product .detail-item-card {
   box-shadow: none;
 }
-.card-view .container-card .list-group-cart-item .list-group-cart-all-item-body .list-group-cart-item-body .cart-product .detail-item-card .button-remove-item {
+.card-view .container-card .list-group-cart-item .list-group-cart-item-body .cart-product .detail-item-card .button-remove-item {
   max-width: 120px;
+}
+.card-view .container-card .list-group-cart-item .list-group-cart-item-body .cart-count {
+  padding: 0 16px;
 }

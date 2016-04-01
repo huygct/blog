@@ -21,8 +21,8 @@
 
       var modalInstance = $uibModal.open({
         animation: false,
-        templateUrl: 'app/appUser/card/card.html',
-        controller: 'CardController',
+        templateUrl: 'app/appUser/cart/dialog/cartDialog.html',
+        controller: 'CartDialogController',
         controllerAs: 'vm',
         size: size,
         resolve: {

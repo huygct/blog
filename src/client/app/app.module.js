@@ -15,7 +15,9 @@
         'app.dashboard',
 
         'app.user.blog',
-        'app.user.product'
+        'app.user.product',
+        'app.user.cart',
+        'app.user.order'
     ]);
 
 })();
