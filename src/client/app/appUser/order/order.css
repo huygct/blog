@@ -1,0 +1,20 @@
+.order-view .left-side-order-view .content-is-member .box-content {
+  width: 100%;
+}
+.order-view .right-side-order-view .information-item .detail-item {
+  font-size: 11px;
+  border-bottom: 1px solid #c9c9c9;
+}
+.order-view .right-side-order-view .information-item .detail-item .price-and-name-item {
+  float: left;
+}
+.order-view .right-side-order-view .information-item .detail-item .total-price-item {
+  float: right;
+}
+.order-view .right-side-order-view .information-item .total-cost .text {
+  font-size: 12px;
+}
+.order-view .right-side-order-view .information-item .total-cost .sum-money {
+  font-size: 18px;
+  float: right;
+}

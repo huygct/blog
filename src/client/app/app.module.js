@@ -3,6 +3,7 @@
 
     angular.module('app', [
         'ngMaterial',
+        'ngMessages',
         'ui.bootstrap',
         'ckeditor',
         'app.core',

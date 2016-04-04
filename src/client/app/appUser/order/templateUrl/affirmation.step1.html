@@ -1,0 +1,121 @@
+<div flex-xs="" flex-gt-xs="66" layout="column" class="left-side-order-view">
+  <md-radio-group ng-model="vm.typeBuyer">
+    <md-radio-button value="strange" class="md-primary">Khach hang vang lai</md-radio-button>
+    <md-radio-button value="member" class="md-primary">Thanh vien</md-radio-button>
+  </md-radio-group>
+  <hr/>
+  <md-card>
+    <md-card-content ng-if="vm.typeBuyer === 'member'" class="content-is-member">
+        <form ng-submit="vm.authenticate()" name="loginForm" layout="column" class="md-padding box-content">
+          <md-input-container>
+            <label>Email</label>
+            <input name="email" ng-model="vm.user.email" required/>
+            <div ng-messages="loginForm.email.$error" ng-if='loginForm.email.$dirty'>
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <label>Password</label>
+            <input name="password" type="password" ng-model="vm.user.password" required/>
+            <div ng-messages="loginForm.password.$error" ng-if='loginForm.password.$dirty'>
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-button type="submit" class="md-raised md-primary btn btn-primary">Login</md-button>
+        </form>
+    </md-card-content>
+
+    <md-card-content ng-if="vm.typeBuyer === 'strange'">
+      <form name="informationBuyerForm">
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input required name="email" type="email" ng-model="vm.buyer.email">
+
+          <div ng-messages="informationBuyerForm.email.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Số điện thoại</label>
+          <input required name="numberPhone" ng-model="vm.buyer.numberPhone">
+
+          <div ng-messages="informationBuyerForm.numberPhone.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Client Email</label>
+          <input required type="email" name="clientEmail" ng-model="project.clientEmail"
+                 minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"/>
+
+          <div ng-messages="projectForm.clientEmail.$error" role="alert">
+            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+              Your email must be between 10 and 100 characters long and look like an e-mail address.
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Hourly Rate (USD)</label>
+          <input required type="number" step="any" name="rate" ng-model="project.rate" min="800"
+                 max="4999" ng-pattern="/^1234$/"/>
+
+          <div ng-messages="projectForm.rate.$error" multiple md-auto-hide="false">
+            <div ng-message="required">
+              You've got to charge something! You can't just <b>give away</b> a Missile Defense
+              System.
+            </div>
+            <div ng-message="min">
+              You should charge at least $800 an hour. This job is a big deal... if you mess up,
+              everyone dies!
+            </div>
+            <div ng-message="pattern">
+              You should charge exactly $1,234.
+            </div>
+            <div ng-message="max">
+              {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a little ridiculous. I
+              doubt even Bill Clinton could afford that.
+            </div>
+          </div>
+        </md-input-container>
+        <p style="font-size:.8em; width: 100%; text-align: center;">
+          Make sure to include <a href="https://docs.angularjs.org/api/ngMessages" target="_blank">ngMessages</a>
+          module
+          when using ng-message markup.
+        </p>
+
+        <input type="text" ng-model="test" format-currency="number" />
+
+      </form>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>Action 1</md-button>
+        <md-button>Action 2</md-button>
+      </md-card-actions>
+    </md-card-content>
+  </md-card>
+
+</div>
+
+<div flex-xs="" flex-gt-xs="33" class="right-side-order-view">
+  <md-card>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button>Sửa</md-button>
+    </md-card-actions>
+    <md-card-content>
+      <md-card-title layout="column">
+        <md-card-title-text class="margin-bottom-16 information-item">
+          <div class="margin-bottom-16 detail-item" ng-repeat="item in ::vm.items">
+            <p class="price-and-name-item">{{item.quantity}} x {{::item.name}}</p>
+
+            <p class="total-price-item">{{::item.quantity * item.price}}</p>
+          </div>
+        </md-card-title-text>
+        <md-card-title-text class="margin-bottom-16 total-cost">
+          <p class="margin-bottom-16">
+            <span class="text">Thành tiền</span>
+            <span class="text-red-color sum-money">200000</span>
+          </p>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card-content>
+  </md-card>
+</div>
