@@ -14,6 +14,7 @@
 
         'app.admin',
         'app.dashboard',
+        'app.admin.product',
 
         'app.user.blog',
         'app.user.product',

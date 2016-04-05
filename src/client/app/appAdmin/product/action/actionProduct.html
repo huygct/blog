@@ -1,0 +1,78 @@
+<div ng-controller="ActionProductController as vm" >
+  <md-content layout-padding>
+    <form name="projectForm">
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input md-maxlength="30" required name="name" ng-model="vm.currentProduct.name">
+        <div ng-messages="projectForm.name.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Cost</label>
+        <input required name="cost" ng-model="vm.currentProduct.cost" type="number" step="0.01">
+        <div ng-messages="projectForm.cost.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Sale</label>
+        <input required name="sale" ng-model="vm.currentProduct.sale" type="number" step="0.01">
+        <div ng-messages="projectForm.sale.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Trade Mark</label>
+        <input md-maxlength="30" required name="trademark" ng-model="vm.currentProduct.trademark">
+        <div ng-messages="projectForm.trademark.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Promotion</label>
+        <input md-maxlength="30" required name="promotion" ng-model="vm.currentProduct.promotion">
+        <div ng-messages="projectForm.promotion.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Kind</label>
+        <input md-maxlength="30" required name="kind" ng-model="vm.currentProduct.kind">
+        <div ng-messages="projectForm.kind.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Style</label>
+        <input md-maxlength="30" required name="style" ng-model="vm.currentProduct.style">
+        <div ng-messages="projectForm.style.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Description</label>
+        <input md-maxlength="30" required name="description" ng-model="vm.currentProduct.description">
+        <div ng-messages="projectForm.description.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Quantity</label>
+        <input required name="quantity" ng-model="vm.currentProduct.quantity" type="number" step="1">
+        <div ng-messages="projectForm.quantity.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+    </form>
+    <div class="pull-right">
+      <md-button class="md-raised md-primary" ng-click="vm.addProduct()">Add</md-button>
+      <md-button class="md-raised">Cancer</md-button>
+    </div>
+  </md-content>
+</div>
