@@ -9,6 +9,7 @@
         'app.core',
         'app.widgets',
         'app.layout',
+        'mdDataTable',
 
         'app.demo',
 

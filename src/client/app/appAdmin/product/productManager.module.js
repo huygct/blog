@@ -5,7 +5,6 @@
   'use strict';
 
   angular.module('app.admin.product', [
-    'app.core',
-    'app.widgets'
+
   ]);
 })();

@@ -1,0 +1,11 @@
+.product-manager-view {
+  padding: 16px;
+}
+.product-manager-view .action-button {
+  width: 100%;
+  text-align: right;
+}
+.product-manager-view .table-content {
+  display: inline-block;
+  width: 100%;
+}

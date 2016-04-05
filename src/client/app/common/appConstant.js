@@ -13,9 +13,9 @@
           deleteProduct: 'product/delete'
         },
         urlTemplates: {
-          main: 'app/scripts/product/table/tableProduct.html',
-          add: 'app/scripts/product/action/actionProduct.html',
-          edit: 'app/scripts/product/action/actionProduct.html'
+          main: 'app/appAdmin/product/templates/tableProduct.html',
+          add: 'app/appAdmin/product/templates/actionProduct.html',
+          edit: 'app/appAdmin/product/templates/actionProduct.html'
         }
       }
 

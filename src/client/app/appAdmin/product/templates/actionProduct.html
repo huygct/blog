@@ -1,4 +1,4 @@
-<div ng-controller="ActionProductController as vm" >
+<div>
   <md-content layout-padding>
     <form name="projectForm">
       <md-input-container class="md-block">
@@ -72,7 +72,7 @@
     </form>
     <div class="pull-right">
       <md-button class="md-raised md-primary" ng-click="vm.addProduct()">Add</md-button>
-      <md-button class="md-raised">Cancer</md-button>
+      <md-button class="md-raised" ng-click="vm.backToTableView()">Cancer</md-button>
     </div>
   </md-content>
 </div>
