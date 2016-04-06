@@ -1,0 +1,28 @@
+<div class="product-manager-view">
+  <div class="action-button">
+    <md-button class="md-primary" ng-click="vm.goToAddCategoryView()">Add Product</md-button>
+    <md-button class="md-primary" ng-click="vm.goToEditCategoryView()">Edit</md-button>
+  </div>
+  <div class="table-content">
+    <mdt-table table-card="{visible: true, title: 'Products'}"
+
+               selectable-rows="true"
+               alternate-headers="'contextual'"
+
+               selected-row-callback="vm.selectedRowCallback(rows)"
+               sortable-columns="true"
+               paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
+
+               delete-function="vm.selectedRowCallback(rows)"
+      >
+      <mdt-header-row>
+        <mdt-column align-rule="left">Name</mdt-column>
+        <mdt-column align-rule="left">Description</mdt-column>
+      </mdt-header-row>
+      <mdt-row ng-repeat="item in vm.dataList" table-row-id="item">
+        <mdt-cell>{{item.name}}</mdt-cell>
+        <mdt-cell>{{item.description}}</mdt-cell>
+      </mdt-row>
+    </mdt-table>
+  </div>
+</div>

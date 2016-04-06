@@ -11,6 +11,8 @@
     var vm = this;
     vm.title = 'Demo';
 
+    $scope.loading = true;
+
     $scope.items1 = [1,2,3,4,5,6,7,8,9,10];
     $scope.items2 = [1,2,3,4,5,6,7,8,9,10];
 

@@ -1,6 +1,7 @@
 <div class="product-manager-view">
   <div class="action-button">
     <md-button class="md-primary" ng-click="vm.goToAddProductView()">Add Product</md-button>
+    <md-button class="md-primary" ng-click="vm.goToEditProductView()">Edit</md-button>
   </div>
   <div class="table-content">
     <mdt-table table-card="{visible: true, title: 'Products'}"
@@ -24,7 +25,7 @@
         <mdt-column align-rule="right">Calcium (%)</mdt-column>
         <mdt-column align-rule="right">Iron (%)</mdt-column>
       </mdt-header-row>
-      <mdt-row ng-repeat="item in vm.dataList" table-row-id="item.id">
+      <mdt-row ng-repeat="item in vm.dataList" table-row-id="item">
         <mdt-cell>{{item.name}}</mdt-cell>
         <mdt-cell>{{item.calories}}</mdt-cell>
         <mdt-cell>{{item.fat}}</mdt-cell>

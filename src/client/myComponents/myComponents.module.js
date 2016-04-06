@@ -2,7 +2,12 @@
   'use strict';
 
   angular.module('my-compoents', [
-    'textAngular'
+    'textAngular',
+    'ngMaterial',
+    'ngMessages',
+    'ui.bootstrap',
+    'ckeditor',
+    'mdDataTable'
   ]);
 
 })();

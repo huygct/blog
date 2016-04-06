@@ -1,11 +1,11 @@
 /**
- * Created by Knightzoro on 4/5/16.
+ * Created by thuynghi on 06/04/2016.
  */
 (function () {
   'use strict';
 
   angular
-    .module('app.admin.product')
+    .module('app.admin.category')
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -17,13 +17,13 @@
   function getStates() {
     return [
       {
-        state: 'appAdmin.productManager',
+        state: 'appAdmin.category',
         config: {
-          url: '/admin/productManager',
-          templateUrl: 'app/appAdmin/product/productManager.html',
-          controller: 'ProductManagerController',
+          url: '/admin/category',
+          templateUrl: 'app/appAdmin/category/category.html',
+          controller: 'CategoryController',
           controllerAs: 'vm',
-          title: 'Product Manager'
+          title: 'Category Manager'
         }
       }
     ];

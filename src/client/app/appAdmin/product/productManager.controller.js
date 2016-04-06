@@ -14,6 +14,7 @@
     var vm = this;
     vm.title = 'Product Manager';
 
+    var currentProduct = {};
     vm.cache = productManagerService.cache;
 
     /**
@@ -30,20 +31,36 @@
           console.log('OK');
         });
     }
+
+    /**
+     * add Product
+     */
+    vm.goToAddProductView = function () {
+      vm.cache.currentView = productManagerService.getView.add;
+    };
     
     vm.addProduct = function(product) {
       console.log('Add Product action');
     };
 
-    vm.goToAddProductView = function () {
+    /**
+     * edit product
+     */
+    vm.goToEditProductView = function () {
+      vm.currentProduct = currentProduct;
       vm.cache.currentView = productManagerService.getView.add;
     };
 
     vm.backToTableView = function () {
-      cache.currentView = productManagerService.getView.main
+      vm.cache.currentView = productManagerService.getView.main
     };
 
+    /**
+     * callback from table directive
+     * @param rows
+     */
     vm.selectedRowCallback = function (rows) {
+      currentProduct = rows;
       console.log('rows: ', rows);
     };
 

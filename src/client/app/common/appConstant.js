@@ -17,6 +17,20 @@
           add: 'app/appAdmin/product/templates/actionProduct.html',
           edit: 'app/appAdmin/product/templates/actionProduct.html'
         }
+      },
+
+      category: {
+        api: {
+          getCategoryList: 'category/getList',
+          addProduct: 'category/add',
+          updateProduct: 'category/update',
+          deleteProduct: 'category/delete'
+        },
+        urlTemplates: {
+          main: 'app/appAdmin/category/templates/tableCategory.html',
+          add: 'app/appAdmin/category/templates/actionCategory.html',
+          edit: 'app/appAdmin/category/templates/actionCategory.html'
+        }
       }
 
     });
