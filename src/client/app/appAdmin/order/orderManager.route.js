@@ -1,8 +1,11 @@
+/**
+ * Created by thuynghi on 07/04/2016.
+ */
 (function () {
   'use strict';
 
   angular
-    .module('app.admin.dashboard')
+    .module('app.admin.order')
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -14,13 +17,13 @@
   function getStates() {
     return [
       {
-        state: 'appAdmin.dashboard',
+        state: 'appAdmin.orderManager',
         config: {
-          url: '/admin/dashboard',
-          templateUrl: 'app/appAdmin/dashboard/dashboard.html',
-          controller: 'DashboardController',
+          url: '/admin/orderManager',
+          templateUrl: 'app/appAdmin/order/orderManager.html',
+          controller: 'OrderManagerController',
           controllerAs: 'vm',
-          title: 'dashboard'
+          title: 'Order Manager'
         }
       }
     ];

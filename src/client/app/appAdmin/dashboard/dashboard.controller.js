@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.dashboard')
+    .module('app.admin.dashboard')
     .controller('DashboardController', DashboardController);
 
   DashboardController.$inject = ['$q', 'dataservice', 'logger'];
@@ -10,6 +10,9 @@
   function DashboardController($q, dataservice, logger) {
     var vm = this;
     vm.title = 'Dashboard';
+
+
+
 
     activate();
 

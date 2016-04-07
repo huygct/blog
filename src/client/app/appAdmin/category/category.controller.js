@@ -14,7 +14,7 @@
     var vm = this;
     vm.title = 'Category Manager';
 
-    var currentCategory = {};
+    vm.selectedCategory = [];
     vm.cache = categoryService.cache;
 
     /**
@@ -48,7 +48,7 @@
      * edit category
      */
     vm.goToEditCategoryView = function () {
-      vm.currentCategory = angular.copy(currentCategory);
+      vm.currentCategory = angular.copy(vm.selectedCategory[0]);
       console.log('--xx ', vm.currentCategory);
       vm.cache.currentView = categoryService.getView.edit;
     };
@@ -59,6 +59,7 @@
 
     vm.backToTableView = function () {
       vm.currentCategory = {};
+      vm.selectedCategory = [];
       vm.cache.currentView = categoryService.getView.main
     };
 
@@ -67,7 +68,7 @@
      * @param rows
      */
     vm.selectedRowCallback = function (rows) {
-      currentCategory = rows[0];
+      vm.selectedCategory = rows;
       console.log('rows: ', rows);
     };
 

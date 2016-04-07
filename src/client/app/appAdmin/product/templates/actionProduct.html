@@ -1,77 +1,69 @@
 <div>
   <md-content layout-padding>
-    <form name="projectForm">
+    <form name="actionProductForm">
       <md-input-container class="md-block">
-        <label>Name</label>
+        <label>Name Product</label>
         <input md-maxlength="30" required name="name" ng-model="vm.currentProduct.name">
-        <div ng-messages="projectForm.name.$error">
+        <div ng-messages="actionProductForm.name.$error">
           <div ng-message="required">This is required.</div>
           <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
         </div>
       </md-input-container>
       <md-input-container class="md-block">
-        <label>Cost</label>
-        <input required name="cost" ng-model="vm.currentProduct.cost" type="number" step="0.01">
-        <div ng-messages="projectForm.cost.$error">
+        <label>Price</label>
+        <input required name="price" ng-model="vm.currentProduct.price" type="number">
+        <div ng-messages="actionProductForm.price.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
       <md-input-container class="md-block">
-        <label>Sale</label>
-        <input required name="sale" ng-model="vm.currentProduct.sale" type="number" step="0.01">
-        <div ng-messages="projectForm.sale.$error">
+        <label>Image Url</label>
+        <input required name="imageUrl" ng-model="vm.currentProduct.imageUrl">
+        <div ng-messages="actionProductForm.imageUrl.$error">
           <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label>Trade Mark</label>
-        <input md-maxlength="30" required name="trademark" ng-model="vm.currentProduct.trademark">
-        <div ng-messages="projectForm.trademark.$error">
-          <div ng-message="required">This is required.</div>
-          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label>Promotion</label>
-        <input md-maxlength="30" required name="promotion" ng-model="vm.currentProduct.promotion">
-        <div ng-messages="projectForm.promotion.$error">
-          <div ng-message="required">This is required.</div>
-          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label>Kind</label>
-        <input md-maxlength="30" required name="kind" ng-model="vm.currentProduct.kind">
-        <div ng-messages="projectForm.kind.$error">
-          <div ng-message="required">This is required.</div>
-          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label>Style</label>
-        <input md-maxlength="30" required name="style" ng-model="vm.currentProduct.style">
-        <div ng-messages="projectForm.style.$error">
-          <div ng-message="required">This is required.</div>
-          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
         </div>
       </md-input-container>
       <md-input-container class="md-block">
         <label>Description</label>
-        <input md-maxlength="30" required name="description" ng-model="vm.currentProduct.description">
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
+        <input name="description" ng-model="vm.currentProduct.description">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Rate</label>
+        <input name="rate" ng-model="vm.currentProduct.rate">
       </md-input-container>
       <md-input-container class="md-block">
         <label>Quantity</label>
         <input required name="quantity" ng-model="vm.currentProduct.quantity" type="number" step="1">
-        <div ng-messages="projectForm.quantity.$error">
+        <div ng-messages="actionProductForm.quantity.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Category</label>
+        <md-select name="category" ng-model="vm.currentProduct.category" required>
+          <md-option value="1">One</md-option>
+          <md-option value="2">Two</md-option>
+        </md-select>
+        <div class="errors" ng-messages="actionProductForm.category.$error" ng-if="actionProductForm.$dirty">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
     </form>
+
     <div class="pull-right">
-      <md-button class="md-raised md-primary" ng-click="vm.addProduct()">Add</md-button>
+      <md-button class="md-raised md-primary" ng-disabled="!actionCategoryForm.$valid"
+                 ng-click="vm.addProduct(vm.currentCategory)"
+                 ng-if="vm.cache.currentView.name === 'add'"
+        >
+        Add
+      </md-button>
+      <md-button class="md-raised md-primary" ng-disabled="!actionCategoryForm.$valid"
+                 ng-click="vm.updateProduct(vm.currentCategory)"
+                 ng-if="vm.cache.currentView.name === 'edit'"
+        >
+        Update
+      </md-button>
       <md-button class="md-raised" ng-click="vm.backToTableView()">Cancer</md-button>
     </div>
   </md-content>

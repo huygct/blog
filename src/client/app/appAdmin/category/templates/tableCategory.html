@@ -1,7 +1,7 @@
 <div class="product-manager-view">
   <div class="action-button">
     <md-button class="md-primary" ng-click="vm.goToAddCategoryView()">Add Product</md-button>
-    <md-button class="md-primary" ng-click="vm.goToEditCategoryView()">Edit</md-button>
+    <md-button class="md-primary" ng-click="vm.goToEditCategoryView()" ng-disabled="vm.selectedCategory.length !== 1">Edit</md-button>
   </div>
   <div class="table-content">
     <mdt-table table-card="{visible: true, title: 'Products'}"

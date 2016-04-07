@@ -27,10 +27,10 @@
         selected: $state.is('appAdmin.dashboard')
       },
       {
-        state: 'appAdmin.dashboard',
+        state: 'appAdmin.orderManager',
         name: 'Orders',
         icon: 'shopping_cart',
-        selected: $state.is('appAdmin.dashboard')
+        selected: $state.is('appAdmin.orderManager')
       },
       {
         state: 'appAdmin.category',

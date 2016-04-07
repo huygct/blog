@@ -14,7 +14,7 @@
     var vm = this;
     vm.title = 'Product Manager';
 
-    var currentProduct = {};
+    vm.selectedProduct = [];
     vm.cache = productManagerService.cache;
 
     /**
@@ -23,7 +23,7 @@
     function loadData () {
       productManagerService.api.getProductList("aa")
         .then(function (data) {
-          vm.dataList = data;
+          vm.productList = data;
         }, function (error) {
           console.log(error);
         })
@@ -37,6 +37,7 @@
      */
     vm.goToAddProductView = function () {
       vm.cache.currentView = productManagerService.getView.add;
+      vm.currentProduct = {};
     };
     
     vm.addProduct = function(product) {
@@ -47,11 +48,17 @@
      * edit product
      */
     vm.goToEditProductView = function () {
-      vm.currentProduct = currentProduct;
+      vm.currentProduct = angular.copy(vm.selectedProduct[0]);
       vm.cache.currentView = productManagerService.getView.add;
     };
 
+    vm.updateProduct = function(product) {
+      console.log('Add Product action');
+    };
+
     vm.backToTableView = function () {
+      vm.currentProduct = {};
+      vm.selectedProduct = [];
       vm.cache.currentView = productManagerService.getView.main
     };
 
@@ -60,7 +67,7 @@
      * @param rows
      */
     vm.selectedRowCallback = function (rows) {
-      currentProduct = rows;
+      vm.selectedProduct = rows;
       console.log('rows: ', rows);
     };
 

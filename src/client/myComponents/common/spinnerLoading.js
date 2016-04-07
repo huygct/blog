@@ -9,10 +9,10 @@
     .directive('spinnerLoading', spinnerLoading);
 
   /* @ngInject */
-  spinnerLoading.$inject = ['$http', '$templateCache'];
-  function spinnerLoading ($http, $templateCache) {
+  spinnerLoading.$inject = [];
+  function spinnerLoading () {
     function linkFunc(scope, element, attrs, ctrl) {
-      
+
     }
 
     return {
@@ -21,7 +21,12 @@
       scope: {
         spinnerLoading: '='
       },
-      templateUrl: 'myComponents/common/spinnerLoading.html',
+      template: '<div>' +
+                  '<div ng-cloak="" ng-transclude ng-show="spinnerLoading"></div>' +
+                  '<div layout="row" layout-sm="column" layout-align="space-around" ng-hide="spinnerLoading">' +
+                      '<md-progress-circular md-mode="indeterminate"></md-progress-circular>' +
+                  '</div>' +
+                '</div>',
       link: linkFunc
     };
   }

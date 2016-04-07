@@ -18,9 +18,11 @@
         'app.demo',
 
         'app.admin',
-        'app.dashboard',
+        'app.admin.dashboard',
         'app.admin.product',
         'app.admin.category',
+        'app.admin.order',
+
 
         'app.user.blog',
         'app.user.product',

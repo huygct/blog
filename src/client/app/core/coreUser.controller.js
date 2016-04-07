@@ -41,5 +41,22 @@
         });
     };
 
+    vm.loginApp = function() {
+      var modalInstance = $uibModal.open({
+        animation: false,
+        templateUrl: 'app/core/login/loginDialog.html',
+        controller: 'LoginDialogController',
+        controllerAs: 'vm',
+        size: 'sm'
+      });
+
+      modalInstance.result.then(
+        function (user) {
+          console.log('user: ', user);
+        }, function () {
+          logger.info('Modal dismissed at: ' + new Date());
+        });
+    }
+
   }
 })();
