@@ -17,10 +17,11 @@
 
     return {
       restrict: 'A',
+      transclude: true,
       scope: {
         spinnerLoading: '='
       },
-      templateUrl: '',
+      templateUrl: 'myComponents/common/spinnerLoading.html',
       link: linkFunc
     };
   }

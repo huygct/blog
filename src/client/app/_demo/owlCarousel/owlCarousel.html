@@ -1,5 +1,8 @@
-<a class="btn btn-success" ng-click="toggleLoading()" button-spinner="loading" ng-disabled="loading">Save</a>
-<div>
+<a class="btn btn-success" ng-click="loading = !loading" button-spinner="loading">Save</a>
+
+nghi
+
+<div spinner-loading="loading">
   <md-content class="md-padding">
     <md-tabs md-selected="selectedIndex" md-border-bottom="" md-autoselect="">
       <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
