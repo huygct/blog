@@ -1,0 +1,69 @@
+<div class="android-more-section" layout="column" layout-padding ng-cloak>
+  <md-content class="md-no-momentum">
+    <form name="loginForm">
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Nhập email</label>
+        <md-icon class="email">
+          <i class="fa fa-envelope"></i>
+        </md-icon>
+        <input required name="email" ng-model="vm.user.email">
+
+        <div ng-messages="loginForm.email.$error">
+          <div ng-message="required">Bạn phải nhập email.</div>
+        </div>
+      </md-input-container>
+      <md-input-container md-no-float class="md-block">
+        <label>Nhập mật khẩu</label>
+        <md-icon>
+          <i class="fa fa-unlock-alt"></i>
+        </md-icon>
+        <input required name="password" ng-model="vm.user.password" type="password">
+
+        <div ng-messages="loginForm.password.$error">
+          <div ng-message="required">Bạn phải nhập mật khẩu</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Nhập họ tên</label>
+        <md-icon>
+          <i class="fa fa-user"></i>
+        </md-icon>
+        <input required name="name" ng-model="vm.user.name">
+
+        <div ng-messages="loginForm.name.$error">
+          <div ng-message="required">Bạn phải nhập họ tên.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Nhập số điện thoại</label>
+        <md-icon>
+          <i class="fa fa-phone"></i>
+        </md-icon>
+        <input required name="phone" ng-model="vm.user.phone">
+
+        <div ng-messages="loginForm.phone.$error">
+          <div ng-message="required">Bạn phải nhập số điện thoại.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Nhập địa chỉ</label>
+        <md-icon>
+          <i class="fa fa-map-marker"></i>
+        </md-icon>
+        <textarea required name="address" ng-model="vm.user.address"></textarea>
+
+        <div ng-messages="loginForm.address.$error">
+          <div ng-message="required">Bạn phải nhập địa chỉ.</div>
+        </div>
+      </md-input-container>
+    </form>
+    <div class="pull-right">
+      <md-button class="md-raised md-primary" ng-disabled="!loginForm.$valid"
+                 ng-click="vm.register(vm.user)"
+        >
+        Đăng ký
+      </md-button>
+    </div>
+  </md-content>
+</div>

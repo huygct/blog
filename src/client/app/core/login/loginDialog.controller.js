@@ -8,14 +8,24 @@
     .module('app.core')
     .controller('LoginDialogController', loginDialogController);
 
-  loginDialogController.$inject = ['$q', '$uibModalInstance', 'logger', '$scope'];
+  loginDialogController.$inject = ['$state', '$uibModalInstance', 'logger', '$scope'];
   /* @ngInject */
-  function loginDialogController($q, $uibModalInstance, logger, $scope) {
+  function loginDialogController($state, $uibModalInstance, logger, $scope) {
     var vm = this;
     var user;
 
-    vm.ok = function () {
+    /**
+     * login
+     */
+    vm.login = function () {
       $uibModalInstance.close(user);
+    };
+    /**
+     * register
+     */
+    vm.goToRegister = function () {
+      $state.go('appUser.register');
+      $uibModalInstance.dismiss('cancel');
     };
 
     vm.cancel = function () {

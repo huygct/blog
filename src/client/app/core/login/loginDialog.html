@@ -3,13 +3,29 @@
     <h3 class="modal-title">Đăng nhập</h3>
   </div>
   <div class="modal-body">
-    aaa
-  </div>
-  <div class="modal-footer">
-    <div>
-      <md-button class="md-raised md-accent" aria-label="đăng-nhập">
-        Đăng nhập
-      </md-button>
-    </div>
+    <md-content layout-padding>
+      <form name="loginForm">
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input required name="email" ng-model="vm.user.email">
+          <div ng-messages="loginForm.email.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Password</label>
+          <input required name="password" ng-model="vm.user.password" type="password">
+          <div ng-messages="loginForm.password.$error">
+            <div ng-message="required">This is required</div>
+          </div>
+        </md-input-container>
+      </form>
+      <md-input-container layout-align="center center">
+        <div layout="row" layout-sm="column" layout-margin>
+          <md-button class="md-raised" flex="50" flex-sm="100" ng-click="vm.login(vm.user)">Đăng nhập</md-button>
+          <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.goToRegister()">Đăng ký</md-button>
+        </div>
+      </md-input-container>
+    </md-content>
   </div>
 </div>
