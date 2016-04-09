@@ -24,6 +24,18 @@
           <div ng-message="required">Bạn phải nhập mật khẩu</div>
         </div>
       </md-input-container>
+      <md-input-container md-no-float class="md-block">
+        <label>Nhập lại mật khẩu</label>
+        <md-icon>
+          <i class="fa fa-check-square"></i>
+        </md-icon>
+        <input required name="confirmPassword" ng-model="vm.user.confirmPassword" type="password">
+
+        <div ng-messages="loginForm.confirmPassword.$error || vm.user.password !== vm.user.confirmPassword">
+          <div ng-message="required">Bạn phải lại nhập mật khẩu</div>
+        </div>
+      </md-input-container>
+
       <md-input-container class="md-block">
         <label>Nhập họ tên</label>
         <md-icon>
@@ -40,9 +52,9 @@
         <md-icon>
           <i class="fa fa-phone"></i>
         </md-icon>
-        <input required name="phone" ng-model="vm.user.phone">
+        <input required name="phoneNumber" ng-model="vm.user.phoneNumber">
 
-        <div ng-messages="loginForm.phone.$error">
+        <div ng-messages="loginForm.phoneNumber.$error">
           <div ng-message="required">Bạn phải nhập số điện thoại.</div>
         </div>
       </md-input-container>

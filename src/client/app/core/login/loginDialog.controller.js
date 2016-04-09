@@ -8,9 +8,9 @@
     .module('app.core')
     .controller('LoginDialogController', loginDialogController);
 
-  loginDialogController.$inject = ['$state', '$uibModalInstance', 'logger', '$scope'];
+  loginDialogController.$inject = ['$state', '$uibModalInstance', 'logger', '$scope', 'coreService'];
   /* @ngInject */
-  function loginDialogController($state, $uibModalInstance, logger, $scope) {
+  function loginDialogController($state, $uibModalInstance, logger, $scope, coreService) {
     var vm = this;
     var user;
 

@@ -5,6 +5,12 @@
     .module('app')
     .constant('appConstant', {
 
+      core: {
+        api: {
+          addUser: 'auth/register'
+        }
+      },
+
       product: {
         api: {
           getProductList: 'product/getList',
