@@ -17,7 +17,7 @@
   function getStates() {
     return [
       {
-        state: 'appUser.register',
+        state: 'app.appUser.register',
         config: {
           url: '/register',
           templateUrl: 'app/core/register/register.html',

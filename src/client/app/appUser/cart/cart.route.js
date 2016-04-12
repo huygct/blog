@@ -17,7 +17,7 @@
   function getStates() {
     return [
       {
-        state: 'appUser.cart',
+        state: 'app.appUser.cart',
         config: {
           url: '/cart/:cartID',
           templateUrl: 'app/appUser/cart/cart.html',

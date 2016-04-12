@@ -24,7 +24,7 @@
      * register
      */
     vm.goToRegister = function () {
-      $state.go('appUser.register');
+      $state.go('app.appUser.register');
       $uibModalInstance.dismiss('cancel');
     };
 

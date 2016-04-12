@@ -17,7 +17,7 @@
   function getStates() {
     return [
       {
-        state: 'appUser.order',
+        state: 'app.appUser.order',
         config: {
           url: '/checkout/:checkoutName',
           templateUrl: 'app/appUser/order/order.html',

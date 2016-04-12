@@ -14,7 +14,7 @@
   function getStates() {
     return [
       {
-        state: 'appAdmin.dashboard',
+        state: 'app.appAdmin.dashboard',
         config: {
           url: '/admin/dashboard',
           templateUrl: 'app/appAdmin/dashboard/dashboard.html',

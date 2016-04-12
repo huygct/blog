@@ -14,25 +14,34 @@
   function getStates() {
     return [
       {
-        state: 'appUser',
+        state: 'app',
         config: {
           abstract: true,
-          templateUrl: 'app/core/appUser.html',
+          templateUrl: 'app/core/app.html',
+          controller: 'CoreController',
+          controllerAs: 'vm'
+        }
+      },
+      {
+        state: 'app.appUser',
+        config: {
+          abstract: true,
+          templateUrl: 'app/core/user/appUser.html',
           controller: 'CoreUserController',
           controllerAs: 'vm'
         }
       },
       {
-        state: 'appAdmin',
+        state: 'app.appAdmin',
         config: {
           abstract: true,
-          templateUrl: 'app/core/appAdmin.html',
+          templateUrl: 'app/core/admin/appAdmin.html',
           controller: 'CoreAdminController',
           controllerAs: 'vm'
         }
       },
       {
-        state: '404',
+        state: 'app.404',
         config: {
           url: '/404',
           templateUrl: 'app/core/404.html',

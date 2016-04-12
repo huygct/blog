@@ -6,11 +6,11 @@
 
   angular
     .module('app.core')
-    .controller('CoreUserController', CoreController);
+    .controller('CoreUserController', CoreUserController);
 
-  CoreController.$inject = ['$scope', '$state', '$http', 'logger', '$location', '$stateParams', '$uibModal'];
+  CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', '$location', '$stateParams', '$uibModal'];
   /* @ngInject */
-  function CoreController($scope, $state, $http, logger, $location, $stateParams, $uibModal) {
+  function CoreUserController($scope, $state, $http, logger, $location, $stateParams, $uibModal) {
     var vm = this;
 
     vm.title = 'Core';

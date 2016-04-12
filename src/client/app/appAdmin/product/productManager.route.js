@@ -17,7 +17,7 @@
   function getStates() {
     return [
       {
-        state: 'appAdmin.productManager',
+        state: 'app.appAdmin.productManager',
         config: {
           url: '/admin/productManager',
           templateUrl: 'app/appAdmin/product/productManager.html',

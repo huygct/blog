@@ -17,7 +17,7 @@
   function getStates() {
     return [
       {
-        state: 'appAdmin.category',
+        state: 'app.appAdmin.category',
         config: {
           url: '/admin/category',
           templateUrl: 'app/appAdmin/category/category.html',

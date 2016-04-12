@@ -17,7 +17,7 @@
   function getStates() {
     return [
       {
-        state: 'appAdmin.orderManager',
+        state: 'app.appAdmin.orderManager',
         config: {
           url: '/admin/orderManager',
           templateUrl: 'app/appAdmin/order/orderManager.html',

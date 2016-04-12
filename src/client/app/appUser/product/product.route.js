@@ -18,7 +18,7 @@
   function getStates() {
     return [
       {
-        state: 'appUser.product',
+        state: 'app.appUser.product',
         config: {
           url: '/product/:productName',
           templateUrl: 'app/appUser/product/product.html',

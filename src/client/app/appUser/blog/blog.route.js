@@ -17,7 +17,7 @@
   function getStates() {
     return [
       {
-        state: 'appUser.blog',
+        state: 'app.appUser.blog',
         config: {
           url: '/',
           templateUrl: 'app/appUser/blog/blog.html',
