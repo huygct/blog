@@ -11,6 +11,11 @@
     routerHelper.configureStates(getStates(), otherwise);
   }
 
+  env.$inject = ['coreService'];
+  function env(coreService){
+    return coreService.getEnv();
+  }
+
   function getStates() {
     return [
       {
@@ -19,7 +24,10 @@
           abstract: true,
           templateUrl: 'app/core/app.html',
           controller: 'CoreController',
-          controllerAs: 'vm'
+          controllerAs: 'vm',
+          resolve: {
+            env: env
+          }
         }
       },
       {
