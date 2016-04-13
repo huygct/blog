@@ -5,6 +5,8 @@
     .module('app')
     .constant('appConstant', {
 
+      USER_APP: 'app123456',
+
       core: {
         api: {
           addUser: 'auth/register'

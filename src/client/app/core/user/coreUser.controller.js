@@ -8,14 +8,21 @@
     .module('app.core')
     .controller('CoreUserController', CoreUserController);
 
-  CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', '$location', '$stateParams', '$uibModal'];
+  CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', '$location',
+    '$stateParams', '$uibModal', 'coreService'];
   /* @ngInject */
-  function CoreUserController($scope, $state, $http, logger, $location, $stateParams, $uibModal) {
+  function CoreUserController($scope, $state, $http, logger, $location,
+                              $stateParams, $uibModal, coreService) {
     var vm = this;
 
     vm.title = 'Core';
 
     vm.items = [];
+
+    /**
+     * check was login or not
+     */
+    vm.currentUser = coreService.getCurrentUser();
 
     vm.openYourCard = function (size) {
 
@@ -56,7 +63,14 @@
         }, function () {
           logger.info('Modal dismissed at: ' + new Date());
         });
-    }
+    };
+
+    /**
+     * open menu user name
+     */
+    vm.openMenu = function($mdOpenMenu, ev) {
+      $mdOpenMenu(ev);
+    };
 
   }
 })();

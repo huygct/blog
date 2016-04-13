@@ -8,24 +8,36 @@
     .module('app.core')
     .controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['$q', 'dataservice', 'logger', '$scope', 'coreService'];
+  RegisterController.$inject = ['$q', 'dataservice', 'logger', '$scope', 'coreService', '$state'];
   /* @ngInject */
-  function RegisterController($q, dataservice, logger, $scope, coreService) {
+  function RegisterController($q, dataservice, logger, $scope, coreService, $state) {
     var vm = this;
+
+    vm.alert = {
+      type: 'danger',
+      msg: 'Đăng ký thất bại... Vui lòng thực hiện lại...!!!',
+      show: false
+    };
 
     vm.register = function (user) {
       console.log('User: ', user);
       coreService.api.addUser(user)
         .then(function (user) {
-          console.log('success : ', user);
+          vm.alert.show = false;
+          // save into localStore and $rootScope.currentUser
+          coreService.saveCurrentUser(user);
+          // go to Home Page
+          $state.go('app.appUser.blog');
         }, function (error) {
-          console.log('error');
+          vm.alert.show = true;
         })
         .finally(function () {
 
         });
+    };
+
+    vm.closeAlert = function () {
+      vm.alert.show = false;
     }
-
-
   }
 })();

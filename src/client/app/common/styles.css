@@ -37,3 +37,10 @@
 .highlighted-nav-menu {
   background-color: #263238;
 }
+.user-app .user-name-menu {
+  color: #000;
+  font-size: 16px;
+}
+.user-app .user-name-menu .button-user-name {
+  font-size: 24px;
+}

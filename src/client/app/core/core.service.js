@@ -8,9 +8,9 @@
     .module('app.core')
     .factory('coreService', coreService);
 
-  coreService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant'];
+  coreService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', '$rootScope'];
   /* @ngInject */
-  function coreService($http, $q, exception, logger, appConstant) {
+  function coreService($http, $q, exception, logger, appConstant, $rootScope) {
     var service = {};
 
     /**
@@ -33,7 +33,33 @@
 
     function formatApi(api) {
       var config = service.env.server;
-      return config.protocol + config.address + (config.port ? ':' + config.port : '') + api;
+      return config.protocol + config.address + (config.port ? ':' + config.port : '') + '/' + api;
+    }
+
+    /**
+     * save user into localStore
+     * @param user
+     */
+    function saveCurrentUser(user) {
+      $rootScope.currentUser = user;
+      localStorage.setItem(appConstant.USER_APP, JSON.stringify(user));
+    }
+
+    /**
+     * get user from localStore
+     */
+    function getCurrentUser() {
+      var user = localStorage.getItem(appConstant.USER_APP);
+      $rootScope.currentUser = JSON.parse(user) || {};
+      return $rootScope.currentUser;
+    }
+
+    /**
+     * remove current User
+     */
+    function removeCurrentUser() {
+      $rootScope.currentUser = {};
+      localStorage.removeItem(appConstant.USER_APP);
     }
 
     /**
@@ -48,6 +74,9 @@
     service.api = api;
     service.getEnv = getEnv;
     service.formatApi = formatApi;
+    service.saveCurrentUser = saveCurrentUser;
+    service.getCurrentUser = getCurrentUser;
+    service.removeCurrentUser = removeCurrentUser;
 
     return service;
   }

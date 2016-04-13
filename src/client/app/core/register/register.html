@@ -1,5 +1,10 @@
 <div class="android-more-section" layout="column" layout-padding ng-cloak>
   <md-content class="md-no-momentum">
+
+    <uib-alert type="{{vm.alert.type}}" close="vm.closeAlert()" ng-show="vm.alert.show">
+      {{vm.alert.msg}}
+    </uib-alert>
+
     <form name="loginForm">
       <md-input-container class="md-icon-float md-block">
         <!-- Use floating label instead of placeholder -->
@@ -7,10 +12,12 @@
         <md-icon class="email">
           <i class="fa fa-envelope"></i>
         </md-icon>
-        <input required type="email" name="email" ng-model="vm.user.email">
+        <input required type="email" name="email" ng-model="vm.user.email" ng-pattern="/^.+@.+\..+$/">
 
         <div ng-messages="loginForm.email.$error">
-          <div ng-message="required">Bạn phải nhập email.</div>
+          <div ng-message-exp="['required', 'pattern']">
+            Bạn phải nhập email! Thực sự là một email.
+          </div>
         </div>
       </md-input-container>
       <md-input-container md-no-float class="md-block">

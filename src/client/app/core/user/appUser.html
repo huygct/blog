@@ -1,4 +1,4 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header user-app">
 
   <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
     <div class="mdl-layout__header-row">
@@ -13,10 +13,29 @@
       <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="1" ng-click="vm.openYourCard('lg')">
         <i class="material-icons">shopping_cart</i>
       </div>
-      <md-button md-no-ink class="md-primary" ng-click="vm.loginApp()">
+      <md-button md-no-ink class="md-primary" ng-click="vm.loginApp()" ng-if="!vm.currentUser">
         <i class="fa fa-sign-in"></i>
         Đăng nhập
       </md-button>
+      <md-menu md-position-mode="target-right target" class="user-name-menu" ng-if="vm.currentUser">
+        <md-button aria-label="Open user interactions menu" class="md-primary button-user-name" ng-click="vm.openMenu($mdOpenMenu, $event)">
+          <i class="fa fa-smile-o" aria-hidden="true"></i>
+          AAA
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button disabled="disabled" ng-click="">
+              Tài khoản
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="">
+              Thoát
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
       <!-- Navigation -->
       <!--<div class="android-navigation-container">-->
       <!--<nav class="android-navigation mdl-navigation">-->
