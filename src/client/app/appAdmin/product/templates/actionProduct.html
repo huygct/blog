@@ -24,13 +24,12 @@
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
-      <input type="file" file-model="myFile"/>
       <div>
         <label>Image Source</label>
-        <input type="file" name="imageSource"
+        <input type="file" name="imageSource" file-model="myFile"
                image-with-preview ng-model="vm.imageSource"
-               accept="image/jpeg,image/png"
-               dimensions="height < 400">
+               accept="image/jpeg,image/png" class="btn btn-primary"
+               >
         <span class="error" ng-show="actionProductForm.imageSource.$error.imageSource">
           Not a JPEG or a PNG!
         </span>
@@ -38,7 +37,7 @@
           Image height should be smaller than 400!
         </span>
         <img ng-show="vm.imageSource.src" ng-src="{{vm.imageSource.src}}"/>
-        <md-button class="md-raised md-primary" ng-click="vm.uploadImageToServer(vm.imageSource)">Upload</md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.uploadImageToServer(myFile)">Upload</md-button>
       </div>
 
       <md-input-container class="md-block">

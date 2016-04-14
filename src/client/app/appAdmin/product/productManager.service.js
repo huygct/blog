@@ -161,24 +161,13 @@
 
       uploadImage: function(url, imageSource) {
         var urlFormat = coreService.formatApi(url);
-        return $http({
-          method: 'POST',
-          url: urlFormat,
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          data: imageSource,
-          transformRequest: function (data, headersGetter) {
-            var formData = new FormData();
-            angular.forEach(data, function (value, key) {
-              formData.append(key, value);
-            });
-
-            var headers = headersGetter();
-            delete headers['Content-Type'];
-
-            return formData;
-          }
+        //create form data object
+        var fd = new FormData();
+        fd.append('file', imageSource);
+        //send the file / data to your server
+        return $http.post(urlFormat, fd, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
         });
       },
       addProduct: function (url, product) {
