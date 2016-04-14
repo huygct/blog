@@ -6,11 +6,28 @@
 
   angular
     .module('app.admin.product')
+    .directive('fileModel', ['$parse', function ($parse) {
+      return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+          var model = $parse(attrs.fileModel);
+          var modelSetter = model.assign;
+
+          element.bind('change', function(){
+            scope.$apply(function(){
+              modelSetter(scope, element[0].files[0]);
+            });
+          });
+        }
+      };
+    }])
     .controller('ProductManagerController', ProductManagerController);
 
-  ProductManagerController.$inject = ['$q', 'dataservice', 'logger', 'productManagerService', '$scope', '$mdToast'];
+  ProductManagerController.$inject = ['$q', 'dataservice', 'logger', 'productManagerService',
+    '$scope', '$mdToast', 'appConstant'];
   /* @ngInject */
-  function ProductManagerController($q, dataservice, logger, productManagerService, $scope, $mdToast) {
+  function ProductManagerController($q, dataservice, logger, productManagerService,
+                                    $scope, $mdToast, appConstant) {
     var vm = this;
     vm.title = 'Product Manager';
 
@@ -62,6 +79,20 @@
       vm.cache.currentView = productManagerService.getView.main
     };
 
+    /**
+     * upload image to server
+     */
+    vm.uploadImageToServer = function(imageSource) {
+      var url = appConstant.product.api.uploadImage;
+      productManagerService.api.uploadImage(url, imageSource)
+        .then(function(response){
+          console.log('image: ', response);
+        })
+        .catch(function(error) {
+          console.log('error Image: ', error);
+        });
+    };
+    
     /**
      * callback from table directive
      * @param rows

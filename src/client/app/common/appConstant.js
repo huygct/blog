@@ -18,7 +18,8 @@
           getProductList: 'product/getList',
           addProduct: 'product/add',
           updateProduct: 'product/update',
-          deleteProduct: 'product/delete'
+          deleteProduct: 'product/delete',
+          uploadImage: 'file/uploadImage'
         },
         urlTemplates: {
           main: 'app/appAdmin/product/templates/tableProduct.html',

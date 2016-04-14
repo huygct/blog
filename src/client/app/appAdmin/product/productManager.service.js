@@ -8,9 +8,9 @@
     .module('app.admin.product')
     .factory('productManagerService', productManagerService);
 
-  productManagerService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant'];
+  productManagerService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'coreService'];
   /* @ngInject */
-  function productManagerService($http, $q, exception, logger, appConstant) {
+  function productManagerService($http, $q, exception, logger, appConstant, coreService) {
 
     var api;
     var service = {};
@@ -157,6 +157,38 @@
         return defer.promise;
 
         //return $http.get(coreService.getApi(url));
+      },
+
+      uploadImage: function(url, imageSource) {
+        var urlFormat = coreService.formatApi(url);
+        return $http({
+          method: 'POST',
+          url: urlFormat,
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          data: imageSource,
+          transformRequest: function (data, headersGetter) {
+            var formData = new FormData();
+            angular.forEach(data, function (value, key) {
+              formData.append(key, value);
+            });
+
+            var headers = headersGetter();
+            delete headers['Content-Type'];
+
+            return formData;
+          }
+        });
+      },
+      addProduct: function (url, product) {
+        return $http.post(coreService.formatApi(url), product);
+      },
+      editProduct: function (url, product) {
+        return $http.put(coreService.formatApi(url), product);
+      },
+      deleteProduct: function (url, id) {
+        return $http.delete(coreService.formatApi(url), id);
       }
     };
 

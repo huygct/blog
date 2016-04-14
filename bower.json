@@ -39,6 +39,7 @@
         "textAngular": "1.5.0",
         "material-design-icons": "2.2.0",
         "owl.carousel": "2.0.0-beta.3",
+        "ng-image-input-with-preview": "^0.0.6",
         "angular-ckeditor": "1.0.3"
     },
     "resolutions": {

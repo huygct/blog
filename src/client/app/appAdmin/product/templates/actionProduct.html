@@ -16,6 +16,7 @@
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
+
       <md-input-container class="md-block">
         <label>Image Url</label>
         <input required name="imageUrl" ng-model="vm.currentProduct.imageUrl">
@@ -23,6 +24,23 @@
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
+      <input type="file" file-model="myFile"/>
+      <div>
+        <label>Image Source</label>
+        <input type="file" name="imageSource"
+               image-with-preview ng-model="vm.imageSource"
+               accept="image/jpeg,image/png"
+               dimensions="height < 400">
+        <span class="error" ng-show="actionProductForm.imageSource.$error.imageSource">
+          Not a JPEG or a PNG!
+        </span>
+        <span class="error" ng-show="actionProductForm.imageSource.$error.dimensions">
+          Image height should be smaller than 400!
+        </span>
+        <img ng-show="vm.imageSource.src" ng-src="{{vm.imageSource.src}}"/>
+        <md-button class="md-raised md-primary" ng-click="vm.uploadImageToServer(vm.imageSource)">Upload</md-button>
+      </div>
+
       <md-input-container class="md-block">
         <label>Description</label>
         <input name="description" ng-model="vm.currentProduct.description">
@@ -68,3 +86,12 @@
     </div>
   </md-content>
 </div>
+
+
+<!--<form id="uploadForm"-->
+      <!--enctype="multipart/form-data"-->
+      <!--action="https://myweb-backend-huy-gct.c9users.io/file/uploadImage"-->
+      <!--method="post">-->
+  <!--<input type="file" name="uploadFile" />-->
+  <!--<input type="submit" value="submit"/>-->
+<!--</form>-->

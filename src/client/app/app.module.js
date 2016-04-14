@@ -14,6 +14,7 @@
         'ui.bootstrap',
         'ckeditor',
         'mdDataTable',
+        'ngImageInputWithPreview',
 
         'app.demo',
 
