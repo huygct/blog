@@ -19,7 +19,7 @@
           addProduct: 'product/add',
           updateProduct: 'product/update',
           deleteProduct: 'product/delete',
-          uploadImage: 'file/uploadImage'
+          uploadImage: 'api/uploadFile'
         },
         urlTemplates: {
           main: 'app/appAdmin/product/templates/tableProduct.html',

@@ -160,12 +160,12 @@
       },
 
       uploadImage: function(url, imageSource) {
-        var urlFormat = coreService.formatApi(url);
+        //var urlFormat = coreService.formatApi(url);
         //create form data object
         var fd = new FormData();
         fd.append('file', imageSource);
         //send the file / data to your server
-        return $http.post(urlFormat, fd, {
+        return $http.post(url, fd, {
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
         });

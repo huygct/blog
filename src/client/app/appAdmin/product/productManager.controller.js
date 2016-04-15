@@ -34,6 +34,19 @@
         });
     }
 
+    // Editor options.
+    vm.options = {
+      language: 'vi',
+      allowedContent: true,
+      entities: false
+    };
+
+    // Called when the editor is completely ready.
+    vm.onReady = function () {
+      // ...
+      console.log('finish description');
+    };
+
     /**
      * add Product
      */
@@ -43,7 +56,8 @@
     };
     
     vm.addProduct = function(product) {
-      console.log('Add Product action');
+      product.description = vm.descriptionForProduct; // set description
+      console.log('Add Product action', product);
     };
 
     /**
@@ -55,7 +69,8 @@
     };
 
     vm.updateProduct = function(product) {
-      console.log('Add Product action');
+      product.description = vm.descriptionForProduct; // set description
+      console.log('Add Product action', product);
     };
 
     vm.backToTableView = function () {
