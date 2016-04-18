@@ -12,17 +12,24 @@
                selected-row-callback="vm.selectedRowCallback(rows)"
                sortable-columns="true"
                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
+               mdt-row-paginator="vm.paginatorCallback(page, pageSize)"
+               mdt-row-paginator-error-message="Error happened during loading category list."
 
                delete-function="vm.selectedRowCallback(rows)"
+
+               mdt-row="{
+                'table-row-id-key': 'fields.id',
+                'column-keys': [
+                  'fields.name',
+                  'fields.description',
+                ],
+              }"
       >
       <mdt-header-row>
         <mdt-column align-rule="left">Name</mdt-column>
         <mdt-column align-rule="left">Description</mdt-column>
       </mdt-header-row>
-      <mdt-row ng-repeat="item in vm.dataList" table-row-id="item">
-        <mdt-cell>{{item.name}}</mdt-cell>
-        <mdt-cell>{{item.description}}</mdt-cell>
-      </mdt-row>
     </mdt-table>
   </div>
 </div>
+{{vm.dataList[1]}}

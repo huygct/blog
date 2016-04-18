@@ -30,10 +30,10 @@
 
       category: {
         api: {
-          getCategoryList: 'category/getList',
-          addProduct: 'category/add',
-          updateProduct: 'category/update',
-          deleteProduct: 'category/delete'
+          getCategoryList: 'category',
+          addCategory: 'category',
+          updateCategory: 'category',
+          deleteCategory: 'category'
         },
         urlTemplates: {
           main: 'app/appAdmin/category/templates/tableCategory.html',

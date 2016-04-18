@@ -54,7 +54,7 @@
       vm.cache.currentView = productManagerService.getView.add;
       vm.currentProduct = {};
     };
-    
+
     vm.addProduct = function(product) {
       product.description = vm.descriptionForProduct; // set description
       console.log('Add Product action', product);
@@ -88,13 +88,14 @@
       var url = appConstant.product.api.uploadImage;
       productManagerService.api.uploadImage(url, imageSource)
         .then(function(response){
-          console.log('image: ', response);
+          // get path of image
+          var file = response.data.files;
         })
         .catch(function(error) {
           console.log('error Image: ', error);
         });
     };
-    
+
     /**
      * callback from table directive
      * @param rows

@@ -1,0 +1,10 @@
+<div class="alert" ng-show="$ctrl.show"
+     ng-class="['alert-' + ($ctrl.type || 'warning'), $ctrl.show ? 'alert-dismissible' : null]"
+     role="alert">
+
+    <button type="button" class="close" ng-click="$ctrl.closeAlert()">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+  <span>{{$ctrl.msg}}</span>
+</div>

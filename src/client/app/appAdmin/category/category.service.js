@@ -8,9 +8,11 @@
     .module('app.admin.category')
     .factory('categoryService', categoryService);
 
-  categoryService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant'];
+  categoryService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant',
+      'coreService', 'commonService'];
   /* @ngInject */
-  function categoryService($http, $q, exception, logger, appConstant) {
+  function categoryService($http, $q, exception, logger, appConstant,
+                           coreService, commonService) {
 
     var api;
     var service = {};
@@ -33,30 +35,27 @@
     }
 
     var cache = {
-      currentView: getView().main
-
+      currentView: getView().main,
+      currentCategory: {},
+      alert: commonService.createAlert('danger', '', false)
     };
 
     api = {
-      getCategoryList: function (url) {
-        var defer = $q.defer();
-
-        defer.resolve([
-          {
-            id: 601,
-            name: 'Frozen joghurt',
-            description: 'abc'
-          },
-          {
-            id: 602,
-            name: 'Ice cream sandwitch',
-            description: 'abc'
-          }
-        ]);
-
-        return defer.promise;
-
-        //return $http.get(coreService.getApi(url));
+      getCategoryList: function () {
+        var url = coreService.formatApi(appConstant.category.api.getCategoryList);
+        return $http.get(url);
+      },
+      addCategory: function (category) {
+        var url = coreService.formatApi(appConstant.category.api.addCategory);
+        return $http.post(url, category);
+      },
+      updateCategory: function (category, id) {
+        var url = coreService.formatApi(appConstant.category.api.updateCategory) + '/' + id;
+        return $http.put(url, category);
+      },
+      deleteCategory: function (id) {
+        var url = coreService.formatApi(appConstant.category.api.deleteCategory) + '/' + id;
+        return $http.delete(url, id);
       }
     };
 
