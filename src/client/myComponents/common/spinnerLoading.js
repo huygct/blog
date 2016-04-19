@@ -22,8 +22,8 @@
         spinnerLoading: '='
       },
       template: '<div>' +
-                  '<div ng-cloak="" ng-transclude ng-show="spinnerLoading"></div>' +
-                  '<div layout="row" layout-sm="column" layout-align="space-around" ng-hide="spinnerLoading">' +
+                  '<div ng-cloak="" ng-transclude ng-hide="spinnerLoading"></div>' +
+                  '<div layout="row" layout-sm="column" layout-align="space-around" ng-show="spinnerLoading">' +
                       '<md-progress-circular md-mode="indeterminate"></md-progress-circular>' +
                   '</div>' +
                 '</div>',

@@ -31,9 +31,11 @@
       category: {
         api: {
           getCategoryList: 'category',
+          getCategoryWithPage: 'category/getListWithPage',
           addCategory: 'category',
           updateCategory: 'category',
-          deleteCategory: 'category'
+          deleteCategory: 'category',
+          deleteCategoryList: 'category/delete'
         },
         urlTemplates: {
           main: 'app/appAdmin/category/templates/tableCategory.html',

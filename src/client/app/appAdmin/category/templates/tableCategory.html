@@ -15,14 +15,14 @@
                mdt-row-paginator="vm.paginatorCallback(page, pageSize)"
                mdt-row-paginator-error-message="Error happened during loading category list."
 
-               delete-function="vm.selectedRowCallback(rows)"
+               delete-row-callback="vm.deleteRowCallback(rows)"
 
                mdt-row="{
-                'table-row-id-key': 'fields.id',
+                'table-row-id-key': 'id',
                 'column-keys': [
-                  'fields.name',
-                  'fields.description',
-                ],
+                  'name',
+                  'description'
+                ]
               }"
       >
       <mdt-header-row>

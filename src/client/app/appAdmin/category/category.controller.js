@@ -8,35 +8,56 @@
     .module('app.admin.category')
     .controller('CategoryController', CategoryController);
 
-  CategoryController.$inject = ['$q', 'dataservice', 'logger', 'categoryService', '$scope', '$mdToast'];
+  CategoryController.$inject = ['$http', 'appConstant', 'logger', 'categoryService', '$scope', 'coreService',
+    '$mdDialog'];
+
   /* @ngInject */
-  function CategoryController($q, dataservice, logger, categoryService, $scope, $mdToast) {
+  function CategoryController($http, appConstant, logger, categoryService, $scope, coreService,
+                              $mdDialog) {
     var vm = this;
     vm.title = 'Category Manager';
 
     vm.selectedCategory = [];
     vm.cache = categoryService.cache;
+    var data = [];
     /**
      * ------------------------------------------------------------------
      */
-    function loadData () {
-      var alert = vm.cache.alert;
-      alert.show = false;
-      categoryService.api.getCategoryList()
-        .then(function (response) {
-          console.log(response);
-          vm.dataList = response.data;
-        }, function (error) {
-          // show alert
-          alert.type = 'danger';
-          alert.msg = 'Lấy thông tin category thất bại!!! Vui lòng thực hiện lại...';
-          alert.show = true;
-        })
-        .finally(function () {
-          console.log('load data OK');
+    function showAlert() {
+      // Appending dialog to document.body to cover sidenav in docs app
+      // Modal dialogs should fully cover application
+      // to prevent interaction outside of dialog
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Can\'t delete')
+          .textContent('This categories have exist product!!!')
+          .ariaLabel('Can\'t delete')
+          .ok('Ok')
+      );
+    }
+
+    function loadData (page, pageSize) {
+      var offset = (page - 1) * pageSize;
+      var objectPost = {
+        offset: offset.toString(),
+        limit: pageSize.toString()
+      };
+
+      return categoryService.api.getCategoryWithPage(objectPost)
+        .then(function(result) {
+          data = result.data;
+          return {
+            results: data.data,
+            totalResultCount: data.total
+          }
         });
     }
 
+    /**
+     * call from html
+     */
     vm.paginatorCallback = loadData;
 
     /**
@@ -50,6 +71,7 @@
     vm.addCategory = function(category) {
       var alert = vm.cache.alert;
       alert.show = false;
+      vm.cache.spinnerLoading = true;
       categoryService.api.addCategory(category)
         .then(function (response) {
           // add success
@@ -63,6 +85,9 @@
           alert.type = 'danger';
           alert.msg = 'Thêm category thất bại!!! Vui lòng thực hiện lại...';
           alert.show = true;
+        })
+        .finally(function () {
+          vm.cache.spinnerLoading = false;
         })
     };
 
@@ -82,6 +107,7 @@
     vm.updateCategory = function (category) {
       var alert = vm.cache.alert;
       alert.show = false;
+      vm.cache.spinnerLoading = true;
       categoryService.api.updateCategory(category, category.id)
         .then(function (response) {
           // add success
@@ -96,28 +122,61 @@
           alert.msg = 'Thay đổi category thất bại!!! Vui lòng thực hiện lại...';
           alert.show = true;
         })
+        .finally(function () {
+          vm.cache.spinnerLoading = false;
+        })
     };
 
     vm.backToTableView = function () {
       vm.cache.currentCategory = {};
       vm.selectedCategory = [];
-      vm.cache.currentView = categoryService.getView.main
+      vm.cache.currentView = categoryService.getView.main;
       activate();
     };
 
     /**
      * callback from table directive
-     * @param rows
+     * @param ids
      */
-    vm.selectedRowCallback = function (rows) {
-      vm.selectedCategory = rows;
-      console.log('rows: ', rows);
+    vm.selectedRowCallback = function (ids) {
+      _.forEach(ids, function (id) {
+        vm.selectedCategory.push(_.find(data.data, 'id', id));
+      });
+    };
+
+    vm.deleteRowCallback = function(ids) {
+      var category;
+      for(var i = 0; i < ids.length; i++) {
+        category = _.find(data.data, 'id', ids[i]);
+        if(category.products && category.products.length !== 0) {
+          // can not remove because there is exist product --> show notify
+          showAlert();
+          return;
+        }
+      }
+      var alert = vm.cache.alert;
+      alert.show = false;
+      vm.cache.spinnerLoading = true;
+      console.log('ids ', ids);
+      categoryService.api.deleteCategory(ids)
+        .then(function(response){
+          alert.type = 'success';
+          alert.msg = 'Đã xóa thành công...';
+          alert.show = true;
+        })
+        .catch(function(error) {
+          alert.type = 'danger';
+          alert.msg = 'Đã xóa thất bại!!! Vui lòng thực hiện lại...';
+          alert.show = true;
+        })
+        .finally(function() {
+          vm.cache.spinnerLoading = false;
+        })
     };
 
     activate();
 
     function activate() {
-      loadData();
       logger.info('Activated Category View');
     }
   }

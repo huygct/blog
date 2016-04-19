@@ -37,13 +37,18 @@
     var cache = {
       currentView: getView().main,
       currentCategory: {},
-      alert: commonService.createAlert('danger', '', false)
+      alert: commonService.createAlert('danger', '', false),
+      spinnerLoading: false
     };
 
     api = {
       getCategoryList: function () {
         var url = coreService.formatApi(appConstant.category.api.getCategoryList);
         return $http.get(url);
+      },
+      getCategoryWithPage: function (config) {
+        var url = coreService.formatApi(appConstant.category.api.getCategoryWithPage);
+        return $http.post(url, config);
       },
       addCategory: function (category) {
         var url = coreService.formatApi(appConstant.category.api.addCategory);
@@ -53,9 +58,9 @@
         var url = coreService.formatApi(appConstant.category.api.updateCategory) + '/' + id;
         return $http.put(url, category);
       },
-      deleteCategory: function (id) {
-        var url = coreService.formatApi(appConstant.category.api.deleteCategory) + '/' + id;
-        return $http.delete(url, id);
+      deleteCategory: function (arrayId) {
+        var url = coreService.formatApi(appConstant.category.api.deleteCategory);
+        return $http.delete(url, {params: {id: arrayId}});
       }
     };
 
