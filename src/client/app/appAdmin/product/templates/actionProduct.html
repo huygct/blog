@@ -31,9 +31,9 @@
 
       <md-input-container class="md-block">
         <label>Category</label>
-        <md-select name="category" ng-model="vm.currentProduct.category" required>
-          <md-option value="1">One</md-option>
-          <md-option value="2">Two</md-option>
+        <md-select name="category" placeholder="Ch?n category" ng-model="vm.currentProduct.category"
+                   md-on-open="vm.loadCategory()">
+          <md-option ng-value="category.id" ng-repeat="category in vm.cache.categoryList">{{category.name}}</md-option>
         </md-select>
         <div class="errors" ng-messages="actionProductForm.category.$error" ng-if="actionProductForm.$dirty">
           <div ng-message="required">This is required.</div>
@@ -69,7 +69,7 @@
 
       <div class="md-block">
         <label>Description</label>
-        <div ckeditor="vm.options" ng-model="vm.descriptionForProduct" ready="vm.onReady()"></div>
+        <div ckeditor="vm.optionsEditor" ng-model="vm.descriptionForProduct" ready="vm.onReady()"></div>
       </div>
 
     </form>

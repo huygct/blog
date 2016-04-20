@@ -19,7 +19,7 @@
 
     vm.selectedCategory = [];
     vm.cache = categoryService.cache;
-    var data = [];
+    var categoryList = [];
     /**
      * ------------------------------------------------------------------
      */
@@ -47,10 +47,10 @@
 
       return categoryService.api.getCategoryWithPage(objectPost)
         .then(function(result) {
-          data = result.data;
+          categoryList = result.data;
           return {
-            results: data.data,
-            totalResultCount: data.total
+            results: categoryList.data,
+            totalResultCount: categoryList.total
           }
         });
     }
@@ -140,14 +140,14 @@
      */
     vm.selectedRowCallback = function (ids) {
       _.forEach(ids, function (id) {
-        vm.selectedCategory.push(_.find(data.data, 'id', id));
+        vm.selectedCategory.push(_.find(categoryList.data, 'id', id));
       });
     };
 
     vm.deleteRowCallback = function(ids) {
       var category;
       for(var i = 0; i < ids.length; i++) {
-        category = _.find(data.data, 'id', ids[i]);
+        category = _.find(categoryList.data, 'id', ids[i]);
         if(category.products && category.products.length !== 0) {
           // can not remove because there is exist product --> show notify
           showAlert();

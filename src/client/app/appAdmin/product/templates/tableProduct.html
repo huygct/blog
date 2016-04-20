@@ -12,27 +12,33 @@
                selected-row-callback="vm.selectedRowCallback(rows)"
                sortable-columns="true"
                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
+               mdt-row-paginator="vm.paginatorCallback(page, pageSize)"
+               mdt-row-paginator-error-message="Error happened during loading category list."
 
                delete-function="vm.selectedRowCallback(rows)"
+
+               mdt-row="{
+                'table-row-id-key': 'id',
+                'column-keys': [
+                  'name',
+                  'price',
+                  'imageUrl',
+                  'description',
+                  'rate',
+                  'quantity',
+                  'category.name'
+                ]
+               }"
       >
       <mdt-header-row>
         <mdt-column align-rule="left">Name Product</mdt-column>
-        <mdt-column align-rule="right">Price</mdt-column>
-        <mdt-column align-rule="right">Image</mdt-column>
-        <mdt-column align-rule="right">Description</mdt-column>
-        <mdt-column align-rule="right">Rate</mdt-column>
-        <mdt-column align-rule="right">Quantity</mdt-column>
-        <mdt-column align-rule="right">Category</mdt-column>
+        <mdt-column align-rule="left">Price</mdt-column>
+        <mdt-column align-rule="left">Image</mdt-column>
+        <mdt-column align-rule="left">Description</mdt-column>
+        <mdt-column align-rule="left">Rate</mdt-column>
+        <mdt-column align-rule="left">Quantity</mdt-column>
+        <mdt-column align-rule="left">Category</mdt-column>
       </mdt-header-row>
-      <mdt-row ng-repeat="item in vm.productList" table-row-id="item">
-        <mdt-cell>{{item.name}}</mdt-cell>
-        <mdt-cell>{{item.price}}</mdt-cell>
-        <mdt-cell>{{item.imageUrl}}</mdt-cell>
-        <mdt-cell>{{item.description}}</mdt-cell>
-        <mdt-cell>{{item.rate}}</mdt-cell>
-        <mdt-cell>{{item.quantity}}</mdt-cell>
-        <mdt-cell>{{item.category}}</mdt-cell>
-      </mdt-row>
     </mdt-table>
   </div>
 </div>

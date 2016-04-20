@@ -15,11 +15,9 @@
 
       product: {
         api: {
-          getProductList: 'product/getList',
-          addProduct: 'product/add',
-          updateProduct: 'product/update',
-          deleteProduct: 'product/delete',
-          uploadImage: 'api/uploadFile'
+          model: 'product',
+          uploadImage: 'api/uploadFile',
+          getProductWithPage: 'product/getProductsWithPage'
         },
         urlTemplates: {
           main: 'app/appAdmin/product/templates/tableProduct.html',
