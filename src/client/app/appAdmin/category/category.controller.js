@@ -139,6 +139,7 @@
      * @param ids
      */
     vm.selectedRowCallback = function (ids) {
+      vm.selectedCategory.length = 0;
       _.forEach(ids, function (id) {
         vm.selectedCategory.push(_.find(categoryList.data, 'id', id));
       });

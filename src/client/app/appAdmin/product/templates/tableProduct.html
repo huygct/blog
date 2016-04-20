@@ -1,4 +1,4 @@
-<div class="product-manager-view">
+<div class="product-manager-view" spinner-loading="vm.cache.spinnerLoading">
   <div class="action-button">
     <md-button class="md-primary" ng-click="vm.goToAddProductView()">Add Product</md-button>
     <md-button class="md-primary" ng-click="vm.goToEditProductView()" ng-disabled="vm.selectedProduct.length !== 1">Edit</md-button>
@@ -15,7 +15,7 @@
                mdt-row-paginator="vm.paginatorCallback(page, pageSize)"
                mdt-row-paginator-error-message="Error happened during loading category list."
 
-               delete-function="vm.selectedRowCallback(rows)"
+               delete-row-callback="vm.deleteRowCallback(rows)"
 
                mdt-row="{
                 'table-row-id-key': 'id',

@@ -37,6 +37,7 @@
     var cache = {
       currentView: getView().main,
       currentProduct: {},
+      descriptionForProduct: null,
       alert: commonService.createAlert('danger', '', false),
       spinnerLoading: false,
       categoryList: []
