@@ -1,0 +1,71 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{product.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="panel-body">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Name</label>
+              <div class="col-sm-3">
+                <p class="form-control-static">{{product.name}}</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Category</label>
+
+              <div class="col-sm-3">
+                <p class="form-control-static">{{product.category.name}}</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Proce</label>
+              <div class="col-sm-3">
+                <p class="form-control-static">{{product.price}}</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Quantity</label>
+              <div class="col-sm-3">
+                <p class="form-control-static">{{product.quantity}}</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Rate</label>
+              <div class="col-sm-3">
+                <p class="form-control-static">{{product.rate}}</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Image</label>
+              <div class="col-sm-3">
+                <img ng-src="{{product.imageUrl}}" style="width: 100%; min-height: 100px"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label style="display: block" class="col-sm-3 control-label">Description</label>
+              <hr/>
+              <div ng-bind-html="product.description"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

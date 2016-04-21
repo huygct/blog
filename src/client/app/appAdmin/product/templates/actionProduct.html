@@ -39,20 +39,12 @@
         </div>
       </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Image Url</label>
-        <input required name="imageUrl" ng-model="vm.cache.currentProduct.imageUrl">
-        <div ng-messages="actionProductForm.imageUrl.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-
       <div class="box-choose-and-upload-image">
         <label>Image Source</label>
-        <input type="file" name="imageSource" file-model="vm.myFile"
-               image-with-preview ng-model="vm.imageSource"
-               accept="image/jpeg,image/png" class="btn btn-primary"
-               dimensions=""
+        <input type="file" name="imageSource" file-model="vm.cache.file.myFile"
+               image-with-preview ng-model="vm.cache.file.imageSource"
+               accept="image/jpeg,image/png" class="btn btn-default"
+               dimensions="" required name="imageUrl"
             >
         <span class="error-text" ng-show="actionProductForm.imageSource.$error.imageSource">
           Not a JPEG or a PNG!
@@ -60,9 +52,16 @@
         <span class="error-text" ng-show="actionProductForm.imageSource.$error.dimensions">
           Image height should be smaller than 400!
         </span>
-        <div ng-show="vm.imageSource.src">
-          <img ng-src="{{vm.imageSource.src}}" class="show-image-preview"/>
-          <md-button class="md-raised md-primary" ng-click="vm.uploadImageToServer(vm.myFile)">Upload</md-button>
+        <div ng-show="vm.cache.file.imageSource.src">
+          <!--<img ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview"/>-->
+          <img ng-src="{{vm.cache.currentProduct.imageUrl}}" class="show-image-preview"/>
+          <div ng-if="!vm.cache.currentProduct.imageUrl">
+            <div class="text-danger">Please click upload button to upload this image!!!</div>
+          </div>
+          <div ng-if="vm.cache.currentProduct.imageUrl">
+            <div class="text-success">This is url of image: {{vm.cache.currentProduct.imageUrl}}</div>
+          </div>
+          <a class="btn btn-primary" ng-click="vm.uploadImageToServer(vm.cache.file.myFile)" button-spinner="vm.cache.file.loading">Upload</a>
         </div>
       </div>
 

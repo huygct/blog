@@ -8,12 +8,13 @@
     .module('app.admin.product')
     .controller('ProductManagerController', ProductManagerController);
 
-  ProductManagerController.$inject = ['$q', '$mdDialog', 'logger', 'productManagerService',
-    '$scope', '$mdToast', 'appConstant', 'categoryService'];
+  ProductManagerController.$inject = ['$document', '$mdDialog', 'logger', 'productManagerService',
+    '$scope', '$mdMedia', 'appConstant', 'categoryService'];
   /* @ngInject */
-  function ProductManagerController($q, $mdDialog, logger, productManagerService,
-                                    $scope, $mdToast, appConstant, categoryService) {
+  function ProductManagerController($document, $mdDialog, logger, productManagerService,
+                                    $scope, $mdMedia, appConstant, categoryService) {
     var vm = this;
+    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     vm.title = 'Product Manager';
 
     vm.selectedProduct = [];
@@ -212,6 +213,7 @@
     vm.backToTableView = function () {
       vm.cache.currentProduct = {};
       vm.selectedProduct = [];
+      vm.cache.file = {};
       vm.cache.currentView = productManagerService.getView.main
     };
 
@@ -219,19 +221,25 @@
      * upload image to server
      */
     vm.uploadImageToServer = function(imageSource) {
+      vm.cache.file.loading = true;
+      vm.cache.currentProduct.imageUrl = '';
       productManagerService.api.uploadImage(imageSource)
         .then(function(response){
           // get path of image
           var file = response.data.files;
+          vm.cache.currentProduct.imageUrl = file.path;
         })
-        .catch(function(error) {
-          console.log('error Image: ', error);
-        });
+        .catch(function() {
+          vm.cache.currentProduct.imageUrl = '';
+        })
+        .finally(function () {
+          vm.cache.file.loading = false;
+        })
     };
 
     /**
      * callback from table directive
-     * @param rows
+     * @param ids
      */
     vm.selectedRowCallback = function (ids) {
       vm.selectedProduct.length = 0;
@@ -243,16 +251,62 @@
 
     /**
      * delete product
-     * @param rows
+     * @param ids
      */
     vm.deleteRowCallback = function (ids) {
       showAlertWhenDeleteProduct(ids);
     };
 
-    activate();
+    /**
+     * show detail of product
+     */
+    vm.showDetailProduct = function (ev) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+      $mdDialog.show({
+        controller: DetailProductController,
+        templateUrl: appConstant.product.urlTemplates.detail,
+        //parent: angular.element($document[0].querySelector('#product-manager-app-id')),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        locals: {
+          product: vm.selectedProduct[0]
+        },
+        fullscreen: useFullScreen
+      })
+        .then(function(answer) {
+          vm.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          vm.status = 'You cancelled the dialog.';
+        });
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        vm.customFullscreen = (wantsFullScreen === true);
+      });
+    };
+
+
+    /**
+     * ended file
+     */
+    function DetailProductController($scope, $mdDialog, product) { // controller for detail product dialog
+      $scope.product = product;
+
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+    }
 
     function activate() {
       logger.info('Activated Product View');
     }
+
+    activate();
   }
 })();

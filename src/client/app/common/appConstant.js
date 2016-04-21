@@ -22,7 +22,8 @@
         urlTemplates: {
           main: 'app/appAdmin/product/templates/tableProduct.html',
           add: 'app/appAdmin/product/templates/actionProduct.html',
-          edit: 'app/appAdmin/product/templates/actionProduct.html'
+          edit: 'app/appAdmin/product/templates/actionProduct.html',
+          detail: 'app/appAdmin/product/templates/detailProduct.html'
         }
       },
 

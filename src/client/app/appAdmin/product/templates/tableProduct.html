@@ -2,6 +2,7 @@
   <div class="action-button">
     <md-button class="md-primary" ng-click="vm.goToAddProductView()">Add Product</md-button>
     <md-button class="md-primary" ng-click="vm.goToEditProductView()" ng-disabled="vm.selectedProduct.length !== 1">Edit</md-button>
+    <md-button class="md-primary" ng-click="vm.showDetailProduct($event)" ng-disabled="vm.selectedProduct.length !== 1">Show Detail</md-button>
   </div>
   <div class="table-content">
     <mdt-table table-card="{visible: true, title: 'Products'}"
@@ -22,8 +23,6 @@
                 'column-keys': [
                   'name',
                   'price',
-                  'imageUrl',
-                  'description',
                   'rate',
                   'quantity',
                   'category.name'
@@ -33,8 +32,6 @@
       <mdt-header-row>
         <mdt-column align-rule="left">Name Product</mdt-column>
         <mdt-column align-rule="left">Price</mdt-column>
-        <mdt-column align-rule="left">Image</mdt-column>
-        <mdt-column align-rule="left">Description</mdt-column>
         <mdt-column align-rule="left">Rate</mdt-column>
         <mdt-column align-rule="left">Quantity</mdt-column>
         <mdt-column align-rule="left">Category</mdt-column>

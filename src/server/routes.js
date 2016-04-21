@@ -17,7 +17,7 @@ var storage = multer.diskStorage({
         callback(null, './images');
     },
     filename: function (req, file, callback) {
-        callback(null, Date.now() + '-' + file.originalname);
+        callback(null, file.originalname);
     }
 });
 var upload = multer({storage: storage}).single('file');

@@ -37,6 +37,11 @@
     var cache = {
       currentView: getView().main,
       currentProduct: {},
+      file: {
+        myFile: {},
+        imageSource: {},
+        loading: false
+      },
       descriptionForProduct: null,
       alert: commonService.createAlert('danger', '', false),
       spinnerLoading: false,
