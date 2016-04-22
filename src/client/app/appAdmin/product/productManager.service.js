@@ -49,12 +49,16 @@
     };
 
     api = {
-      getProductList: function () {
+      getAllProducts: function () {
         var url = coreService.formatApi(appConstant.product.api.model);
         return $http.get(url);
       },
       getProductWithPage: function (config) {
         var url = coreService.formatApi(appConstant.product.api.getProductWithPage);
+        return $http.post(url, config);
+      },
+      getProductForPage: function (config) {
+        var url = coreService.formatApi(appConstant.product.api.getProductsForPage);
         return $http.post(url, config);
       },
       addProduct: function (product) {

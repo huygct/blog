@@ -17,7 +17,9 @@
         api: {
           model: 'product',
           uploadImage: 'api/uploadFile',
-          getProductWithPage: 'product/getProductsWithPage'
+          getProductWithPage: 'product/getProductsWithPage',
+          getProductsForPage: 'product/getProductsForPage',
+          getNumberProduct: 'product/getNumberProduct'
         },
         urlTemplates: {
           main: 'app/appAdmin/product/templates/tableProduct.html',

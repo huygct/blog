@@ -8,14 +8,37 @@
     .module('app.user.blog')
     .factory('blogService', blogService);
 
-  blogService.$inject = ['$http', '$q', 'exception', 'logger'];
+  blogService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'coreService'];
   /* @ngInject */
-  function blogService($http, $q, exception, logger) {
+  function blogService($http, $q, exception, logger, appConstant, coreService) {
     var service = {};
 
     var cache = {
+      status: true,
+      defaultValue: {
+        maxPageSize: 5,
+        numberItemOfPage: 12,
+        currentPage: 1,
+        bigTotalItems: 120 // set again from server
+      }
 
     };
+
+    function getNumberProduct() {
+      var url = coreService.formatApi(appConstant.product.api.getNumberProduct);
+      $http.get(url)
+        .then(function(response) {
+          cache.defaultValue.bigTotalItems = response.data;
+        })
+        .catch(function (error) {
+          // fail
+          cache.status = false; // notify fail network
+        })
+    }
+
+    getNumberProduct();
+
+    service.cache = cache;
 
     return service;
   }

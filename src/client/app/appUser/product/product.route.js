@@ -20,7 +20,7 @@
       {
         state: 'app.appUser.product',
         config: {
-          url: '/product/:productName',
+          url: '/product/:productId',
           templateUrl: 'app/appUser/product/product.html',
           controller: 'ProductController',
           controllerAs: 'vm',

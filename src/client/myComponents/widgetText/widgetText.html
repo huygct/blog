@@ -1,17 +1,21 @@
 <div
-    class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp widget-text-box"
-    ng-repeat="sp in $ctrl.data">
+  class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp widget-text-box"
+  ng-repeat="sp in $ctrl.data" ng-click="$ctrl.callbackWhenClickCard(sp.id)">
 
-  <div class="mdl-card__media show-button-link">
+  <div class="mdl-card__media show-button-link view view-first">
     <img src={{sp.imageUrl}}>
+
+    <div class="mask">
+      <h2>{{sp.name}}</h2>
+
+      <p>{{sp.price}}</p>
+      <a href="#" class="info">Mua ngay</a>
+    </div>
   </div>
+
   <div class="bottom-widget-text">
-    <div class="mdl-card__title clear-padding-bottom clear-padding-top">
-      <a class="mdl-card__title-text show-button-link name-widget">{{sp.name}}</a>
-    </div>
-    <div class="mdl-card__title clear-padding-bottom">
-      <span class="mdl-card__title-text cost-widget">{{sp.cost}}</span>
-    </div>
+    <a class="show-button-link name-widget">{{sp.name}}</a>
+    <span class="cost-widget">{{sp.price}}</span>
   </div>
   <!--<div class="mdl-card__actions">-->
   <!--<a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase" href="">-->

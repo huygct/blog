@@ -16,11 +16,14 @@
 
 
   /* @ngInject */
-  WidgetTextController.$inject = [];
-  function WidgetTextController($scope, $element, $attrs) {
+  WidgetTextController.$inject = ['$scope', '$state'];
+  function WidgetTextController($scope, $state) {
 
     var ctrl = this;
 
+    ctrl.callbackWhenClickCard = function(productId) {
+      $state.go('app.appUser.product', {productId: productId});
+    }
   }
 
 })();

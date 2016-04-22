@@ -1,9 +1,11 @@
-<div class="android-more-section">
+<div class="android-more-section blog-content">
   <div class="android-section-title mdl-typography--display-1-color-contrast">San Pham</div>
-  <my-widget-text class="android-card-container mdl-grid" data="vm.data"></my-widget-text>
+  <my-widget-text class="android-card-container mdl-grid" data="vm.productList"></my-widget-text>
 
-  {{vm.bigCurrentPage}}
-  <uib-pagination total-items="vm.bigTotalItems" ng-model="vm.bigCurrentPage" max-size="vm.maxSize"
-                  class="pagination-sm" boundary-links="true" force-ellipses="true">
-  </uib-pagination>
+  <div class="pagination-box" ng-if="vm.defaultValue.bigTotalItems > vm.defaultValue.numberItemOfPage">
+    <uib-pagination total-items="vm.defaultValue.bigTotalItems" ng-model="vm.defaultValue.currentPage" max-size="vm.defaultValue.maxPageSize"
+                    items-per-page="vm.defaultValue.numberItemOfPage" ng-change="vm.changePage(vm.defaultValue.currentPage)"
+                    class="pagination-sm" boundary-links="true" force-ellipses="true">
+    </uib-pagination>
+  </div>
 </div>
