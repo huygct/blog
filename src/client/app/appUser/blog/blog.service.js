@@ -11,7 +11,10 @@
   blogService.$inject = ['$http', '$q', 'exception', 'logger'];
   /* @ngInject */
   function blogService($http, $q, exception, logger) {
-    var service = {
+    var service = {};
+
+    var cache = {
+
     };
 
     return service;

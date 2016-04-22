@@ -1,4 +1,9 @@
 <div class="android-more-section">
   <div class="android-section-title mdl-typography--display-1-color-contrast">San Pham</div>
   <my-widget-text class="android-card-container mdl-grid" data="vm.data"></my-widget-text>
+
+  {{vm.bigCurrentPage}}
+  <uib-pagination total-items="vm.bigTotalItems" ng-model="vm.bigCurrentPage" max-size="vm.maxSize"
+                  class="pagination-sm" boundary-links="true" force-ellipses="true">
+  </uib-pagination>
 </div>

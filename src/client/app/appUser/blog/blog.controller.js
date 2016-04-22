@@ -8,13 +8,34 @@
     .module('app.user.blog')
     .controller('BlogController', BlogController);
 
-  BlogController.$inject = ['$q', 'logger'];
+  BlogController.$inject = ['$q', 'logger', 'productManagerService'];
   /* @ngInject */
-  function BlogController($q, logger) {
+  function BlogController($q, logger, productManagerService) {
     var vm = this;
     vm.title = 'Blog';
 
     vm.searchDara = '';
+    vm.maxSize = 5;
+    vm.bigTotalItems = 175;
+    vm.bigCurrentPage = 1;
+
+
+    /**
+     * get product
+     */
+    function getProduct() {
+      //var objPost =
+      productManagerService.getProductWithPage()
+        .then(function (response) {
+
+        })
+        .catch(function (error) {
+
+        })
+        .finally(function () {
+
+        })
+    }
 
     vm.data = [
       {
