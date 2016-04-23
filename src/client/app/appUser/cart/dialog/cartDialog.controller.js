@@ -13,6 +13,7 @@
   function CartDialogController($q, logger, $scope, $uibModalInstance, items) {
     var vm = this;
 
+    console.log("=== ", items);
     //vm.items = items;
     vm.items = [
       {

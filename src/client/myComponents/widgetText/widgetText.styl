@@ -3,6 +3,7 @@
 .widget-text-box
   padding-bottom 64px
   position relative
+  cursor pointer
   .bottom-widget-text
     width 100%
     position absolute
@@ -30,7 +31,8 @@
   overflow: hidden;
   position: relative;
   text-align: center;
-  cursor: default;
+  cursor: pointer;
+
 }
 .view .mask, .view .content {
   width: 100%;
@@ -50,9 +52,9 @@
   text-align: center;
   position: relative;
   font-size: 17px;
-  padding: 6px;
-  background: rgba(0, 0, 0, 0.8);
-  margin: 20px 0 0 0
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 8px 0 0 0
 }
 .view p {
   font-family: Georgia, serif;
@@ -66,15 +68,16 @@
 .view a.info {
   display: inline-block;
   position: absolute;
-  bottom: 16px;
+  bottom: 8px;
   left: 0;
-  width: 90%;
+  width: 100%;
   text-decoration: none;
   padding: 7px 14px;
-  background: #000;
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   text-transform: uppercase;
   box-shadow: 0 0 1px #000
+  font-weight bold
 }
 .view a.info:hover {
   box-shadow: 0 0 5px #000

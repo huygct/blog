@@ -29,9 +29,11 @@
       productManagerService.api.getProductForPage(objPost)
         .then(function (response) {
           vm.productList = response.data;
+
+          vm.cache.status = true;
         })
         .catch(function (error) {
-
+          vm.cache.status = false;
         })
         .finally(function () {
 

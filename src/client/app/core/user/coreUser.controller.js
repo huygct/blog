@@ -9,10 +9,10 @@
     .controller('CoreUserController', CoreUserController);
 
   CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', '$location',
-    '$stateParams', '$uibModal', 'coreService'];
+    'appConstant', '$stateParams', '$uibModal', 'coreService'];
   /* @ngInject */
   function CoreUserController($scope, $state, $http, logger, $location,
-                              $stateParams, $uibModal, coreService) {
+                              appConstant, $stateParams, $uibModal, coreService) {
     var vm = this;
 
     vm.title = 'Core';
@@ -24,29 +24,7 @@
      */
     vm.currentUser = coreService.getCurrentUser();
 
-    vm.openYourCard = function (size) {
-
-      var modalInstance = $uibModal.open({
-        animation: false,
-        templateUrl: 'app/appUser/cart/dialog/cartDialog.html',
-        controller: 'CartDialogController',
-        controllerAs: 'vm',
-        size: size,
-        resolve: {
-          items: function () {
-            return vm.items;
-          }
-        }
-      });
-
-      modalInstance.result.then(
-        function (selectedItem) {
-          $scope.selected = selectedItem;
-          console.log('--- ', selectedItem);
-        }, function () {
-          logger.info('Modal dismissed at: ' + new Date());
-        });
-    };
+    vm.openYourCard = coreService.openYourCard;
 
     vm.loginApp = function() {
       var modalInstance = $uibModal.open({

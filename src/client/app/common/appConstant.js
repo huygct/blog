@@ -43,6 +43,15 @@
           add: 'app/appAdmin/category/templates/actionCategory.html',
           edit: 'app/appAdmin/category/templates/actionCategory.html'
         }
+      },
+
+      cart: {
+        api: {
+
+        },
+        urlTemplates: {
+          dialogCart: 'app/appUser/cart/dialog/cartDialog.html'
+        }
       }
 
     });

@@ -8,9 +8,11 @@
     .module('app.core')
     .factory('coreService', coreService);
 
-  coreService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', '$rootScope'];
+  coreService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', '$rootScope',
+    '$uibModal'];
   /* @ngInject */
-  function coreService($http, $q, exception, logger, appConstant, $rootScope) {
+  function coreService($http, $q, exception, logger, appConstant, $rootScope,
+                       $uibModal) {
     var service = {};
 
     /**
@@ -71,12 +73,41 @@
       }
     };
 
+    /**
+     * open your cart to add product or check cart
+     */
+    function openYourCard(product) {
+
+      var modalInstance = $uibModal.open({
+        animation: false,
+        templateUrl: appConstant.cart.urlTemplates.dialogCart,
+        controller: 'CartDialogController',
+        controllerAs: 'vm',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return product || {};
+          }
+        }
+      });
+
+      modalInstance.result.then(
+        function (selectedItem) {
+          //$scope.selected = selectedItem;
+          console.log('--- ', selectedItem);
+        }, function () {
+          logger.info('Modal dismissed at: ' + new Date());
+        });
+    }
+
     service.api = api;
     service.getEnv = getEnv;
     service.formatApi = formatApi;
     service.saveCurrentUser = saveCurrentUser;
     service.getCurrentUser = getCurrentUser;
     service.removeCurrentUser = removeCurrentUser;
+
+    service.openYourCard = openYourCard;
 
     return service;
   }

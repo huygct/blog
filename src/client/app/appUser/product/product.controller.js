@@ -8,24 +8,33 @@
     .module('app.user.product')
     .controller('ProductController', ProductController);
 
-  ProductController.$inject = ['$q', 'logger', '$scope'];
+  ProductController.$inject = ['$q', 'logger', '$scope', 'productManagerService', 'productService',
+    '$stateParams', 'coreService'];
   /* @ngInject */
-  function ProductController($q, logger, $scope) {
+  function ProductController($q, logger, $scope, productManagerService, productService,
+                             $stateParams, coreService) {
     var vm = this;
 
-    vm.quantity = 1;
-    vm.number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    var currentProductId = $stateParams.productId;
+    vm.cache = productService.cache;
+    vm.quantityBuy = 1;
+    
+    function loadProductById(productId) {
+      productManagerService.api.getProductById(productId)
+        .then(function (response) {
+          vm.currentProduct = response.data;
+          vm.cache.status = true;
+        })
+        .catch(function (error) {
+          vm.cache.status = false;
+        })
+    }
 
-    vm.product = {
-      imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
-      name: 'Knight Zoro',
-      price: 200,
-      shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
-      description: ''
-    };
+    vm.openYourCard = coreService.openYourCard;
 
 
     function activate() {
+      loadProductById(currentProductId);
       logger.info('Activated Product View');
     }
 

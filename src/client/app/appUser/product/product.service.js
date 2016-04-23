@@ -11,8 +11,13 @@
   productService.$inject = ['$http', '$q', 'exception', 'logger'];
   /* @ngInject */
   function productService($http, $q, exception, logger) {
-    var service = {
+    var service = {};
+
+    var cache = {
+      status: true
     };
+
+    service.cache = cache;
 
     return service;
   }

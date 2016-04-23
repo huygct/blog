@@ -73,6 +73,10 @@
         var url = coreService.formatApi(appConstant.product.api.model);
         return $http.delete(url, {params: {id: ids}});
       },
+      getProductById: function(productId) {
+        var url = coreService.formatApi(appConstant.product.api.model) + '/' + productId;
+        return $http.get(url);
+      },
       uploadImage: function(imageSource) {
         var url = appConstant.product.api.uploadImage;
         //create form data object

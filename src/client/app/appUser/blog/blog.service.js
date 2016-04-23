@@ -29,6 +29,8 @@
       $http.get(url)
         .then(function(response) {
           cache.defaultValue.bigTotalItems = response.data;
+
+          cache.status = false;
         })
         .catch(function (error) {
           // fail
