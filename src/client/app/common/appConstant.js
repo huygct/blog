@@ -52,6 +52,17 @@
         urlTemplates: {
           dialogCart: 'app/appUser/cart/dialog/cartDialog.html'
         }
+      },
+
+      event: {
+        api: {
+          model: 'event'
+        },
+        urlTemplates: {
+          main: 'app/appAdmin/event/templates/tableEvent.html',
+          add: 'app/appAdmin/event/templates/actionEvent.html',
+          edit: 'app/appAdmin/event/templates/actionEvent.html'
+        }
       }
 
     });

@@ -33,6 +33,12 @@
         selected: $state.is('app.appAdmin.orderManager')
       },
       {
+        state: 'app.appAdmin.event',
+        name: 'Event',
+        icon: 'event',
+        selected: $state.is('app.appAdmin.event')
+      },
+      {
         state: 'app.appAdmin.category',
         name: 'Categories',
         icon: 'book',

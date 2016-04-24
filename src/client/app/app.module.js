@@ -23,6 +23,7 @@
         'app.admin.product',
         'app.admin.category',
         'app.admin.order',
+        'app.admin.event',
 
 
         'app.user.blog',

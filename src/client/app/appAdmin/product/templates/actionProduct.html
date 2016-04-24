@@ -52,7 +52,7 @@
         <span class="error-text" ng-show="actionProductForm.imageSource.$error.dimensions">
           Image height should be smaller than 400!
         </span>
-        <div ng-show="vm.cache.file.imageSource.src">
+        <div ng-show="vm.cache.file.imageSource.src || vm.cache.currentProduct.imageUrl">
           <!--<img ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview"/>-->
           <img ng-src="{{vm.cache.currentProduct.imageUrl}}" class="show-image-preview"/>
           <div ng-if="!vm.cache.currentProduct.imageUrl">
@@ -61,7 +61,7 @@
           <div ng-if="vm.cache.currentProduct.imageUrl">
             <div class="text-success">This is url of image: {{vm.cache.currentProduct.imageUrl}}</div>
           </div>
-          <a class="btn btn-primary" ng-click="vm.uploadImageToServer(vm.cache.file.myFile)" button-spinner="vm.cache.file.loading">Upload</a>
+          <a class="btn btn-primary" ng-show="!vm.cache.currentProduct.imageUrl || vm.cache.file.imageSource.src" ng-click="vm.uploadImageToServer(vm.cache.file.myFile)" button-spinner="vm.cache.file.loading">Upload</a>
         </div>
       </div>
 

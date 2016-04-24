@@ -227,6 +227,7 @@
         .then(function(response){
           // get path of image
           var file = response.data.files;
+          vm.cache.file.imageSource = {};
           vm.cache.currentProduct.imageUrl = file.path;
         })
         .catch(function() {

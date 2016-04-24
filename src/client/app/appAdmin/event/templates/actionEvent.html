@@ -1,0 +1,86 @@
+<div spinner-loading="vm.cache.spinnerLoading" class="action-of-event">
+  <md-content layout-padding>
+    <h2>
+      <span ng-if="vm.cache.currentView.name === 'add'">Add event</span>
+      <span ng-if="vm.cache.currentView.name === 'edit'">Edit event</span>
+    </h2>
+    <form name="actionEventForm">
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input md-maxlength="30" required name="name" ng-model="vm.cache.currentEvent.name">
+        <div ng-messages="actionEventForm.name.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      
+      <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea ng-model="vm.cache.currentEvent.description" md-select-on-focus></textarea>
+      </md-input-container>
+
+      <div class="box-choose-and-upload-image">
+        <label>Image Source</label>
+        <input type="file" name="imageSource" file-model="vm.cache.file.myFile"
+               image-with-preview ng-model="vm.cache.file.imageSource"
+               accept="image/jpeg,image/png" class="btn btn-default"
+               dimensions="" required name="imageUrl"
+            >
+        <span class="error-text" ng-show="actionEventForm.imageSource.$error.imageSource">
+          Not a JPEG or a PNG!
+        </span>
+        <span class="error-text" ng-show="actionEventForm.imageSource.$error.dimensions">
+          Image height should be smaller than 400!
+        </span>
+        <div ng-show="vm.cache.file.imageSource.src || vm.cache.currentEvent.imageUrl">
+          <!--<img ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview"/>-->
+          <img ng-src="{{vm.cache.currentEvent.imageUrl}}" class="show-image-preview"/>
+          <div ng-if="!vm.cache.currentEvent.imageUrl">
+            <div class="text-danger">Please click upload button to upload this image!!!</div>
+          </div>
+          <div ng-if="vm.cache.currentEvent.imageUrl">
+            <div class="text-success">This is url of image: {{vm.cache.currentEvent.imageUrl}}</div>
+          </div>
+          <a class="btn btn-primary" ng-show="!vm.cache.currentEvent.imageUrl || vm.cache.file.imageSource.src" ng-click="vm.uploadImageToServer(vm.cache.file.myFile)" button-spinner="vm.cache.file.loading">Upload</a>
+        </div>
+      </div>
+
+      <!--select product that will apply event-->
+      <br/>
+      <fieldset class="demo-fieldset" >
+        <legend class="demo-legend">All your product: </legend>
+        <div layout="row" layout-wrap flex>
+          <div flex-xs flex="50">
+            <md-checkbox aria-label="Select All"
+                         ng-checked="vm.isChecked()"
+                         md-indeterminate="vm.isIndeterminate()"
+                         ng-click="vm.toggleAll()">
+              <span ng-if="vm.isChecked()">Un-</span>Select All
+            </md-checkbox>
+          </div>
+          <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in vm.cache.productInfo.productList track by item.id">
+            <md-checkbox ng-checked="vm.exists(item, vm.cache.productInfo.productSelectList)"
+                         ng-click="vm.toggle(item, vm.cache.productInfo.productSelectList)">
+              {{ item.name }}
+            </md-checkbox>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <div class="pull-right">
+      <md-button class="md-raised md-primary" ng-disabled="!actionEventForm.$valid"
+                 ng-click="vm.addEvent(vm.cache.currentEvent)"
+                 ng-if="vm.cache.currentView.name === 'add'"
+          >
+        Add
+      </md-button>
+      <md-button class="md-raised md-primary" ng-disabled="!actionEventForm.$valid"
+                 ng-click="vm.updateEvent(vm.cache.currentEvent)"
+                 ng-if="vm.cache.currentView.name === 'edit'"
+          >
+        Update
+      </md-button>
+      <md-button class="md-raised" ng-click="vm.backToTableView()">Cancer</md-button>
+    </div>
+  </md-content>
+</div>

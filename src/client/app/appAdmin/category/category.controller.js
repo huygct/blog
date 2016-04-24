@@ -158,7 +158,6 @@
       var alert = vm.cache.alert;
       alert.show = false;
       vm.cache.spinnerLoading = true;
-      console.log('ids ', ids);
       categoryService.api.deleteCategory(ids)
         .then(function(response){
           alert.type = 'success';
