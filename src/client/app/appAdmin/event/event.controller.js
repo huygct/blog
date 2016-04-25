@@ -237,6 +237,13 @@
     };
 
     /**
+     * assign event for products
+     */
+    vm.assignToProduct = function (event, $event) {
+
+    };
+
+    /**
      * upload image to server
      */
     vm.uploadImageToServer = function(imageSource) {

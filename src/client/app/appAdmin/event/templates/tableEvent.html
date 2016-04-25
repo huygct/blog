@@ -15,6 +15,9 @@
         <md-icon ng-click="vm.goToEditEventView(event)" aria-label="Edit Event" class="md-secondary md-hue-3" >
           <i class="fa fa-pencil-square-o md-secondary md-hue-3" aria-hidden="true"></i>
         </md-icon>
+        <md-icon class="md-secondary" ng-click="vm.assignToProduct(event, $event)" aria-label="Delete Event">
+          <i class="fa fa-link" aria-hidden="true"></i>
+        </md-icon>
         <md-icon class="md-secondary" ng-click="vm.deleteRowCallback(event, $event)" aria-label="Delete Event">
           <i class="fa fa-trash-o md-secondary" aria-hidden="true"></i>
         </md-icon>
