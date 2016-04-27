@@ -31,6 +31,13 @@
     routerHelperProvider.configure({docTitle: config.appTitle + ': '});
   }
 
+  // config localStorage
+  core.config(localStorageConfig);
+  localStorageConfig.$inject = ['localStorageServiceProvider'];
+  function localStorageConfig(localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('zoro');
+  }
+
   // config theme
   core.config(themeConfig);
   themeConfig.$inject = ['$mdThemingProvider'];

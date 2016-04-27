@@ -85,7 +85,7 @@
         controllerAs: 'vm',
         size: 'lg',
         resolve: {
-          items: function () {
+          productForCart: function () {
             return product || {};
           }
         }

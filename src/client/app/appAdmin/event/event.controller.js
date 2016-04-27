@@ -9,12 +9,13 @@
     .controller('EventController', EventController);
 
   EventController.$inject = ['$http', 'appConstant', 'logger', 'eventService', '$scope', 'coreService',
-    '$mdDialog', 'productManagerService'];
+    '$mdDialog', 'productManagerService', '$mdMedia'];
 
   /* @ngInject */
   function EventController($http, appConstant, logger, eventService, $scope, coreService,
-                              $mdDialog, productManagerService) {
+                              $mdDialog, productManagerService, $mdMedia) {
     var vm = this;
+    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     vm.title = 'Event';
     vm.eventList = [];
 
@@ -29,7 +30,7 @@
       // to prevent interaction outside of dialog
       $mdDialog.show(
         $mdDialog.alert()
-          .parent(angular.element(document.querySelector('#popupContainer')))
+          //.parent(angular.element(document.querySelector('#popupContainer')))
           .clickOutsideToClose(true)
           .title('Can\'t delete')
           .textContent('This events have exist product!!!')
@@ -62,65 +63,10 @@
     /**
      * load product for action add and edit
      */
-    function loadProduct(nextView) {
-      var alert = vm.cache.alert;
-      alert.show = false;
-      vm.cache.spinnerLoading = true;
-      vm.cache.productInfo.productList = [];
-      vm.cache.productInfo.productSelectList = [];
-      productManagerService.api.getAllProducts()
-        .then(function(response) {
-          vm.cache.productInfo.productList = response.data;
-          _.forEach(response.data, function (product) {
-            if(product.event) {
-              vm.cache.productInfo.productSelectList.push(product);
-            }
-          });
-          vm.cache.currentView = nextView;
-        })
-        .catch(function (error) {
-          alert.type = 'danger';
-          alert.msg = 'Xảy ra lỗi khi thực hiện!!! Vui lòng thực hiện lại...';
-          alert.show = true;
-          vm.backToTableView();
-        })
-        .finally(function () {
-          vm.cache.spinnerLoading = false;
-        });
+    function loadProduct() {
+      
     }
-    vm.toggle = function (item, productSelectList) {
-      var idx = _.findIndex(productSelectList, function (product) {
-                  return product.id === item.id;
-                });
-      if (idx > -1) {
-        productSelectList.splice(idx, 1);
-      }
-      else {
-        productSelectList.push(item);
-      }
-    };
-    vm.exists = function (item, productSelectList) {
-      var idx = _.findIndex(productSelectList, function (product) {
-        return product.id === item.id;
-      });
-      return idx > -1;
-    };
-
-    vm.isIndeterminate = function() {
-      return (vm.cache.productInfo.productSelectList.length !== 0 &&
-      vm.cache.productInfo.productSelectList.length !== vm.cache.productInfo.productList.length);
-    };
-    vm.toggleAll = function() {
-      if (vm.cache.productInfo.productSelectList.length === vm.cache.productInfo.productList.length) {
-        vm.cache.productInfo.productSelectList = [];
-      } else if (vm.cache.productInfo.productSelectList.length === 0 || vm.cache.productInfo.productSelectList.length > 0) {
-        vm.cache.productInfo.productSelectList = vm.cache.productInfo.productList.slice(0);
-      }
-    };
-    vm.isChecked = function() {
-      console.log(vm.cache.productInfo.productSelectList );
-      return vm.cache.productInfo.productSelectList.length === vm.cache.productInfo.productList.length;
-    };
+    
 
     /**
      * add Event
@@ -128,7 +74,7 @@
     vm.goToAddEventView = function () {
       vm.cache.currentEvent = {};
 
-      loadProduct(eventService.getView.add);
+      vm.cache.currentView = eventService.getView.add;
     };
 
     vm.addEvent = function(event) {
@@ -239,8 +185,29 @@
     /**
      * assign event for products
      */
-    vm.assignToProduct = function (event, $event) {
-
+    vm.assignToProduct = function(event, $event) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+      $mdDialog.show({
+        controller: AssignProductController,
+        templateUrl: 'app/appAdmin/event/templates/assignProductDialog.html',
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen,
+        locals: {
+          currentEvent: event
+        }
+      })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
     };
 
     /**
@@ -264,11 +231,123 @@
         })
     };
 
-    activate();
+    /**
+     * controller for assign product
+     */
+    function AssignProductController($scope, $mdDialog, currentEvent) {
+      $scope.currentEvent = currentEvent;
+      $scope.alert = {
+        show: false
+      };
+      $scope.spinnerLoading = true;
+
+      $scope.productList = [];
+      $scope.productListCanAction = []; // tat ca san pham, tru ra nhung sp da co event va event do khog phai event dang chon
+      $scope.productSelectList = [];
+      $scope.productSelectListOriginal = [];
+      productManagerService.api.getAllProducts()
+        .then(function(response) {
+          $scope.productList = response.data;
+          _.forEach(response.data, function (product) {
+            if(product.event) {
+              if(product.event.id === currentEvent.id) {
+                $scope.productSelectList.push(product.id);
+                $scope.productListCanAction.push(product.id);
+              }
+            } else {
+              $scope.productListCanAction.push(product.id);
+            }
+          });
+          $scope.productSelectListOriginal = angular.copy($scope.productSelectList);
+        })
+        .catch(function (error) {
+          $scope.productList = [];
+          $scope.productSelectList = [];
+          $scope.productListCanAction = [];
+          $scope.productSelectListOriginal = [];
+          $scope.alert.type = 'danger';
+          $scope.alert.msg = 'Thất bại khi thực thi!!! Vui lòng thực hiện lại...';
+          $scope.alert.show = true;
+        })
+        .finally(function () {
+          $scope.spinnerLoading = false;
+        });
+
+      // ----------------------------------------------------------------------------------------------------
+      $scope.toggle = function (productId, productSelectList) {
+        var idx = _.findIndex(productSelectList, function (id) {
+          return id === productId;
+        });
+        if (idx > -1) {
+          productSelectList.splice(idx, 1);
+        }
+        else {
+          productSelectList.push(productId);
+        }
+      };
+      $scope.exists = function (productId, productSelectList) {
+        var idx = _.findIndex(productSelectList, function (id) {
+          return id === productId;
+        });
+        return idx > -1;
+      };
+
+      $scope.isIndeterminate = function() {
+        return ($scope.productSelectList.length !== 0 &&
+        $scope.productSelectList.length !== $scope.productListCanAction.length);
+      };
+      $scope.toggleAll = function() {
+        if ($scope.productSelectList.length === $scope.productListCanAction.length) {
+          $scope.productSelectList.length = 0;
+        } else {
+          if ($scope.productSelectList.length === 0 || $scope.productSelectList.length > 0) {
+            $scope.productSelectList.length = 0;
+            _.forEach($scope.productListCanAction, function (productId) {
+              $scope.productSelectList.push(productId);
+            })
+          }
+        }
+      };
+      $scope.isChecked = function() {
+        return $scope.productSelectList.length === $scope.productListCanAction.length;
+      };
+      // ----------------------------------------------------------------------------------------------------
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      // apply to product
+      $scope.applyToDevice = function() {
+        $scope.alert.show = false;
+        $scope.spinnerLoading = true;
+        var productListUnAssign = _.difference($scope.productSelectListOriginal, $scope.productSelectList);
+        var productListAssign = _.difference($scope.productSelectList, $scope.productSelectListOriginal);
+        var postData = {
+          assignProductIds: productListAssign,
+          unAssignProductIds: productListUnAssign,
+          eventId: currentEvent.id
+        };
+        eventService.api.updateEventForProduct(postData)
+          .then(function(response) {
+            $mdDialog.hide();
+            loadEvent();
+          })
+          .catch(function (error) {
+            $scope.alert.type = 'danger';
+            $scope.alert.msg = 'Thất bại khi thực thi!!! Vui lòng thực hiện lại...';
+            $scope.alert.show = true;
+          })
+          .finally(function () {
+            $scope.spinnerLoading = false;
+          });
+      };
+    }
 
     function activate() {
       loadEvent();
       logger.info('Activated Event View');
     }
+
+    activate();
   }
 })();

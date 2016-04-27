@@ -44,28 +44,6 @@
           <a class="btn btn-primary" ng-show="!vm.cache.currentEvent.imageUrl || vm.cache.file.imageSource.src" ng-click="vm.uploadImageToServer(vm.cache.file.myFile)" button-spinner="vm.cache.file.loading">Upload</a>
         </div>
       </div>
-
-      <!--select product that will apply event-->
-      <br/>
-      <fieldset class="demo-fieldset" >
-        <legend class="demo-legend">Event apply for products: </legend>
-        <div layout="row" layout-wrap flex>
-          <div flex-xs flex="50">
-            <md-checkbox aria-label="Select All"
-                         ng-checked="vm.isChecked()"
-                         md-indeterminate="vm.isIndeterminate()"
-                         ng-click="vm.toggleAll()">
-              <span ng-if="vm.isChecked()">Un-</span>Select All
-            </md-checkbox>
-          </div>
-          <div class="demo-select-all-checkboxes" flex="100" ng-repeat="item in vm.cache.productInfo.productList track by item.id">
-            <md-checkbox ng-checked="vm.exists(item, vm.cache.productInfo.productSelectList)"
-                         ng-click="vm.toggle(item, vm.cache.productInfo.productSelectList)">
-              {{ item.name }}
-            </md-checkbox>
-          </div>
-        </div>
-      </fieldset>
     </form>
     <div class="pull-right">
       <md-button class="md-raised md-primary" ng-disabled="!actionEventForm.$valid"

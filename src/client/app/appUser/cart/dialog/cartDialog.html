@@ -3,7 +3,7 @@
     <h3 class="modal-title">Giỏ hàng của bạn</h3>
   </div>
   <div class="modal-body container-card">
-    <div ng-if="vm.items.length === 0" class="card-no-item">
+    <div ng-if="vm.productList.length === 0" class="card-no-item">
       <h4>Giỏ hàng của bạn hiện đang trống</h4>
       <p>Hãy nhanh tay sở hữu những sản phẩm yêu thích của bạn</p>
       <md-button class="md-raised md-primary" aria-label="mua hang" ng-click="vm.cancel()">
@@ -11,7 +11,7 @@
         <i class="fa fa-hand-o-right"></i>
       </md-button>
     </div>
-    <div ng-if="vm.items.length !== 0" class="card-had-item">
+    <div ng-if="vm.productList.length !== 0" class="card-had-item">
       <div class="list-group-cart-item">
         <ul class="list-group-cart-item-heading list-unstyled clearfix">
           <li class="column-format cart-product"><span>sản phẩm</span></li>
@@ -20,14 +20,14 @@
           <li class="column-format text-in-right cart-prices"><span>thành tiền</span></li>
         </ul>
         <div class="list-group-cart-all-item-body" id="scroll-bar-type">
-          <ul class="list-group-cart-item-body list-unstyled clearfix" ng-repeat="item in vm.items"
+          <ul class="list-group-cart-item-body list-unstyled clearfix" ng-repeat="item in vm.productList"
               ng-class="{'line-separate-item': !$last}">
             <li class="column-format cart-product">
               <md-card class="detail-item-card">
                 <md-card-title class="remove-padding">
                   <md-card-title-media>
                     <div class="md-media-sm card-media">
-                      <img ng-src="{{item.imagePath}}" class="md-card-image" alt="Washed Out">
+                      <img ng-src="{{item.imageUrl}}" class="md-card-image" alt="Washed Out">
                     </div>
                   </md-card-title-media>
                   <md-card-title-text>
@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer cart-footer" ng-if="vm.items.length !== 0">
+  <div class="modal-footer cart-footer" ng-if="vm.productList.length !== 0">
     <md-button class="md-raised md-primary pull-left" aria-label="mua hang">
       <i class="fa fa-caret-left"></i>
       Tiếp tục mua hàng

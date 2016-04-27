@@ -1,9 +1,9 @@
-.action-of-event .demo-legend {
+.assign-event-to-product .demo-legend {
   color: #3f51b5;
 }
-.action-of-event .demo-fieldset {
+.assign-event-to-product demo-fieldset {
   height: 100%;
 }
-.action-of-event .demo-select-all-checkboxes {
+.assign-event-to-product .demo-select-all-checkboxes {
   padding-left: 30px;
 }

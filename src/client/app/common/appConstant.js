@@ -6,6 +6,7 @@
     .constant('appConstant', {
 
       USER_APP: 'app123456',
+      YOUR_CART: 'app123456_cart',
 
       core: {
         api: {
@@ -56,7 +57,8 @@
 
       event: {
         api: {
-          model: 'event'
+          model: 'event',
+          updateEventForProduct: 'event/updateEventForProduct'
         },
         urlTemplates: {
           main: 'app/appAdmin/event/templates/tableEvent.html',

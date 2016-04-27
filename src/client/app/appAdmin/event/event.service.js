@@ -70,6 +70,10 @@
       deleteEvent: function (id) {
         var url = coreService.formatApi(appConstant.event.api.model) + '/' + id;
         return $http.delete(url);
+      },
+      updateEventForProduct: function (postData) {
+        var url = coreService.formatApi(appConstant.event.api.updateEventForProduct);
+        return $http.post(url, postData);
       }
     };
 

@@ -1,0 +1,52 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak class="assign-event-to-product">
+  <div spinner-loading="spinnerLoading">
+    <form>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>{{currentEvent.name}}</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel-button">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-dialog-content>
+        <div>
+          <my-alert type="alert.type"
+                    show="alert.show"
+                    msg="alert.msg"
+            ></my-alert>
+        </div>
+        <!--select product that will apply event-->
+        <fieldset class="standard demo-fieldset" style="margin: 16px">
+          <div layout="column" layout-wrap layout-gt-sm="row">
+            <div flex-xs flex="100">
+              <md-checkbox aria-label="Select All"
+                           ng-checked="isChecked()"
+                           md-indeterminate="isIndeterminate()"
+                           ng-click="toggleAll()"
+                           ng-disabled="checkDisabled(item)">
+                <span ng-if="isChecked()">Un-</span>Select All
+              </md-checkbox>
+            </div>
+            <div class="demo-select-all-checkboxes" flex-xs flex="50" ng-repeat="item in productList track by item.id">
+              <md-checkbox ng-checked="true"
+                           ng-disabled="true" ng-if="item.event.id && currentEvent.id !== item.event.id">
+                          {{ item.name }}</md-checkbox>
+              <md-checkbox ng-checked="exists(item.id, productSelectList)"
+                           ng-click="toggle(item.id, productSelectList)"
+                           ng-if="!(item.event.id && currentEvent.id !== item.event.id)">
+                          {{ item.name }}
+              </md-checkbox>
+            </div>
+          </div>
+        </fieldset>
+      </md-dialog-content>
+      <md-dialog-actions layout="row">
+        <md-button ng-click="applyToDevice()" class="md-raised md-primary" style="margin-right:20px;">
+          Apply
+        </md-button>
+      </md-dialog-actions>
+    </form>
+  </div>
+</md-dialog>

@@ -3,7 +3,7 @@
   ng-repeat="sp in $ctrl.data" ng-click="$ctrl.callbackWhenClickCard(sp.id)">
 
   <div class="mdl-card__media show-button-link view view-first">
-    <img src={{sp.imageUrl}}>
+    <img ng-src={{sp.imageUrl}} onerror="this.src='images/default_product.png'">
 
     <div class="mask">
       <h2>{{sp.name}}</h2>
