@@ -14,6 +14,9 @@
     routerHelper.configureStates(getStates());
   }
 
+  /**
+   * not login = don't have user: callID: 95237041b02096bbdb38980f727e33c3local
+   */
   function getStates() {
     return [
       {

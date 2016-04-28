@@ -32,8 +32,9 @@
                   </md-card-title-media>
                   <md-card-title-text>
                     <span class="md-headline">{{item.name}}</span>
-                    <span class="md-subhead">one pieces</span>
-                    <md-button class="md-warn button-remove-item" id="remove-margin-and-uppercase">
+                    <span class="md-subhead" ng-if="item.category.name">{{item.category.name}}</span>
+                    <md-button class="md-warn button-remove-item" id="remove-margin-and-uppercase"
+                      ng-click="vm.removeProductFromCart(item)">
                       <i class="fa fa-trash-o"></i>
                       Bỏ sản phẩm
                     </md-button>
@@ -42,13 +43,13 @@
               </md-card>
             </li>
             <li class="column-format text-in-right cart-price">
-              <span>{{item.price}}</span>
+              <span>{{item.price.formatMoney(0, '.', ',')}}</span>
             </li>
             <li class="column-format text-in-right cart-count">
-              <input type="number" class="form-control max-width-100" ng-model="item.quantity">
+              <input type="number" class="form-control max-width-100" ng-model="item.quantityWillBuy">
             </li>
             <li class="column-format text-in-right cart-prices">
-              <span>{{item.price * item.quantity}}</span>
+              <span>{{(item.price * item.quantityWillBuy).formatMoney(0, '.', ',')}}</span>
             </li>
           </ul>
         </div>
@@ -56,16 +57,18 @@
     </div>
   </div>
   <div class="modal-footer cart-footer" ng-if="vm.productList.length !== 0">
-    <md-button class="md-raised md-primary pull-left" aria-label="mua hang">
+    <md-button class="md-raised md-primary pull-left" aria-label="mua hang"
+      ng-click="vm.goToPageShowProducts()">
       <i class="fa fa-caret-left"></i>
       Tiếp tục mua hàng
     </md-button>
     <div class="pull-right">
       <p class="sum-money">
         <span>Thành tiền: </span>
-        <span class="text-red-color">200000</span>
+        <span class="text-red-color">{{vm.sumMoney()}}</span>
       </p>
-      <md-button class="md-raised md-accent" aria-label="thanh toán">
+      <md-button class="md-raised md-accent" aria-label="thanh toán"
+        ng-click="vm.goToOrder()">
         Tiến hành thanh toán
         <i class="fa fa-long-arrow-right"></i>
       </md-button>

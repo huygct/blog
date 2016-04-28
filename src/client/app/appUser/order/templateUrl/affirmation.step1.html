@@ -98,21 +98,21 @@
 <div flex-xs="" flex-gt-xs="33" class="right-side-order-view">
   <md-card>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button>Sửa</md-button>
+      <md-button class="md-primary" ng-click="vm.goToCart()">Sửa</md-button>
     </md-card-actions>
     <md-card-content>
       <md-card-title layout="column">
         <md-card-title-text class="margin-bottom-16 information-item">
-          <div class="margin-bottom-16 detail-item" ng-repeat="item in ::vm.items">
-            <p class="price-and-name-item">{{item.quantity}} x {{::item.name}}</p>
+          <div class="margin-bottom-16 detail-item" ng-repeat="item in vm.yourProducts">
+            <p class="price-and-name-item">{{item.quantityWillBuy}} x {{item.name}}</p>
 
-            <p class="total-price-item">{{::item.quantity * item.price}}</p>
+            <p class="total-price-item">{{(item.quantityWillBuy * item.price).formatMoney(0, '.', ',')}}</p>
           </div>
         </md-card-title-text>
         <md-card-title-text class="margin-bottom-16 total-cost">
           <p class="margin-bottom-16">
             <span class="text">Thành tiền</span>
-            <span class="text-red-color sum-money">200000</span>
+            <span class="text-red-color pull-right sum-money">{{vm.moneyMustPay.formatMoney(0, '.', ',')}}</span>
           </p>
         </md-card-title-text>
       </md-card-title>

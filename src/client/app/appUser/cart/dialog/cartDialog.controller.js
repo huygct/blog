@@ -9,70 +9,57 @@
     .controller('CartDialogController', CartDialogController);
 
   CartDialogController.$inject = ['$q', 'logger', '$scope', '$uibModalInstance', 'cartService',
-    'appConstant', 'localStorageService', 'productForCart'];
+    'appConstant', '$state', 'localStorageService', 'productForCart'];
   /* @ngInject */
   function CartDialogController($q, logger, $scope, $uibModalInstance, cartService,
-                                appConstant, localStorageService, productForCart) {
+                                appConstant, $state, localStorageService, productForCart) {
     var vm = this;
 
     var YOUR_CART_KEY = appConstant.YOUR_CART;
-
     /**
-     * check and add product into localStorage
+     * check your cart in localStorage
      */
-    //if(productForCart) {
-    //  var yourCart = localStorageService.get(YOUR_CART_KEY);
-    //  if(yourCart && yourCart.length !== 0) {
-    //    yourCart.push(productForCart);
-    //  } else {
-    //    yourCart = [productForCart];
-    //  }
-    //  localStorageService.set(YOUR_CART_KEY, yourCart)
-    //}
+    var yourCart = localStorageService.get(YOUR_CART_KEY);
+    if(_.has(productForCart, 'id')) {
+      if(yourCart && yourCart.length !== 0) {
+        var productWasExist = _.findWhere(yourCart, {id: productForCart.id});
+        if(productWasExist) {
+          productWasExist.quantityWillBuy += productForCart.quantityWillBuy;
+        } else {
+          yourCart.push(productForCart);
+        }
+      } else {
+        yourCart = [productForCart];
+      }
+    }
 
-    vm.productList = localStorageService.get(YOUR_CART_KEY);
+    vm.productList = yourCart;
 
-    //vm.items = [
-    //  {
-    //    imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
-    //    name: 'Knight Zoro',
-    //    price: 200,
-    //    number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    //    quantity: 0,
-    //    shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
-    //    description: ''
-    //  },
-    //  {
-    //    imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
-    //    name: 'Knight Zoro 2',
-    //    price: 200,
-    //    number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    //    quantity: 0,
-    //    shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
-    //    description: ''
-    //  },
-    //  {
-    //    imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
-    //    name: 'Knight Zoro 2',
-    //    price: 200,
-    //    number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    //    quantity: 0,
-    //    shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
-    //    description: ''
-    //  }
-    //];
+    vm.removeProductFromCart = function (item) {
+      vm.productList = _.without(vm.productList, _.findWhere(vm.productList, {id: item.id}));
+    };
 
-    //vm.selected = {
-    //  item: vm.items[0]
+    vm.sumMoney = function() {
+      var sum = 0;
+      _.forEach(vm.productList, function (item) {
+        sum += (item.price * item.quantityWillBuy);
+      });
+      return sum.formatMoney(0, '.', ',');
+    };
+
+    vm.goToPageShowProducts = function () {
+      $uibModalInstance.close(vm.productList);
+      $state.go('app.appUser.blog');
+    };
+
+    vm.goToOrder = function () {
+      $uibModalInstance.close(vm.productList);
+      $state.go('app.appUser.order', {'95237041b02096bbdb38980f727e33c3local'});
+    };
+
+    //vm.cancel = function () {
+    //  $uibModalInstance.dismiss('cancel');
+    //  console.log('-====================================================');
     //};
-
-    vm.ok = function () {
-      console.log('-- ', vm.selected.item);
-      $uibModalInstance.close(vm.selected.item);
-    };
-
-    vm.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
-    };
   }
 })();

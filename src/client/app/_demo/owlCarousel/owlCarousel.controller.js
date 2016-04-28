@@ -14,6 +14,10 @@
     $scope.loading = true;
     $scope.money = 123456;
 
+    var a = 123456789;
+    console.log('--- : ', a.formatMoney(0, '.', ','));
+    console.log('xxxxx : ', a);
+
     $scope.items1 = [1,2,3,4,5,6,7,8,9,10];
     $scope.items2 = [1,2,3,4,5,6,7,8,9,10];
 

@@ -8,14 +8,14 @@
     <div class="mask">
       <h2>{{sp.name}}</h2>
 
-      <p>{{sp.price}}</p>
+      <p>{{sp.price.formatMoney(0, '.', ',')}}</p>
       <a href="#" class="info">Mua ngay</a>
     </div>
   </div>
 
   <div class="bottom-widget-text">
     <a class="show-button-link name-widget">{{sp.name}}</a>
-    <span class="cost-widget">{{sp.price}}</span>
+    <span class="cost-widget">{{sp.price.formatMoney(0, '.', ',')}}</span>
   </div>
   <!--<div class="mdl-card__actions">-->
   <!--<a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase" href="">-->

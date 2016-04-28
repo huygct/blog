@@ -17,12 +17,12 @@
 
     var currentProductId = $stateParams.productId;
     vm.cache = productService.cache;
-    vm.quantityBuy = 1;
-    
+
     function loadProductById(productId) {
       productManagerService.api.getProductById(productId)
         .then(function (response) {
           vm.currentProduct = response.data;
+          vm.currentProduct.quantityWillBuy = 1;
           vm.cache.status = true;
         })
         .catch(function (error) {

@@ -15,6 +15,9 @@
     routerHelper.configureStates(getStates());
   }
 
+  /**
+   * Default productId if not login: 95237041b02096bbdb38980f727e33c3local
+   */
   function getStates() {
     return [
       {

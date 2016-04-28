@@ -9,10 +9,10 @@
     .factory('coreService', coreService);
 
   coreService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', '$rootScope',
-    '$uibModal'];
+    '$uibModal', 'localStorageService'];
   /* @ngInject */
   function coreService($http, $q, exception, logger, appConstant, $rootScope,
-                       $uibModal) {
+                       $uibModal, localStorageService) {
     var service = {};
 
     /**
@@ -92,9 +92,10 @@
       });
 
       modalInstance.result.then(
-        function (selectedItem) {
-          //$scope.selected = selectedItem;
-          console.log('--- ', selectedItem);
+        function (productList) {
+          console.log('productList : ', productList);
+          var YOUR_CART_KEY = appConstant.YOUR_CART;
+          localStorageService.set(YOUR_CART_KEY, productList);
         }, function () {
           logger.info('Modal dismissed at: ' + new Date());
         });

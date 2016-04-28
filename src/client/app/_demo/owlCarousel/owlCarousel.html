@@ -1,5 +1,8 @@
 <a class="btn btn-success" ng-click="loading = !loading" button-spinner="loading">Save</a>
-<input ng-model="money" format-currency="" /> {{money}}
+<input ng-model="money" format-currency="" />
+
+<br/>
+<span ng-model="money" format-currency="">{{(123456789.12345).formatMoney(2, '.', ',')}}</span>
 
 <div spinner-loading="loading">
   <md-content class="md-padding">
