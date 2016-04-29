@@ -65,6 +65,12 @@
           add: 'app/appAdmin/event/templates/actionEvent.html',
           edit: 'app/appAdmin/event/templates/actionEvent.html'
         }
+      },
+
+      order: {
+        api: {
+          model: 'order'
+        }
       }
 
     });

@@ -54,7 +54,7 @@
 
     vm.goToOrder = function () {
       $uibModalInstance.close(vm.productList);
-      $state.go('app.appUser.order', {'95237041b02096bbdb38980f727e33c3local'});
+      $state.go('app.appUser.order', {checkoutId: '95237041b02096bbdb38980f727e33c3local'});
     };
 
     //vm.cancel = function () {

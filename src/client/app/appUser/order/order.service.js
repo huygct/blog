@@ -8,11 +8,19 @@
     .module('app.user.order')
     .factory('orderService', orderService);
 
-  orderService.$inject = ['$http', '$q', 'exception', 'logger'];
+  orderService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'coreService'];
   /* @ngInject */
-  function orderService($http, $q, exception, logger) {
-    var service = {
+  function orderService($http, $q, exception, logger, appConstant, coreService) {
+    var service = {};
+
+    var api = {
+      createOrder: function (order) {
+        var url = coreService.formatApi(appConstant.order.api.model);
+        return $http.post(url, order);
+      }
     };
+
+    service.api = api;
 
     return service;
   }

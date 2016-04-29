@@ -1,7 +1,7 @@
 <div flex-xs="" flex-gt-xs="66" layout="column" class="left-side-order-view">
   <md-radio-group ng-model="vm.typeBuyer">
-    <md-radio-button value="strange" class="md-primary">Khach hang vang lai</md-radio-button>
-    <md-radio-button value="member" class="md-primary">Thanh vien</md-radio-button>
+    <md-radio-button value="strange" class="md-primary">Khách hàng vãng lai</md-radio-button>
+    <md-radio-button value="member" class="md-primary">Thành viên</md-radio-button>
   </md-radio-group>
   <hr/>
   <md-card>
@@ -28,67 +28,43 @@
     <md-card-content ng-if="vm.typeBuyer === 'strange'">
       <form name="informationBuyerForm">
         <md-input-container class="md-block">
-          <label>Email</label>
-          <input required name="email" type="email" ng-model="vm.buyer.email">
+          <label>Nhập họ tên</label>
+          <input required name="nameCustomer" ng-model="vm.buyer.nameCustomer">
 
-          <div ng-messages="informationBuyerForm.email.$error">
-            <div ng-message="required">This is required.</div>
+          <div ng-messages="informationBuyerForm.nameCustomer.$error">
+            <div ng-message="required">Bạn phải nhập họ tên.</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block">
-          <label>Số điện thoại</label>
-          <input required name="numberPhone" ng-model="vm.buyer.numberPhone">
+          <label>Nhập số điện thoại</label>
+          <input required name="numberPhone" ng-model="vm.buyer.phoneCustomer">
 
           <div ng-messages="informationBuyerForm.numberPhone.$error">
-            <div ng-message="required">This is required.</div>
+            <div ng-message="required">Bạn phải nhập số điện thoại.</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block">
-          <label>Client Email</label>
-          <input required type="email" name="clientEmail" ng-model="project.clientEmail"
-                 minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"/>
+          <label>Nhập email</label>
+          <input type="email" name="emailCustomer" ng-model="vm.buyer.emailCustomer" ng-pattern="/^.+@.+\..+$/">
 
-          <div ng-messages="projectForm.clientEmail.$error" role="alert">
-            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-              Your email must be between 10 and 100 characters long and look like an e-mail address.
+          <div ng-messages="informationBuyerForm.emailCustomer.$error">
+            <div ng-message-exp="['pattern']">
+              Bạn phải nhập đúng email.
             </div>
           </div>
         </md-input-container>
         <md-input-container class="md-block">
-          <label>Hourly Rate (USD)</label>
-          <input required type="number" step="any" name="rate" ng-model="project.rate" min="800"
-                 max="4999" ng-pattern="/^1234$/"/>
+          <label>Nhập địa chỉ giao hàng</label>
+          <textarea required name="addressCustomer" ng-model="vm.buyer.addressCustomer"></textarea>
 
-          <div ng-messages="projectForm.rate.$error" multiple md-auto-hide="false">
-            <div ng-message="required">
-              You've got to charge something! You can't just <b>give away</b> a Missile Defense
-              System.
-            </div>
-            <div ng-message="min">
-              You should charge at least $800 an hour. This job is a big deal... if you mess up,
-              everyone dies!
-            </div>
-            <div ng-message="pattern">
-              You should charge exactly $1,234.
-            </div>
-            <div ng-message="max">
-              {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a little ridiculous. I
-              doubt even Bill Clinton could afford that.
-            </div>
+          <div ng-messages="informationBuyerForm.addressCustomer.$error">
+            <div ng-message="required">Bạn phải nhập địa chỉ.</div>
           </div>
         </md-input-container>
-        <p style="font-size:.8em; width: 100%; text-align: center;">
-          Make sure to include <a href="https://docs.angularjs.org/api/ngMessages" target="_blank">ngMessages</a>
-          module
-          when using ng-message markup.
-        </p>
-
-        <input type="text" ng-model="test" format-currency="number" />
-
       </form>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button>Action 1</md-button>
-        <md-button>Action 2</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="!informationBuyerForm.$valid"
+                   ng-click="vm.confirmOrder($event)">Xác nhận đặc hàng</md-button>
       </md-card-actions>
     </md-card-content>
   </md-card>
