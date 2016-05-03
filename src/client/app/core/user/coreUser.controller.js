@@ -50,5 +50,13 @@
       $mdOpenMenu(ev);
     };
 
+    /**
+     * log out
+     */
+    vm.logout = function() {
+      coreService.removeCurrentUser();
+      vm.currentUser = {};
+    }
+
   }
 })();

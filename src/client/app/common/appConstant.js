@@ -10,7 +10,8 @@
 
       core: {
         api: {
-          addUser: 'auth/register'
+          addUser: 'auth/register',
+          login: 'auth/authenticate'
         }
       },
 

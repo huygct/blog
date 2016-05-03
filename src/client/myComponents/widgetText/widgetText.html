@@ -1,26 +1,57 @@
+<!--<div-->
+  <!--class="mdl-cell mdl-cell&#45;&#45;3-col mdl-cell&#45;&#45;4-col-tablet mdl-cell&#45;&#45;4-col-phone mdl-card mdl-shadow&#45;&#45;3dp widget-text-box"-->
+  <!--ng-repeat="sp in $ctrl.data" ng-click="$ctrl.callbackWhenClickCard(sp.id)">-->
+
+  <!--<div class="mdl-card__media show-button-link view view-first">-->
+    <!--<img ng-src={{sp.imageUrl}} onerror="this.src='images/default_product.png'">-->
+
+    <!--<div class="mask">-->
+      <!--<h2>{{sp.name}}</h2>-->
+
+      <!--<p>{{sp.price.formatMoney(0, '.', ',')}}</p>-->
+      <!--<a href="#" class="info">Mua ngay</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="bottom-widget-text">-->
+    <!--<a class="show-button-link name-widget">{{sp.name}}</a>-->
+    <!--<span class="cost-widget">{{sp.price.formatMoney(0, '.', ',')}}</span>-->
+  <!--</div>-->
+  <!--&lt;!&ndash;<div class="mdl-card__actions">&ndash;&gt;-->
+  <!--&lt;!&ndash;<a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase" href="">&ndash;&gt;-->
+  <!--&lt;!&ndash;Make the switch&ndash;&gt;-->
+  <!--&lt;!&ndash;<i class="material-icons">chevron_right</i>&ndash;&gt;-->
+  <!--&lt;!&ndash;</a>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+
 <div
-  class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp widget-text-box"
+  class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp widget-text-box view view-first"
   ng-repeat="sp in $ctrl.data" ng-click="$ctrl.callbackWhenClickCard(sp.id)">
 
-  <div class="mdl-card__media show-button-link view view-first">
-    <img ng-src={{sp.imageUrl}} onerror="this.src='images/default_product.png'">
-
-    <div class="mask">
-      <h2>{{sp.name}}</h2>
-
-      <p>{{sp.price.formatMoney(0, '.', ',')}}</p>
-      <a href="#" class="info">Mua ngay</a>
+  <div class="widget-content">
+    <div class="mdl-card__media show-button-link">
+      <img ng-src={{sp.imageUrl}} onerror="this.src='images/default_product.png'">
     </div>
+
+    <div class="bottom-widget-text">
+      <a class="show-button-link name-widget">{{sp.name}}</a>
+      <span class="cost-widget">{{sp.price.formatMoney(0, '.', ',')}}</span>
+    </div>
+
+    <!--<div class="mdl-card__actions">-->
+    <!--<a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase" href="">-->
+    <!--Make the switch-->
+    <!--<i class="material-icons">chevron_right</i>-->
+    <!--</a>-->
+    <!--</div>-->
   </div>
 
-  <div class="bottom-widget-text">
-    <a class="show-button-link name-widget">{{sp.name}}</a>
-    <span class="cost-widget">{{sp.price.formatMoney(0, '.', ',')}}</span>
+  <div class="mask">
+    <h2>{{sp.name}}</h2>
+
+    <p>{{sp.price.formatMoney(0, '.', ',')}}</p>
+    <a href="#" class="info">Mua ngay</a>
   </div>
-  <!--<div class="mdl-card__actions">-->
-  <!--<a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase" href="">-->
-  <!--Make the switch-->
-  <!--<i class="material-icons">chevron_right</i>-->
-  <!--</a>-->
-  <!--</div>-->
+
 </div>

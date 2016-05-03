@@ -14,11 +14,23 @@
     var vm = this;
     var user;
 
+    vm.msgError = '';
+
     /**
      * login
      */
-    vm.login = function () {
-      $uibModalInstance.close(user);
+    vm.login = function (user) {
+      coreService.api.login(user)
+        .then(function(response) {
+          console.log(response);
+          vm.msgError = '';
+          $uibModalInstance.close(user);
+        })
+        .catch(function(error) {
+          if(error.status >= 400) {
+            vm.msgError = _.get(error, 'data.err');
+          }
+        });
     };
     /**
      * register

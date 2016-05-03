@@ -14,7 +14,6 @@
   cartService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'localStorageService'];
   /* @ngInject */
   function cartService($http, $q, exception, logger, appConstant, localStorageService) {
-    console.log('localStorageService ', localStorageService);
 
     var service = {};
 

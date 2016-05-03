@@ -1,31 +1,36 @@
 <div class="card-view">
   <div class="modal-header">
     <h3 class="modal-title">Đăng nhập</h3>
+    <div class="pull-right">
+      <span>Bạn chưa có tài khoản? <a href ng-click="vm.goToRegister()">Đăng ký</a></span>
+    </div>
   </div>
   <div class="modal-body">
     <md-content layout-padding>
       <form name="loginForm">
         <md-input-container class="md-block">
-          <label>Email</label>
+          <label>Nhập email</label>
           <input required name="email" ng-model="vm.user.email">
           <div ng-messages="loginForm.email.$error">
-            <div ng-message="required">This is required.</div>
+            <div ng-message="required">Vui lòng nhập vào email.</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block">
-          <label>Password</label>
+          <label>Nhập mật khẩu</label>
           <input required name="password" ng-model="vm.user.password" type="password">
           <div ng-messages="loginForm.password.$error">
-            <div ng-message="required">This is required</div>
+            <div ng-message="required">Vui lòng nhập mật khẩu</div>
+          </div>
+        </md-input-container>
+        <md-input-container layout-align="center center" style="width: 100%; text-align: center">
+          <span class="text-danger">{{vm.msgError}}</span>
+          <div>
+            <md-button type="submit" class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.login(vm.user)">
+              Đăng nhập
+            </md-button>
           </div>
         </md-input-container>
       </form>
-      <md-input-container layout-align="center center">
-        <div layout="row" layout-sm="column" layout-margin>
-          <md-button class="md-raised" flex="50" flex-sm="100" ng-click="vm.login(vm.user)">Đăng nhập</md-button>
-          <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.goToRegister()">Đăng ký</md-button>
-        </div>
-      </md-input-container>
     </md-content>
   </div>
 </div>

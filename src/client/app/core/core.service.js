@@ -44,15 +44,14 @@
      */
     function saveCurrentUser(user) {
       $rootScope.currentUser = user;
-      localStorage.setItem(appConstant.USER_APP, JSON.stringify(user));
+      localStorageService.set(appConstant.USER_APP, user);
     }
 
     /**
      * get user from localStore
      */
     function getCurrentUser() {
-      var user = localStorage.getItem(appConstant.USER_APP);
-      $rootScope.currentUser = JSON.parse(user) || {};
+      $rootScope.currentUser = localStorageService.get(appConstant.USER_APP);
       return $rootScope.currentUser;
     }
 
@@ -61,7 +60,7 @@
      */
     function removeCurrentUser() {
       $rootScope.currentUser = {};
-      localStorage.removeItem(appConstant.USER_APP);
+      localStorageService.remove(appConstant.USER_APP);
     }
 
     /**
@@ -70,6 +69,9 @@
     var api = {
       addUser: function (user) {
         return $http.post(formatApi(appConstant.core.api.addUser), user);
+      },
+      login: function(user) {
+        return $http.post(formatApi(appConstant.core.api.login), user);
       }
     };
 

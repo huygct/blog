@@ -319,7 +319,9 @@ a img {
   background: transparent;
 }
 .android-card-container .mdl-card__media img {
-  width: 100%;
+  width: 175px;
+  height: 200px;
+  margin: auto;
 }
 .android-card-container .mdl-card__title {
   background: transparent;
