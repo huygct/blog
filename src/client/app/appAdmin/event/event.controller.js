@@ -52,21 +52,13 @@
         .catch(function (error) {
           vm.eventList.length = 0;
           alert.type = 'danger';
-          alert.msg = ' event thất bại!!! Vui lòng thực hiện lại...';
+          alert.msg = 'Lấy event thất bại!!! Vui lòng thực hiện lại...';
           alert.show = true;
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
         })
     }
-
-    /**
-     * load product for action add and edit
-     */
-    function loadProduct() {
-      
-    }
-    
 
     /**
      * add Event
@@ -111,7 +103,7 @@
         description:  currentEvent.description
       };
 
-      loadProduct(eventService.getView.edit);
+      vm.cache.currentView = eventService.getView.edit;
     };
 
     vm.updateEvent = function (event) {

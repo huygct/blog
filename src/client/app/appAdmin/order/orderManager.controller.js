@@ -16,27 +16,38 @@
 
     vm.selectedCategory = [];
     vm.cache = orderManagerService.cache;
+    vm.orderList = [];
 
     /**
      * ------------------------------------------------------------------
      */
-    function loadData () {
-      orderManagerService.api.getCategoryList("aa")
+    function loadAllOrder () {
+      var alert = vm.cache.alert;
+      alert.show = false;
+      vm.cache.spinnerLoading = true;
+      orderManagerService.api.getAllOrder()
         .then(function (data) {
-          vm.dataList = data;
+          vm.orderList = data;
+          console.log('data ', data);
         }, function (error) {
+          alert.type = 'danger';
+          alert.msg = 'X?y ra l?i!!! Vui lòng th?c hi?n l?i...';
+          alert.show = true;
           console.log(error);
         })
         .finally(function () {
-          console.log('OK');
+          vm.cache.spinnerLoading = false;
         });
     }
 
-    activate();
-
     function activate() {
-      loadData();
+      loadAllOrder();
       logger.info('Activated Category View');
     }
+
+    /**
+     *
+     */
+    activate();
   }
 })();

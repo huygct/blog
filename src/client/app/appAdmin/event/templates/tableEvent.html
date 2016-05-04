@@ -7,10 +7,10 @@
   </div>
   <div class="table-content">
     <md-list>
-      <md-list-item ng-repeat="event in vm.eventList" ng-click="vm.showDialogDetail(event, $event)" class="noright">
+      <md-list-item ng-repeat="event in vm.eventList track by event.id" class="noright">
         <img alt="{{ event.name }}" ng-src="{{ event.imageUrl }}" class="md-avatar" />
         <p>{{ event.name }}</p>
-        <md-checkbox class="md-secondary" ng-model="event.selected"></md-checkbox>
+        <!--<md-checkbox class="md-secondary" ng-model="event.selected"></md-checkbox>-->
 
         <md-icon ng-click="vm.goToEditEventView(event)" aria-label="Edit Event" class="md-secondary md-hue-3" >
           <i class="fa fa-pencil-square-o md-secondary md-hue-3" aria-hidden="true"></i>

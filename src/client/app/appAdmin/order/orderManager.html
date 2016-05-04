@@ -1,46 +1,43 @@
-<div id="login-page" class="row">
-  <div class="col s12 z-depth-6 card-panel">
-    <form class="login-form">
-      <div class="row">
-        <div class="input-field col s12 center">
-          <img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login">
-          <p class="center login-form-text">W3lessons - Material Design Login Form</p>
-        </div>
-      </div>
-      <div class="row margin">
-        <div class="input-field col s12">
-          <i class="mdi-social-person-outline prefix"></i>
-          <input class="validate" id="email" type="email">
-          <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
-        </div>
-      </div>
-      <div class="row margin">
-        <div class="input-field col s12">
-          <i class="mdi-action-lock-outline prefix"></i>
-          <input id="password" type="password">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 m12 l12  login-text">
-          <input type="checkbox" id="remember-me" />
-          <label for="remember-me">Remember me</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <a href="login.html" class="btn waves-effect waves-light col s12">Login</a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 m6 l6">
-          <p class="margin medium-small"><a href="register.html">Register Now!</a></p>
-        </div>
-        <div class="input-field col s6 m6 l6">
-          <p class="margin right-align medium-small"><a href="forgot-password.html">Forgot password?</a></p>
-        </div>
-      </div>
+<div>
+  <div>
+    <my-alert type="vm.cache.alert.type"
+              show="vm.cache.alert.show"
+              msg="vm.cache.alert.msg"
+      ></my-alert>
+  </div>
 
-    </form>
+  <div spinner-loading="vm.cache.spinnerLoading" class="product-manager-view">
+    <h2>
+      <span>Order</span>
+    </h2>
+    <div class="action-button">
+      <md-button class="md-primary" ng-click="vm.goToAddEventView()">Add</md-button>
+    </div>
+    <div class="table-content">
+      <md-list>
+        <md-list-item ng-repeat="order in vm.orderList" ng-click="vm.showDialogDetail(order, $event)" class="noright">
+          <div class="md-list-item-text" layout="column" ng-if="order.user">
+            <h3>{{ order.user.name }}</h3>
+            <h4>{{ order.sumMoney }}</h4>
+            <p>{{ order.phoneCustomer }}</p>
+          </div>
+          <div class="md-list-item-text" layout="column" ng-if="!order.user">
+            <h3>{{ order.nameCustomer }}</h3>
+            <h4>{{order.sumMoney}}</h4>
+            <p>{{ order.phoneCustomer }}</p>
+          </div>
+
+          <md-icon ng-click="vm.goToEditEventView(order)" aria-label="Edit Order" class="md-secondary md-hue-3" >
+            <i class="fa fa-pencil-square-o md-secondary md-hue-3" aria-hidden="true"></i>
+          </md-icon>
+          <md-icon class="md-secondary" ng-click="vm.assignToProduct(order, $event)" aria-label="Delete Order">
+            <i class="fa fa-link" aria-hidden="true"></i>
+          </md-icon>
+          <md-icon class="md-secondary" ng-click="vm.deleteRowCallback(order, $event)" aria-label="Delete Order">
+            <i class="fa fa-trash-o md-secondary" aria-hidden="true"></i>
+          </md-icon>
+        </md-list-item>
+      </md-list>
+    </div>
   </div>
 </div>
