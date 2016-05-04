@@ -8,42 +8,53 @@
     .module('app.user.cart')
     .controller('CartController', cartController);
 
-  cartController.$inject = ['$q', 'logger', '$scope'];
+  cartController.$inject = ['$q', 'logger', '$scope', '$mdDialog', 'localStorageService', 'appConstant',
+                            '$state'];
   /* @ngInject */
-  function cartController($q, logger, $scope) {
+  function cartController($q, logger, $scope, $mdDialog, localStorageService, appConstant,
+                          $state) {
     var vm = this;
 
-    vm.items = [
-      {
-        imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
-        name: 'Knight Zoro',
-        price: 200,
-        number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        quantity: 0,
-        shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
-        description: ''
-      },
-      {
-        imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
-        name: 'Knight Zoro 2',
-        price: 200,
-        number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        quantity: 0,
-        shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
-        description: ''
-      },
-      {
-        imagePath: 'http://2.bp.blogspot.com/-VlQvRXv05yI/VlwOhF0qJBI/AAAAAAAAQws/KR3RB5LmiRU/s1600/i_hate_you__i_love_you__zoro_x_reader__by_riseagainstevil-d88ovwj.png',
-        name: 'Knight Zoro 2',
-        price: 200,
-        number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        quantity: 0,
-        shortDescription: 'The titles of Washed Out\'s breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene\'s musical language: feel it. It\'s a simple request, as well...',
-        description: ''
-      }
-    ];
-    vm.selected = {
-      item: vm.items[0]
+    var YOUR_CART_KEY = appConstant.YOUR_CART;
+    var yourCart = localStorageService.get(YOUR_CART_KEY);
+
+    vm.productList = yourCart;
+
+    /**
+     * show dialog to confirm before delete product into cart
+     */
+    vm.removeProductFromCart = function (item, $event) {
+      var confirm = $mdDialog.confirm()
+        .clickOutsideToClose(true)
+        .title('Bạn không muốn mua sản phẩm này nữa?')
+        .textContent('Sản phẩm này không còn trong giỏ hàng sau khi bạn chọn nút BỎ.')
+        .ariaLabel('delete product')
+        .targetEvent($event)
+        .ok('Bỏ!')
+        .cancel('Giữ lại');
+
+      $mdDialog.show(confirm).then(function() {
+        vm.productList = _.without(vm.productList, _.findWhere(vm.productList, {id: item.id}));
+        localStorageService.set(YOUR_CART_KEY, vm.productList);
+      }, function() {
+
+      });
+    };
+
+    vm.sumMoney = function() {
+      var sum = 0;
+      _.forEach(vm.productList, function (item) {
+        sum += (item.price * item.quantityWillBuy);
+      });
+      return sum.formatMoney(0, '.', ',');
+    };
+
+    vm.goToPageShowProducts = function () {
+      $state.go('app.appUser.blog');
+    };
+
+    vm.goToOrder = function () {
+      $state.go('app.appUser.order', {checkoutId: '95237041b02096bbdb38980f727e33c3local'});
     };
 
     function activate() {

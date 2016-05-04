@@ -34,7 +34,7 @@
                     <span class="md-headline">{{item.name}}</span>
                     <span class="md-subhead" ng-if="item.category.name">{{item.category.name}}</span>
                     <md-button class="md-warn button-remove-item" id="remove-margin-and-uppercase"
-                      ng-click="vm.removeProductFromCart(item)">
+                      ng-click="vm.removeProductFromCart(item, $event)">
                       <i class="fa fa-trash-o"></i>
                       Bỏ sản phẩm
                     </md-button>
