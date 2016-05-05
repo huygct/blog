@@ -191,14 +191,14 @@
         }
       })
         .then(function(answer) {
-          $scope.status = 'You said the information was "' + answer + '".';
+          vm.status = 'You said the information was "' + answer + '".';
         }, function() {
-          $scope.status = 'You cancelled the dialog.';
+          vm.status = 'You cancelled the dialog.';
         });
       $scope.$watch(function() {
         return $mdMedia('xs') || $mdMedia('sm');
       }, function(wantsFullScreen) {
-        $scope.customFullscreen = (wantsFullScreen === true);
+        vm.customFullscreen = (wantsFullScreen === true);
       });
     };
 

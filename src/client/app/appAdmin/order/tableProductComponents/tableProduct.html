@@ -1,0 +1,43 @@
+<div class="card-view">
+  <div class="modal-body container-card">
+    <div class="card-had-item">
+      <div class="list-group-cart-item">
+        <ul class="list-group-cart-item-heading list-unstyled clearfix">
+          <li class="column-format cart-product"><span>sản phẩm</span></li>
+          <li class="column-format text-in-right cart-price"><span>đơn giá</span></li>
+          <li class="column-format text-in-right cart-count"><span>số lượng</span></li>
+          <li class="column-format text-in-right cart-prices"><span>thành tiền</span></li>
+        </ul>
+        <div class="list-group-cart-all-item-body" id="scroll-bar-type">
+          <ul class="list-group-cart-item-body list-unstyled clearfix" ng-repeat="item in $ctrl.data"
+              ng-class="{'line-separate-item': !$last}">
+            <li class="column-format cart-product">
+              <md-card class="detail-item-card">
+                <md-card-title class="remove-padding">
+                  <md-card-title-media>
+                    <div class="md-media-sm card-media">
+                      <img ng-src="{{item.imageUrl}}" class="md-card-image" alt="Washed Out">
+                    </div>
+                  </md-card-title-media>
+                  <md-card-title-text>
+                    <span class="md-headline">{{item.name}}</span>
+                    <span class="md-subhead" ng-if="item.category.name">{{item.category.name}}</span>
+                  </md-card-title-text>
+                </md-card-title>
+              </md-card>
+            </li>
+            <li class="column-format text-in-right cart-price">
+              <span>{{item.price.formatMoney(0, '.', ',')}}</span>
+            </li>
+            <li class="column-format text-in-right cart-count">
+              <input type="number" class="form-control max-width-100" ng-model="item.quantityWillBuy">
+            </li>
+            <li class="column-format text-in-right cart-prices">
+              <span>{{(item.price * item.quantityWillBuy).formatMoney(0, '.', ',')}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

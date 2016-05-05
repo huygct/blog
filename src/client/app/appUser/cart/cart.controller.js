@@ -9,7 +9,7 @@
     .controller('CartController', cartController);
 
   cartController.$inject = ['$q', 'logger', '$scope', '$mdDialog', 'localStorageService', 'appConstant',
-                            '$state'];
+    '$state'];
   /* @ngInject */
   function cartController($q, logger, $scope, $mdDialog, localStorageService, appConstant,
                           $state) {

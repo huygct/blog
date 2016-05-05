@@ -82,6 +82,7 @@
           productList
             .push({
               id: item.id,
+              imageUrl: item.imageUrl,
               quantityWillBuy: item.quantityWillBuy,
               name: item.name,
               price: item.price

@@ -1,64 +1,9 @@
-<div class="card-view">
-  <div class="modal-header">
-    <h3 class="modal-title">Giỏ hàng của bạn</h3>
-  </div>
-  <div class="modal-body container-card">
-    <div ng-if="vm.productList === null || vm.productList.length === 0" class="card-no-item">
-      <h4>Giỏ hàng của bạn hiện đang trống</h4>
-      <p>Hãy nhanh tay sở hữu những sản phẩm yêu thích của bạn</p>
-      <md-button class="md-raised md-primary" aria-label="mua hang" ng-click="vm.goToPageShowProducts()">
-        Tiếp Tục mua hàng
-        <i class="fa fa-hand-o-right"></i>
-      </md-button>
-    </div>
-    <div ng-if="vm.productList !== null && vm.productList.length !== 0" class="card-had-item">
-      <div class="list-group-cart-item">
-        <ul class="list-group-cart-item-heading list-unstyled clearfix">
-          <li class="column-format cart-product"><span>sản phẩm</span></li>
-          <li class="column-format text-in-right cart-price"><span>đơn giá</span></li>
-          <li class="column-format text-in-right cart-count"><span>số lượng</span></li>
-          <li class="column-format text-in-right cart-prices"><span>thành tiền</span></li>
-        </ul>
-        <div class="list-group-cart-all-item-body" id="scroll-bar-type">
-          <ul class="list-group-cart-item-body list-unstyled clearfix" ng-repeat="item in vm.productList"
-              ng-class="{'line-separate-item': !$last}">
-            <li class="column-format cart-product">
-              <md-card class="detail-item-card">
-                <md-card-title class="remove-padding">
-                  <md-card-title-media>
-                    <div class="md-media-sm card-media">
-                      <img ng-src="{{item.imageUrl}}" class="md-card-image" alt="Washed Out">
-                    </div>
-                  </md-card-title-media>
-                  <md-card-title-text>
-                    <span class="md-headline">{{item.name}}</span>
-                    <span class="md-subhead" ng-if="item.category.name">{{item.category.name}}</span>
-                    <md-button class="md-warn button-remove-item" id="remove-margin-and-uppercase"
-                      ng-click="vm.removeProductFromCart(item, $event)">
-                      <i class="fa fa-trash-o"></i>
-                      Bỏ sản phẩm
-                    </md-button>
-                  </md-card-title-text>
-                </md-card-title>
-              </md-card>
-            </li>
-            <li class="column-format text-in-right cart-price">
-              <span>{{item.price.formatMoney(0, '.', ',')}}</span>
-            </li>
-            <li class="column-format text-in-right cart-count">
-              <input type="number" class="form-control max-width-100" ng-model="item.quantityWillBuy">
-            </li>
-            <li class="column-format text-in-right cart-prices">
-              <span>{{(item.price * item.quantityWillBuy).formatMoney(0, '.', ',')}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<div>
+  <div ng-include="'app/appUser/cart/dialog/tableProduct.html'"></div>
+
   <div class="modal-footer cart-footer" ng-if="vm.productList !== null && vm.productList.length !== 0">
     <md-button class="md-raised md-primary pull-left" aria-label="mua hang"
-      ng-click="vm.goToPageShowProducts()">
+               ng-click="vm.goToPageShowProducts()">
       <i class="fa fa-caret-left"></i>
       Tiếp tục mua hàng
     </md-button>
@@ -68,7 +13,7 @@
         <span class="text-red-color">{{vm.sumMoney()}}</span>
       </p>
       <md-button class="md-raised md-accent" aria-label="thanh toán"
-        ng-click="vm.goToOrder()">
+                 ng-click="vm.goToOrder()">
         Tiến hành thanh toán
         <i class="fa fa-long-arrow-right"></i>
       </md-button>

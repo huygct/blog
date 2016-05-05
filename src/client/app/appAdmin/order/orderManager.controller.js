@@ -8,9 +8,9 @@
     .module('app.admin.order')
     .controller('OrderManagerController', OrderManagerController);
 
-  OrderManagerController.$inject = ['$q', 'dataservice', 'logger', 'orderManagerService', '$scope', '$mdToast'];
+  OrderManagerController.$inject = ['$q', 'dataservice', 'logger', 'orderManagerService', '$scope', '$mdDialog'];
   /* @ngInject */
-  function OrderManagerController($q, dataservice, logger, orderManagerService, $scope, $mdToast) {
+  function OrderManagerController($q, dataservice, logger, orderManagerService, $scope, $mdDialog) {
     var vm = this;
     vm.title = 'Category Manager';
 
@@ -21,17 +21,49 @@
     /**
      * ------------------------------------------------------------------
      */
+    var originatorEv;
+    vm.openMenuChangeStatusOrder = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
+
+    vm.changeStatusOrder = function(order, status) {
+      // Appending dialog to document.body to cover sidenav in docs app
+      var confirm = $mdDialog.confirm()
+        .title('Bạn muốn thay đổi trạng thái đơn hàng này?')
+        .textContent('Trạng thái đơn hàng sẽ thay đổi sau khi bấm ĐỒNG Ý.')
+        .ariaLabel('change order')
+        .targetEvent(originatorEv)
+        .ok('Đồng ý!')
+        .cancel('Hủy');
+      $mdDialog.show(confirm).then(function() {
+        var alert = vm.cache.alert;
+        alert.show = false;
+        orderManagerService.api.updateStatusOrder(order, status)
+          .then(function (response) {
+            loadAllOrder();
+          })
+          .catch(function () {
+            alert.type = 'danger';
+            alert.msg = 'Xảy ra lỗi!!! Vui lòng thực hiện lại...';
+            alert.show = true;
+          })
+      }, function() {
+
+      });
+      originatorEv = null;
+    };
+
     function loadAllOrder () {
       var alert = vm.cache.alert;
       alert.show = false;
       vm.cache.spinnerLoading = true;
       orderManagerService.api.getAllOrder()
-        .then(function (data) {
-          vm.orderList = data;
-          console.log('data ', data);
+        .then(function (response) {
+          vm.orderList = response.data;
         }, function (error) {
           alert.type = 'danger';
-          alert.msg = 'X?y ra l?i!!! Vui l�ng th?c hi?n l?i...';
+          alert.msg = 'Xảy ra lỗi!!! Vui lòng thực hiện lại...';
           alert.show = true;
           console.log(error);
         })

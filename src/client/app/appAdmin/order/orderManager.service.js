@@ -17,16 +17,32 @@
     var api;
     var service = {};
 
-
     var cache = {
       alert: commonService.createAlert('danger', '', false),
-      spinnerLoading: false
+      spinnerLoading: false,
+      statusOrder: {
+        wasDeliver: {
+          value: true,
+          name: '?ã giao hàng'
+        },
+        notDeliver: {
+          value: false,
+          name: 'Ch?a giao hàng'
+        }
+      }
     };
 
     api = {
       getAllOrder: function () {
         var url = coreService.formatApi(appConstant.order.api.model);
         return $http.get(url);
+      },
+      updateStatusOrder: function (order, status) {
+        var putData = {
+          status: status
+        };
+        var url = coreService.formatApi(appConstant.order.api.model) + '/' + order.id;
+        return $http.put(url, putData);
       }
     };
 
