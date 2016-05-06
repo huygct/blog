@@ -13,6 +13,15 @@
   function orderService($http, $q, exception, logger, appConstant, coreService) {
     var service = {};
 
+    var layout = {
+      affirmation: 'app/appUser/order/templateUrl/affirmation.step1.html',
+      informationShipping: 'app/appUser/order/templateUrl/information.shipping.step2.html'
+    };
+
+    var cache = {
+      currentLayout: layout.affirmation
+    };
+
     var api = {
       createOrder: function (order) {
         var url = coreService.formatApi(appConstant.order.api.model);
@@ -21,6 +30,8 @@
     };
 
     service.api = api;
+    service.cache = cache;
+    service.layout = layout;
 
     return service;
   }

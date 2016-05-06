@@ -19,17 +19,7 @@
 
     var cache = {
       alert: commonService.createAlert('danger', '', false),
-      spinnerLoading: false,
-      statusOrder: {
-        wasDeliver: {
-          value: true,
-          name: '?ã giao hàng'
-        },
-        notDeliver: {
-          value: false,
-          name: 'Ch?a giao hàng'
-        }
-      }
+      spinnerLoading: false
     };
 
     api = {
@@ -43,6 +33,10 @@
         };
         var url = coreService.formatApi(appConstant.order.api.model) + '/' + order.id;
         return $http.put(url, putData);
+      },
+      deleteOrder: function (order) {
+        var url = coreService.formatApi(appConstant.order.api.model) + '/' + order.id;
+        return $http.delete(url);
       }
     };
 

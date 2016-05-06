@@ -1,97 +1,65 @@
-<div flex-xs="" flex-gt-xs="66" layout="column" class="left-side-order-view">
-  <md-radio-group ng-model="vm.typeBuyer">
-    <md-radio-button value="strange" class="md-primary">Khách hàng vãng lai</md-radio-button>
-    <md-radio-button value="member" class="md-primary">Thành viên</md-radio-button>
-  </md-radio-group>
-  <hr/>
-  <md-card>
-    <md-card-content ng-if="vm.typeBuyer === 'member'" class="content-is-member">
-        <form ng-submit="vm.authenticate()" name="loginForm" layout="column" class="md-padding box-content">
-          <md-input-container>
-            <label>Email</label>
-            <input name="email" ng-model="vm.user.email" required/>
-            <div ng-messages="loginForm.email.$error" ng-if='loginForm.email.$dirty'>
-              <div ng-message="required">This is required.</div>
-            </div>
-          </md-input-container>
-          <md-input-container>
-            <label>Password</label>
-            <input name="password" type="password" ng-model="vm.user.password" required/>
-            <div ng-messages="loginForm.password.$error" ng-if='loginForm.password.$dirty'>
-              <div ng-message="required">This is required.</div>
-            </div>
-          </md-input-container>
-          <md-button type="submit" class="md-raised md-primary btn btn-primary">Login</md-button>
-        </form>
-    </md-card-content>
+<md-card>
+  <md-card-content ng-if="vm.typeBuyer === 'member'" class="content-is-member">
+    <form ng-submit="vm.loginAccount()" name="loginForm" layout="column" class="md-padding box-content">
+      <md-input-container>
+        <label>Email</label>
+        <input name="email" ng-model="vm.user.email" required/>
+        <div ng-messages="loginForm.email.$error" ng-if='loginForm.email.$dirty'>
+          <div ng-message="required">Vui lòng nhập vào email.</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input name="password" type="password" ng-model="vm.user.password" required/>
+        <div ng-messages="loginForm.password.$error" ng-if='loginForm.password.$dirty'>
+          <div ng-message="required">Vui lòng nhập mật khẩu.</div>
+        </div>
+      </md-input-container>
+      <md-button type="submit" class="md-raised md-primary"
+                 ng-disabled="!loginForm.$valid">Đăng nhập</md-button>
+    </form>
+  </md-card-content>
 
-    <md-card-content ng-if="vm.typeBuyer === 'strange'">
-      <form name="informationBuyerForm">
-        <md-input-container class="md-block">
-          <label>Nhập họ tên</label>
-          <input required name="nameCustomer" ng-model="vm.buyer.nameCustomer">
+  <md-card-content ng-if="vm.typeBuyer === 'strange'">
+    <form name="informationBuyerForm">
+      <md-input-container class="md-block">
+        <label>Nhập họ tên</label>
+        <input required name="nameCustomer" ng-model="vm.buyer.nameCustomer">
 
-          <div ng-messages="informationBuyerForm.nameCustomer.$error">
-            <div ng-message="required">Bạn phải nhập họ tên.</div>
+        <div ng-messages="informationBuyerForm.nameCustomer.$error">
+          <div ng-message="required">Bạn phải nhập họ tên.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Nhập số điện thoại</label>
+        <input required name="numberPhone" ng-model="vm.buyer.phoneCustomer">
+
+        <div ng-messages="informationBuyerForm.numberPhone.$error">
+          <div ng-message="required">Bạn phải nhập số điện thoại.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Nhập email</label>
+        <input type="email" name="emailCustomer" ng-model="vm.buyer.emailCustomer" ng-pattern="/^.+@.+\..+$/">
+
+        <div ng-messages="informationBuyerForm.emailCustomer.$error">
+          <div ng-message-exp="['pattern']">
+            Bạn phải nhập đúng email.
           </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Nhập số điện thoại</label>
-          <input required name="numberPhone" ng-model="vm.buyer.phoneCustomer">
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Nhập địa chỉ giao hàng</label>
+        <textarea required name="addressCustomer" ng-model="vm.buyer.addressCustomer"></textarea>
 
-          <div ng-messages="informationBuyerForm.numberPhone.$error">
-            <div ng-message="required">Bạn phải nhập số điện thoại.</div>
-          </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Nhập email</label>
-          <input type="email" name="emailCustomer" ng-model="vm.buyer.emailCustomer" ng-pattern="/^.+@.+\..+$/">
-
-          <div ng-messages="informationBuyerForm.emailCustomer.$error">
-            <div ng-message-exp="['pattern']">
-              Bạn phải nhập đúng email.
-            </div>
-          </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Nhập địa chỉ giao hàng</label>
-          <textarea required name="addressCustomer" ng-model="vm.buyer.addressCustomer"></textarea>
-
-          <div ng-messages="informationBuyerForm.addressCustomer.$error">
-            <div ng-message="required">Bạn phải nhập địa chỉ.</div>
-          </div>
-        </md-input-container>
-      </form>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-raised md-primary" ng-disabled="!informationBuyerForm.$valid"
-                   ng-click="vm.confirmOrder($event)">Xác nhận đặc hàng</md-button>
-      </md-card-actions>
-    </md-card-content>
-  </md-card>
-
-</div>
-
-<div flex-xs="" flex-gt-xs="33" class="right-side-order-view">
-  <md-card>
+        <div ng-messages="informationBuyerForm.addressCustomer.$error">
+          <div ng-message="required">Bạn phải nhập địa chỉ.</div>
+        </div>
+      </md-input-container>
+    </form>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-primary" ng-click="vm.goToCart()">Sửa</md-button>
+      <md-button class="md-raised md-primary" ng-disabled="!informationBuyerForm.$valid"
+                 ng-click="vm.changeLayoutToShowInfoOrder()">Xác nhận đơn hàng</md-button>
     </md-card-actions>
-    <md-card-content>
-      <md-card-title layout="column">
-        <md-card-title-text class="margin-bottom-16 information-item">
-          <div class="margin-bottom-16 detail-item" ng-repeat="item in vm.yourProducts">
-            <p class="price-and-name-item">{{item.quantityWillBuy}} x {{item.name}}</p>
-
-            <p class="total-price-item">{{(item.quantityWillBuy * item.price).formatMoney(0, '.', ',')}}</p>
-          </div>
-        </md-card-title-text>
-        <md-card-title-text class="margin-bottom-16 total-cost">
-          <p class="margin-bottom-16">
-            <span class="text">Thành tiền</span>
-            <span class="text-red-color pull-right sum-money">{{vm.moneyMustPay.formatMoney(0, '.', ',')}}</span>
-          </p>
-        </md-card-title-text>
-      </md-card-title>
-    </md-card-content>
-  </md-card>
-</div>
+  </md-card-content>
+</md-card>

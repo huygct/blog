@@ -1,0 +1,44 @@
+<md-card>
+  <md-card-content>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-md-4 control-label">Họ tên</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{vm.buyer.nameCustomer}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label">Số điện thoại</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{vm.buyer.phoneCustomer}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label">Email</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{vm.buyer.emailCustomer}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label">Địa chỉ giao hàng</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{vm.buyer.addressCustomer}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-raised md-primary" ng-disabled="!informationBuyerForm.$valid"
+                 ng-click="vm.confirmOrder($event)">Đặt hàng</md-button>
+    </md-card-actions>
+  </md-card-content>
+</md-card>

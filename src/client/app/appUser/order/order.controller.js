@@ -15,6 +15,8 @@
                            $state, orderService) {
     var vm = this;
 
+    vm.cache = orderService.cache;
+
     var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     var YOUR_CART_KEY = appConstant.YOUR_CART;
     var yourCart = localStorageService.get(YOUR_CART_KEY);
@@ -30,15 +32,25 @@
     vm.typeBuyer = 'member';
     vm.user = {};
     vm.buyer = {};
-    vm.views = {
-      affirmation: 'app/appUser/order/templateUrl/affirmation.step1.html',
-      informationShipping: 'app/appUser/order/templateUrl/information.shipping.step2.html'
+
+    vm.currentLayout = vm.cache.currentLayout;
+
+    vm.loginAccount = function() {
+
     };
 
-    vm.currentView = vm.views.affirmation;
+    /**
+     * Layout information.shipping.step2.html. show info order
+     */
+    vm.changeLayoutToShowInfoOrder = function () {
+      vm.currentLayout = orderService.layout.informationShipping;
+    };
 
-    vm.authenticate = function() {
-      console.log('aaaa');
+    /**
+     * Layout affirmation.step1.html. fill info of order
+     */
+    vm.changeLayoutToFillInfoOrder = function () {
+      vm.currentLayout = orderService.layout.affirmation;
     };
 
     /**

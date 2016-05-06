@@ -28,10 +28,10 @@
     };
 
     vm.changeStatusOrder = function(order, status) {
-      // Appending dialog to document.body to cover sidenav in docs app
+      var statusString = status ? 'Đã hoàn thành' : 'Chưa giao hàng';
       var confirm = $mdDialog.confirm()
         .title('Bạn muốn thay đổi trạng thái đơn hàng này?')
-        .textContent('Trạng thái đơn hàng sẽ thay đổi sau khi bấm ĐỒNG Ý.')
+        .textContent('Trạng thái đơn hàng sẽ thay đổi là ' + '"' + statusString + '"' + ' sau khi bấm ĐỒNG Ý.')
         .ariaLabel('change order')
         .targetEvent(originatorEv)
         .ok('Đồng ý!')
@@ -39,14 +39,51 @@
       $mdDialog.show(confirm).then(function() {
         var alert = vm.cache.alert;
         alert.show = false;
+        order.loading = true;
         orderManagerService.api.updateStatusOrder(order, status)
           .then(function (response) {
+            order.status = _.get(response, 'data.status');
+          })
+          .catch(function () {
+            alert.type = 'danger';
+            alert.msg = 'Xảy ra lỗi khi thay đổi trang thái đơn hàng!!! Vui lòng thực hiện lại...';
+            alert.show = true;
+          })
+          .finally(function () {
+            order.loading = false;
+          })
+      }, function() {
+
+      });
+      originatorEv = null;
+    };
+
+    /**
+     * delete order
+     */
+    vm.deleteOrder = function (order) {
+      var confirm = $mdDialog.confirm()
+        .title('Bạn muốn xóa đơn hàng này?')
+        .textContent('Đơn hàng này sẽ bị xóa sau khi bấm ĐỒNG Ý.')
+        .ariaLabel('delete order')
+        .targetEvent(originatorEv)
+        .ok('Đồng ý!')
+        .cancel('Hủy');
+      $mdDialog.show(confirm).then(function() {
+        var alert = vm.cache.alert;
+        alert.show = false;
+        vm.cache.spinnerLoading = true;
+        orderManagerService.api.deleteOrder(order)
+          .then(function () {
             loadAllOrder();
           })
           .catch(function () {
             alert.type = 'danger';
-            alert.msg = 'Xảy ra lỗi!!! Vui lòng thực hiện lại...';
+            alert.msg = 'Xảy ra lỗi trong khi xóa đơn hàng!!! Vui lòng thực hiện lại...';
             alert.show = true;
+          })
+          .finally(function () {
+            vm.cache.spinnerLoading = false;
           })
       }, function() {
 

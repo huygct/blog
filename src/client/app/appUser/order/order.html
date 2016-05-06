@@ -1,5 +1,38 @@
 <div class="android-more-section carddemoInCardActions order-view" ng-cloak="">
-  <md-content class="md-padding" layout-xs="column" layout="row" ng-include="vm.currentView">
+  <md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs="" flex-gt-xs="66" layout="column" class="left-side-order-view">
+      <md-radio-group ng-model="vm.typeBuyer">
+        <md-radio-button value="strange" class="md-primary">Khách hàng vãng lai</md-radio-button>
+        <md-radio-button value="member" class="md-primary">Thành viên</md-radio-button>
+      </md-radio-group>
+      <hr/>
+      <div ng-include="vm.currentLayout"></div>
 
+    </div>
+
+    <div flex-xs="" flex-gt-xs="33" class="right-side-order-view">
+      <md-card>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-primary" ng-click="vm.goToCart()">Sửa</md-button>
+        </md-card-actions>
+        <md-card-content>
+          <md-card-title layout="column">
+            <md-card-title-text class="margin-bottom-16 information-item">
+              <div class="margin-bottom-16 detail-item" ng-repeat="item in vm.yourProducts">
+                <p class="price-and-name-item">{{item.quantityWillBuy}} x {{item.name}}</p>
+
+                <p class="total-price-item">{{(item.quantityWillBuy * item.price).formatMoney(0, '.', ',')}}</p>
+              </div>
+            </md-card-title-text>
+            <md-card-title-text class="margin-bottom-16 total-cost">
+              <p class="margin-bottom-16">
+                <span class="text">Thành tiền</span>
+                <span class="text-red-color pull-right sum-money">{{vm.moneyMustPay.formatMoney(0, '.', ',')}}</span>
+              </p>
+            </md-card-title-text>
+          </md-card-title>
+        </md-card-content>
+      </md-card>
+    </div>
   </md-content>
 </div>

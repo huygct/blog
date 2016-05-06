@@ -8,16 +8,33 @@
     .module('app.core')
     .controller('CoreUserController', CoreUserController);
 
-  CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', '$location',
+  CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', 'localStorageService',
     'appConstant', '$stateParams', '$uibModal', 'coreService'];
   /* @ngInject */
-  function CoreUserController($scope, $state, $http, logger, $location,
+  function CoreUserController($scope, $state, $http, logger, localStorageService,
                               appConstant, $stateParams, $uibModal, coreService) {
     var vm = this;
 
     vm.title = 'Core';
 
     vm.items = [];
+
+    /**
+     * get number product in your cart
+     * @returns {*|number} number product in your cart
+     */
+    vm.getNumberProductInCart = function () {
+      var YOUR_CART_KEY = appConstant.YOUR_CART;
+      var yourCart = localStorageService.get(YOUR_CART_KEY);
+      return yourCart ? yourCart.length : 0;
+    };
+
+    /**
+     * click image go to home page
+     */
+    vm.goToHomePage = function () {
+      $state.go('app.appUser.blog');
+    };
 
     /**
      * check was login or not
