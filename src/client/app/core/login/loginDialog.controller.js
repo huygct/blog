@@ -22,7 +22,7 @@
     vm.login = function (user) {
       coreService.api.login(user)
         .then(function(response) {
-          console.log(response);
+          coreService.saveCurrentUser(response.data);
           vm.msgError = '';
           $uibModalInstance.close(user);
         })

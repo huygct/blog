@@ -1,12 +1,13 @@
 <div class="android-more-section carddemoInCardActions order-view" ng-cloak="">
   <md-content class="md-padding" layout-xs="column" layout="row">
     <div flex-xs="" flex-gt-xs="66" layout="column" class="left-side-order-view">
-      <md-radio-group ng-model="vm.typeBuyer">
+      <md-radio-group ng-model="vm.cache.typeBuyer">
         <md-radio-button value="strange" class="md-primary">Khách hàng vãng lai</md-radio-button>
         <md-radio-button value="member" class="md-primary">Thành viên</md-radio-button>
       </md-radio-group>
       <hr/>
-      <div ng-include="vm.currentLayout"></div>
+      <div ng-if="vm.cache.typeBuyer === 'member'" ng-include="'app/appUser/order/templateUrl/affirmation.step1.html'"></div>
+      <div ng-if="vm.cache.typeBuyer === 'strange'" ng-include="vm.cache.currentLayout"></div>
 
     </div>
 

@@ -8,9 +8,11 @@
     .module('app.user.order')
     .factory('orderService', orderService);
 
-  orderService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'coreService'];
+  orderService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'coreService',
+                          'commonService'];
   /* @ngInject */
-  function orderService($http, $q, exception, logger, appConstant, coreService) {
+  function orderService($http, $q, exception, logger, appConstant, coreService,
+                        commonService) {
     var service = {};
 
     var layout = {
@@ -19,7 +21,13 @@
     };
 
     var cache = {
-      currentLayout: layout.affirmation
+      currentLayout: layout.affirmation,
+      alert: commonService.createAlert('danger', '', false),
+      spinnerLoading: false,
+
+      typeBuyer: 'member',
+      user: {},
+      buyer: {}
     };
 
     var api = {

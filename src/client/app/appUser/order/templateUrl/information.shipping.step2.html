@@ -1,4 +1,7 @@
 <md-card>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button class="md-primary" ng-click="vm.changeLayoutToFillInfoOrder()">Sửa</md-button>
+  </md-card-actions>
   <md-card-content>
     <div class="panel-body">
       <div class="form-horizontal">
@@ -35,10 +38,10 @@
         </div>
       </div>
     </div>
-
     <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-raised md-primary" ng-disabled="!informationBuyerForm.$valid"
-                 ng-click="vm.confirmOrder($event)">Đặt hàng</md-button>
+      <md-button class="md-raised md-primary"
+                 ng-click="vm.confirmOrder($event)">Đặt hàng
+      </md-button>
     </md-card-actions>
   </md-card-content>
 </md-card>

@@ -9,10 +9,10 @@
     .controller('CoreUserController', CoreUserController);
 
   CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', 'localStorageService',
-    'appConstant', '$stateParams', '$uibModal', 'coreService'];
+    'appConstant', '$stateParams', '$uibModal', 'coreService', '$rootScope'];
   /* @ngInject */
   function CoreUserController($scope, $state, $http, logger, localStorageService,
-                              appConstant, $stateParams, $uibModal, coreService) {
+                              appConstant, $stateParams, $uibModal, coreService, $rootScope) {
     var vm = this;
 
     vm.title = 'Core';
@@ -34,6 +34,13 @@
      */
     vm.goToHomePage = function () {
       $state.go('app.appUser.blog');
+    };
+
+    /**
+     * set up account
+     */
+    vm.inforAccount = function() {
+      $state.go('app.appUser.userInfo');
     };
 
     /**

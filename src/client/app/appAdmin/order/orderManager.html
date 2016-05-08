@@ -20,11 +20,46 @@
           <div class="md-list-item-text" layout="column" ng-if="order.user">
             <h3>
               Thành viên: {{ order.user.name }}
-              <span class="label label-success" ng-if="order.status" button-spinner="order.loading">Đã hoàn thành</span>
-              <span class="label label-warning" ng-if="!order.status" button-spinner="order.loading">Chưa giao hàng</span>
+              <md-menu>
+                <md-button aria-label="Open phone interactions menu" ng-disabled="order.loading" ng-click="vm.openMenuChangeStatusOrder($mdOpenMenu, $event)">
+                  <span class="label label-success" ng-if="order.status" button-spinner="order.loading">Đã hoàn thành</span>
+                  <span class="label label-warning" ng-if="!order.status" button-spinner="order.loading">Chưa giao hàng</span>
+                </md-button>
+                <md-menu-content width="4">
+                  <md-menu-item>
+                    <md-button ng-disabled="!order.status" ng-click="vm.changeStatusOrder(order, false)">
+                      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                      Chưa giao hàng
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-disabled="order.status" ng-click="vm.changeStatusOrder(order, true)">
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                      Đã giao hàng
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                  <md-menu-item>
+                    <md-button ng-click="vm.deleteOrder(order)">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      Xóa đơn đặc hàng
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
             </h3>
-            <h4>Tổng thành tiền: {{ order.sumMoney.formatMoney(0, '.', ',') }}</h4>
-            <p>Số điện thoại: {{ order.phoneCustomer }}</p>
+            <p>Số điện thoại: {{ order.user.phoneNumber }}</p>
+            <uib-accordion>
+              <uib-accordion-group is-open="status.open">
+                <uib-accordion-heading>
+                  Tổng thành tiền: {{order.sumMoney.formatMoney(0, '.', ',')}}
+                  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </uib-accordion-heading>
+                <div>
+                  <table-product data="order.productList"></table-product>
+                </div>
+              </uib-accordion-group>
+            </uib-accordion>
           </div>
           <div class="md-list-item-text" layout="column" ng-if="!order.user">
             <h3>
@@ -70,17 +105,6 @@
               </uib-accordion-group>
             </uib-accordion>
           </div>
-
-          <!--<md-icon ng-click="vm.goToEditEventView(order)" aria-label="Edit Order" class="md-secondary md-hue-3" >-->
-            <!--<i class="fa fa-pencil-square-o md-secondary md-hue-3" aria-hidden="true"></i>-->
-          <!--</md-icon>-->
-          <!--<md-icon class="md-secondary" ng-click="vm.assignToProduct(order, $event)" aria-label="Delete Order">-->
-            <!--<i class="fa fa-link" aria-hidden="true"></i>-->
-          <!--</md-icon>-->
-          <!--<md-icon class="md-secondary" ng-click="vm.deleteRowCallback(order, $event)" aria-label="Delete Order">-->
-            <!--<i class="fa fa-trash-o md-secondary" aria-hidden="true"></i>-->
-          <!--</md-icon>-->
-
           <md-divider ></md-divider>
         </md-list-item>
       </md-list>

@@ -1,6 +1,10 @@
 <md-card>
-  <md-card-content ng-if="vm.typeBuyer === 'member'" class="content-is-member">
-    <form ng-submit="vm.loginAccount()" name="loginForm" layout="column" class="md-padding box-content">
+  <md-card-content spinner-loading="vm.cache.spinnerLoading" ng-if="vm.cache.typeBuyer === 'member' && !$root.currentUser" class="content-is-member">
+    <my-alert type="vm.cache.alert.type"
+              show="vm.cache.alert.show"
+              msg="vm.cache.alert.msg"
+    ></my-alert>
+    <form ng-submit="vm.loginAccount(vm.user)" name="loginForm" layout="column" class="md-padding box-content">
       <md-input-container>
         <label>Email</label>
         <input name="email" ng-model="vm.user.email" required/>
@@ -20,7 +24,51 @@
     </form>
   </md-card-content>
 
-  <md-card-content ng-if="vm.typeBuyer === 'strange'">
+  <md-card-content spinner-loading="vm.cache.spinnerLoading" ng-if="vm.cache.typeBuyer === 'member' && $root.currentUser"
+                   class="content-is-member">
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-md-4 control-label">Họ tên</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{$root.currentUser.user.name}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label">Số điện thoại</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{$root.currentUser.user.phoneNumber}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label">Email</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{$root.currentUser.user.email}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label">Địa chỉ giao hàng</label>
+
+          <div class="col-md-8">
+            <p class="form-control-static">{{$root.currentUser.user.address}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-raised md-primary"
+                 ng-click="vm.confirmOrder($event)">Đặt hàng
+      </md-button>
+    </md-card-actions>
+  </md-card-content>
+
+  <md-card-content ng-if="vm.cache.typeBuyer === 'strange'">
     <form name="informationBuyerForm">
       <md-input-container class="md-block">
         <label>Nhập họ tên</label>

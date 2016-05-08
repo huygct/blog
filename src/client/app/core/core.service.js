@@ -59,7 +59,7 @@
      * remove current User
      */
     function removeCurrentUser() {
-      $rootScope.currentUser = {};
+      $rootScope.currentUser = null;
       localStorageService.remove(appConstant.USER_APP);
     }
 

@@ -19,18 +19,18 @@
       <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{vm.getNumberProductInCart()}}" ng-click="vm.openYourCard()">
         <i class="material-icons">shopping_cart</i>
       </div>
-      <md-button md-no-ink class="md-primary" ng-click="vm.loginApp()" ng-if="!vm.currentUser">
+      <md-button md-no-ink class="md-primary" ng-click="vm.loginApp()" ng-if="!$root.currentUser">
         <i class="fa fa-sign-in"></i>
         Đăng nhập
       </md-button>
-      <md-menu md-position-mode="target-right target" class="user-name-menu" ng-if="vm.currentUser">
+      <md-menu md-position-mode="target-right target" class="user-name-menu" ng-if="$root.currentUser">
         <md-button aria-label="Open user interactions menu" class="md-primary button-user-name" ng-click="vm.openMenu($mdOpenMenu, $event)">
           <i class="fa fa-smile-o" aria-hidden="true"></i>
-          {{vm.currentUser.name}}
+          {{$root.currentUser.user.name}}
         </md-button>
         <md-menu-content width="4">
           <md-menu-item>
-            <md-button disabled="disabled" ng-click="">
+            <md-button ng-click="vm.inforAccount()">
               Tài khoản
             </md-button>
           </md-menu-item>

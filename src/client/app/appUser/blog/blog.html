@@ -1,11 +1,27 @@
 <div class="android-more-section blog-content">
-  <div class="android-section-title mdl-typography--display-1-color-contrast">San Pham</div>
-  <my-widget-text class="android-card-container mdl-grid" data="vm.productList"></my-widget-text>
+  <div>
+    <div style="height: 305px">
+      <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+        <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+          <img ng-src="{{slide.image}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <h4>Slide {{slide.id}}</h4>
+            <p>{{slide.text}}</p>
+          </div>
+        </uib-slide>
+      </uib-carousel>
+    </div>
+  </div>
 
-  <div class="pagination-box" ng-if="vm.defaultValue.bigTotalItems > vm.defaultValue.numberItemOfPage">
-    <uib-pagination total-items="vm.defaultValue.bigTotalItems" ng-model="vm.defaultValue.currentPage" max-size="vm.defaultValue.maxPageSize"
-                    items-per-page="vm.defaultValue.numberItemOfPage" ng-change="vm.changePage(vm.defaultValue.currentPage)"
-                    class="pagination-sm" boundary-links="true" force-ellipses="true">
-    </uib-pagination>
+  <div>
+    <div class="android-section-title mdl-typography--display-1-color-contrast">Sản Phẩm</div>
+    <my-widget-text class="android-card-container mdl-grid" data="vm.productList"></my-widget-text>
+
+    <div class="pagination-box" ng-if="vm.defaultValue.bigTotalItems > vm.defaultValue.numberItemOfPage">
+      <uib-pagination total-items="vm.defaultValue.bigTotalItems" ng-model="vm.defaultValue.currentPage" max-size="vm.defaultValue.maxPageSize"
+                      items-per-page="vm.defaultValue.numberItemOfPage" ng-change="vm.changePage(vm.defaultValue.currentPage)"
+                      class="pagination-sm" boundary-links="true" force-ellipses="true">
+      </uib-pagination>
+    </div>
   </div>
 </div>

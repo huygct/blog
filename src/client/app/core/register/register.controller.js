@@ -22,10 +22,10 @@
     vm.register = function (user) {
       console.log('User: ', user);
       coreService.api.addUser(user)
-        .then(function (user) {
+        .then(function (response) {
           vm.alert.show = false;
           // save into localStore and $rootScope.currentUser
-          coreService.saveCurrentUser(user);
+          coreService.saveCurrentUser(response.data);
           // go to Home Page
           $state.go('app.appUser.blog');
         }, function (error) {
