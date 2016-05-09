@@ -1,7 +1,7 @@
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header admin-app">
   <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Home</span>
+      <span class="mdl-layout-title">{{$root.nameApp}}</span>
       <div class="mdl-layout-spacer"></div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
         <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -43,6 +43,11 @@
       <a class="mdl-navigation__link" ui-sref="{{nav.state}}" ui-sref-active="highlighted-nav-menu" ng-repeat="nav in vm.navigation">
         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">{{nav.icon}}</i>
         {{nav.name}}
+      </a>
+      <hr/>
+      <a class="mdl-navigation__link" ui-sref="app.appAdmin.setting" ui-sref-active="highlighted-nav-menu">
+        <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>
+        Settings
       </a>
       <div class="mdl-layout-spacer"></div>
       <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>

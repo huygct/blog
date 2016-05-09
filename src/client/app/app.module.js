@@ -1,41 +1,51 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular.module('app', [
-        'LocalStorageModule',
-        'my-compoents',
+  angular
+    .module('app', [
+      'LocalStorageModule',
+      'my-compoents',
 
-        'app.core',
-        'app.widgets',
-        'app.layout',
+      'app.core',
+      'app.widgets',
+      'app.layout',
 
-        'textAngular',
-        'ngMaterial',
-        'ngMessages',
-        'ui.bootstrap',
-        'ckeditor',
-        'mdDataTable',
-        'ngImageInputWithPreview',
+      'textAngular',
+      'ngMaterial',
+      'ngMessages',
+      'ui.bootstrap',
+      'ckeditor',
+      'mdDataTable',
+      'ngImageInputWithPreview',
 
-        'app.demo',
+      'app.demo',
 
-        'app.admin',
-        'app.admin.dashboard',
-        'app.admin.product',
-        'app.admin.category',
-        'app.admin.order',
-        'app.admin.event',
+      'app.admin',
+      'app.admin.dashboard',
+      'app.admin.product',
+      'app.admin.category',
+      'app.admin.order',
+      'app.admin.event',
+      'app.admin.setting',
 
 
-        'app.user.blog',
-        'app.user.product',
-        'app.user.cart',
-        'app.user.order'
-    ]);
+      'app.user.blog',
+      'app.user.product',
+      'app.user.cart',
+      'app.user.order'
+    ])
 
+    .run(['$rootScope', '$state', 'Auth', function ($rootScope, $state, Auth) {
+      $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        if(toState.authCode && !Auth.authorize(toState.authCode.access)) {
+          event.preventDefault();
+          $state.go('app.404');
+        }
+      })
+    }]);
 })();
 
-Number.prototype.formatMoney = function(c, d, t){
+Number.prototype.formatMoney = function (c, d, t) {
   var n = this,
     c = isNaN(c = Math.abs(c)) ? 2 : c,
     d = d == undefined ? "." : d,

@@ -5,10 +5,11 @@
     .module('app.core')
     .run(appRun);
 
+  appRun.$inject = ['routerHelper', 'appConstant'];
   /* @ngInject */
-  function appRun(routerHelper) {
+  function appRun(routerHelper, appConstant) {
     var otherwise = '/404';
-    routerHelper.configureStates(getStates(), otherwise);
+    routerHelper.configureStates(getStates(appConstant), otherwise);
   }
 
   env.$inject = ['coreService'];
@@ -16,7 +17,7 @@
     return coreService.getEnv();
   }
 
-  function getStates() {
+  function getStates(appConstant) {
     return [
       {
         state: 'app',
@@ -44,6 +45,9 @@
         config: {
           abstract: true,
           templateUrl: 'app/core/admin/appAdmin.html',
+          authCode: {
+            access: appConstant.admin
+          },
           controller: 'CoreAdminController',
           controllerAs: 'vm'
         }
