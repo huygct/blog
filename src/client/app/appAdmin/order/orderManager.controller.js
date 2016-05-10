@@ -8,11 +8,12 @@
     .module('app.admin.order')
     .controller('OrderManagerController', OrderManagerController);
 
-  OrderManagerController.$inject = ['$q', 'dataservice', 'logger', 'orderManagerService', '$scope', '$mdDialog'];
+  OrderManagerController.$inject = ['$rootScope', 'dataservice', 'logger', 'orderManagerService', '$scope', '$mdDialog'];
   /* @ngInject */
-  function OrderManagerController($q, dataservice, logger, orderManagerService, $scope, $mdDialog) {
+  function OrderManagerController($rootScope, dataservice, logger, orderManagerService, $scope, $mdDialog) {
+    $rootScope.nameApp = 'Order Manager';
     var vm = this;
-    vm.title = 'Category Manager';
+    vm.title = 'Order Manager';
 
     vm.selectedCategory = [];
     vm.cache = orderManagerService.cache;

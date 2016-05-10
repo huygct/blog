@@ -37,7 +37,7 @@
 
     .run(['$rootScope', '$state', 'Auth', function ($rootScope, $state, Auth) {
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-        if(toState.authCode && !Auth.authorize(toState.authCode.access)) {
+        if(toState.data && !Auth.authorize(toState.data.access)) {
           event.preventDefault();
           $state.go('app.404');
         }

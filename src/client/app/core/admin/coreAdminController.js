@@ -17,7 +17,6 @@
     var vm = this;
 
     vm.title = 'Core';
-    //console.log(permission, $state.current)
 
     vm.navigation = [
       {

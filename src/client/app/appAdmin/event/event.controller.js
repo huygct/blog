@@ -8,12 +8,13 @@
     .module('app.admin.event')
     .controller('EventController', EventController);
 
-  EventController.$inject = ['$http', 'appConstant', 'logger', 'eventService', '$scope', 'coreService',
+  EventController.$inject = ['$rootScope', 'appConstant', 'logger', 'eventService', '$scope', 'coreService',
     '$mdDialog', 'productManagerService', '$mdMedia'];
 
   /* @ngInject */
-  function EventController($http, appConstant, logger, eventService, $scope, coreService,
+  function EventController($rootScope, appConstant, logger, eventService, $scope, coreService,
                               $mdDialog, productManagerService, $mdMedia) {
+    $rootScope.nameApp = 'Event Manager';
     var vm = this;
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     vm.title = 'Event';

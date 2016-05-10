@@ -45,9 +45,9 @@
         config: {
           abstract: true,
           templateUrl: 'app/core/admin/appAdmin.html',
-          authCode: {
-            access: appConstant.admin
-          },
+          //data: {
+          //  access: appConstant.admin
+          //},
           controller: 'CoreAdminController',
           controllerAs: 'vm'
         }

@@ -20,9 +20,6 @@
         config: {
           url: '/admin/setting',
           templateUrl: 'app/appAdmin/setting/setting.html',
-          authCode: {
-            access: 999
-          },
           controller: 'SettingAdminController',
           controllerAs: 'vm',
           title: 'Setting'

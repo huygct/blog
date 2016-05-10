@@ -8,16 +8,26 @@
     .module('app.core')
     .controller('CoreUserController', CoreUserController);
 
-  CoreUserController.$inject = ['$scope', '$state', '$http', 'logger', 'localStorageService',
+  CoreUserController.$inject = ['$scope', '$state', 'settingService', 'logger', 'localStorageService',
     'appConstant', '$stateParams', '$uibModal', 'coreService', '$rootScope'];
   /* @ngInject */
-  function CoreUserController($scope, $state, $http, logger, localStorageService,
+  function CoreUserController($scope, $state, settingService, logger, localStorageService,
                               appConstant, $stateParams, $uibModal, coreService, $rootScope) {
     var vm = this;
 
     vm.title = 'Core';
 
     vm.items = [];
+
+    function runUserApp() {
+      settingService.api.getSetting()
+        .then(function(response){
+          vm.logoUrl = _.get(response, 'data.0.logoUrl');
+        })
+        .catch(function () {
+          vm.logoUrl = '';
+        })
+    }
 
     /**
      * get number product in your cart
@@ -82,5 +92,6 @@
       vm.currentUser = {};
     }
 
+   runUserApp();
   }
 })();

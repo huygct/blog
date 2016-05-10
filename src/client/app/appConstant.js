@@ -76,6 +76,13 @@
         api: {
           model: 'order'
         }
+      },
+
+      setting: {
+        api: {
+          model: 'setting',
+          uploadLogo: 'api/uploadFile'
+        }
       }
 
     });

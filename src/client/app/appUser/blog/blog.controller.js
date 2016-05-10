@@ -8,10 +8,10 @@
     .module('app.user.blog')
     .controller('BlogController', BlogController);
 
-  BlogController.$inject = ['$q', '$scope', 'logger', 'productManagerService', 'blogService',
+  BlogController.$inject = ['$state', '$scope', 'logger', 'productManagerService', 'blogService',
     'eventService'];
   /* @ngInject */
-  function BlogController($q, $scope, logger, productManagerService, blogService,
+  function BlogController($state, $scope, logger, productManagerService, blogService,
                           eventService) {
     var vm = this;
     vm.title = 'Blog';
@@ -65,6 +65,19 @@
 
         })
     }
+
+    vm.showProductOfEvent = function (productList) {
+      if(productList.length === 1) { // go to details of one product
+        $state.go('app.appUser.product', productList[0].id);
+      } else {
+        if(productList.length > 1) { // show list products
+          /**
+           * solutions
+           */
+          $state.go();
+        }
+      }
+    };
 
     vm.changePage = getProduct;
 

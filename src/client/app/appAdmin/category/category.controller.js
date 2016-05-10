@@ -8,12 +8,13 @@
     .module('app.admin.category')
     .controller('CategoryController', CategoryController);
 
-  CategoryController.$inject = ['$http', 'appConstant', 'logger', 'categoryService', '$scope', 'coreService',
+  CategoryController.$inject = ['$rootScope', '$http', 'appConstant', 'logger', 'categoryService', '$scope', 'coreService',
     '$mdDialog'];
 
   /* @ngInject */
-  function CategoryController($http, appConstant, logger, categoryService, $scope, coreService,
+  function CategoryController($rootScope, $http, appConstant, logger, categoryService, $scope, coreService,
                               $mdDialog) {
+    $rootScope.nameApp = 'Category Manager';
     var vm = this;
     vm.title = 'Category Manager';
 

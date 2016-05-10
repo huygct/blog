@@ -1,0 +1,33 @@
+<div spinner-loading="vm.cache.spinnerLoading">
+  <div>
+    <my-alert type="vm.cache.alert.type"
+              show="vm.cache.alert.show"
+              msg="vm.cache.alert.msg"
+      ></my-alert>
+  </div>
+
+  <!--logo-->
+  <uib-accordion>
+    <uib-accordion-group heading="Thay đổi logo">
+      <div class="box-choose-and-upload-image">
+        <label>Your logo</label>
+        <input type="file" name="imageSource" file-model="vm.cache.file.myFile"
+               image-with-preview ng-model="vm.cache.file.imageSource"
+               accept="image/jpeg,image/png" class="btn btn-default">
+
+        <div ng-show="vm.cache.file.imageSource.src || vm.setting.logoUrl">
+          <!--<img ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview"/>-->
+          <img ng-src="{{vm.setting.logoUrl}}" class="show-image-preview"/>
+
+          <div ng-if="!vm.setting.logoUrl">
+            <div class="text-danger">Please click upload button to upload this image!!!</div>
+          </div>
+          <div ng-if="vm.setting.logoUrl">
+            <div class="text-success">This is url of image: {{vm.setting.logoUrl}}</div>
+          </div>
+          <a class="btn btn-primary" ng-show="!vm.setting.logoUrl || vm.cache.file.imageSource.src"
+             ng-click="vm.uploadLogoToServer(vm.cache.file.myFile)" button-spinner="vm.cache.file.loading">Upload</a>
+        </div>
+      </div>
+    </uib-accordion-group>
+</div>

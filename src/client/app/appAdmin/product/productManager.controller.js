@@ -8,11 +8,12 @@
     .module('app.admin.product')
     .controller('ProductManagerController', ProductManagerController);
 
-  ProductManagerController.$inject = ['$document', '$mdDialog', 'logger', 'productManagerService',
+  ProductManagerController.$inject = ['$rootScope', '$mdDialog', 'logger', 'productManagerService',
     '$scope', '$mdMedia', 'appConstant', 'categoryService'];
   /* @ngInject */
-  function ProductManagerController($document, $mdDialog, logger, productManagerService,
+  function ProductManagerController($rootScope, $mdDialog, logger, productManagerService,
                                     $scope, $mdMedia, appConstant, categoryService) {
+    $rootScope.nameApp = 'Product Manager';
     var vm = this;
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     vm.title = 'Product Manager';

@@ -2,7 +2,8 @@
   <div ng-if="vm.events.length > 0">
     <div style="max-height: 305px">
       <uib-carousel active="vm.active" interval="vm.myInterval" no-wrap="vm.noWrapSlides">
-        <uib-slide ng-repeat="slide in vm.events track by slide.id" index="slide.index">
+        <uib-slide ng-repeat="slide in vm.events track by slide.id" index="slide.index"
+          ng-click="vm.showProductOfEvent(slide.products)">
           <img ng-src="{{slide.imageUrl}}" style="margin:auto; max-height: 300px">
           <div class="carousel-caption">
             <p>{{slide.description}}</p>
