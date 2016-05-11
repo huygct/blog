@@ -9,10 +9,10 @@
     .controller('BlogController', BlogController);
 
   BlogController.$inject = ['$state', '$scope', 'logger', 'productManagerService', 'blogService',
-    'eventService'];
+    'eventService', '$location', '$anchorScroll'];
   /* @ngInject */
   function BlogController($state, $scope, logger, productManagerService, blogService,
-                          eventService) {
+                          eventService, $location, $anchorScroll) {
     var vm = this;
     vm.title = 'Blog';
 
@@ -66,15 +66,13 @@
         })
     }
 
-    vm.showProductOfEvent = function (productList) {
+    vm.showProductOfEvent = function (productList, eventId) {
       if(productList.length === 1) { // go to details of one product
-        $state.go('app.appUser.product', productList[0].id);
+        $state.go('app.appUser.product', {productId:productList[0].id, categoryId: productList[0].category});
       } else {
         if(productList.length > 1) { // show list products
-          /**
-           * solutions
-           */
-          $state.go();
+          $location.hash('eventId' + eventId);
+          $anchorScroll();
         }
       }
     };

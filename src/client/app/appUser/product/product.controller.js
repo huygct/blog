@@ -8,15 +8,19 @@
     .module('app.user.product')
     .controller('ProductController', ProductController);
 
-  ProductController.$inject = ['$q', 'logger', '$scope', 'productManagerService', 'productService',
+  ProductController.$inject = ['logger', '$scope', 'productManagerService', 'productService',
     '$stateParams', 'coreService'];
   /* @ngInject */
-  function ProductController($q, logger, $scope, productManagerService, productService,
+  function ProductController(logger, $scope, productManagerService, productService,
                              $stateParams, coreService) {
     var vm = this;
 
     var currentProductId = $stateParams.productId;
+    var currentCategoryId = $stateParams.categoryId;
+    console.log('-- , ', currentProductId + ' - ' + $stateParams.categoryId);
+
     vm.cache = productService.cache;
+    vm.productsByCategoryId = [];
 
     function loadProductById(productId) {
       productManagerService.api.getProductById(productId)
@@ -30,11 +34,25 @@
         })
     }
 
+    function getProductByCategoryId(categoryId) {
+      productManagerService.api.getProductByCategoryId(categoryId)
+        .then(function (response) {
+          vm.productsByCategoryId = response.data;
+          vm.cache.status = true;
+        })
+        .catch(function () {
+          vm.productsByCategoryId = [];
+          vm.cache.status = false;
+        })
+    }
+
+
     vm.openYourCard = coreService.openYourCard;
 
 
     function activate() {
       loadProductById(currentProductId);
+      getProductByCategoryId(currentCategoryId);
       logger.info('Activated Product View');
     }
 

@@ -77,6 +77,10 @@
         var url = coreService.formatApi(appConstant.product.api.model) + '/' + productId;
         return $http.get(url);
       },
+      getProductByCategoryId: function(categoryId) {
+        var url = coreService.formatApi(appConstant.product.api.model) + '?category=' + categoryId;
+        return $http.get(url);
+      },
       uploadImage: function(imageSource) {
         var url = appConstant.product.api.uploadImage;
         //create form data object

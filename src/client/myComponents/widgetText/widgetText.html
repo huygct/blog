@@ -27,7 +27,7 @@
 
 <div
   class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp widget-text-box view view-first"
-  ng-repeat="sp in $ctrl.data" ng-click="$ctrl.callbackWhenClickCard(sp.id)">
+  ng-repeat="sp in $ctrl.data" ng-click="$ctrl.callbackWhenClickCard(sp.id, sp.category)">
 
   <div class="widget-content">
     <div class="mdl-card__media show-button-link">

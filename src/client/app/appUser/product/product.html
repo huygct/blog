@@ -78,6 +78,15 @@
         <!--</md-card-content>-->
       <!--</md-card>-->
     <!--</div>-->
+
+  </md-content>
+
+  <br/>
+  <md-content class="md-padding">
+    <div class="event-of-web" ng-if="vm.productsByCategoryId.length > 1">
+      <title-box title="vm.productsByCategoryId[0].category.name"></title-box>
+      <my-widget-text class="android-card-container mdl-grid" data="vm.productsByCategoryId"></my-widget-text>
+    </div>
   </md-content>
 
 </div>

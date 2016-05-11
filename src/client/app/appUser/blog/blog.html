@@ -3,7 +3,7 @@
     <div style="max-height: 305px">
       <uib-carousel active="vm.active" interval="vm.myInterval" no-wrap="vm.noWrapSlides">
         <uib-slide ng-repeat="slide in vm.events track by slide.id" index="slide.index"
-          ng-click="vm.showProductOfEvent(slide.products)">
+          ng-click="vm.showProductOfEvent(slide.products, slide.id)">
           <img ng-src="{{slide.imageUrl}}" style="margin:auto; max-height: 300px">
           <div class="carousel-caption">
             <p>{{slide.description}}</p>
@@ -16,8 +16,13 @@
   <br/>
 
   <div>
-    <div class="android-section-title mdl-typography--display-1-color-contrast">Sản Phẩm</div>
+    <title-box title="'Sản Phẩm'"></title-box>
     <my-widget-text class="android-card-container mdl-grid" data="vm.productList"></my-widget-text>
+
+    <div class="event-of-web" id="eventId{{event.id}}" ng-repeat="event in vm.events track by event.id" ng-if="event.products.length > 1">
+      <title-box title="event.name"></title-box>
+      <my-widget-text class="android-card-container mdl-grid" data="event.products"></my-widget-text>
+    </div>
 
     <div class="pagination-box" ng-if="vm.defaultValue.bigTotalItems > vm.defaultValue.numberItemOfPage">
       <uib-pagination total-items="vm.defaultValue.bigTotalItems" ng-model="vm.defaultValue.currentPage" max-size="vm.defaultValue.maxPageSize"

@@ -23,7 +23,7 @@
       {
         state: 'app.appUser.product',
         config: {
-          url: '/product/:productId',
+          url: '/product/:productId/:categoryId',
           templateUrl: 'app/appUser/product/product.html',
           controller: 'ProductController',
           controllerAs: 'vm',

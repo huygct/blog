@@ -21,8 +21,14 @@
 
     var ctrl = this;
 
-    ctrl.callbackWhenClickCard = function(productId) {
-      $state.go('app.appUser.product', {productId: productId});
+    ctrl.callbackWhenClickCard = function(productId, category) {
+      var categoryId = '';
+      if(angular.isObject(category)) {
+        categoryId = category.id;
+      } else {
+        categoryId = category;
+      }
+      $state.go('app.appUser.product', {productId: productId, categoryId: categoryId});
     }
   }
 
