@@ -37,7 +37,9 @@
     function getProductByCategoryId(categoryId) {
       productManagerService.api.getProductByCategoryId(categoryId)
         .then(function (response) {
-          vm.productsByCategoryId = response.data;
+          vm.productsByCategoryId = _.filter(response.data, function(product) {
+                                        return product.id !== currentProductId;
+                                    });
           vm.cache.status = true;
         })
         .catch(function () {

@@ -1,3 +1,103 @@
 <div class="android-more-section blog-content">
+  <uib-alert type="{{vm.alert.type}}" close="vm.closeAlert()" ng-show="vm.alert.show">
+    {{vm.alert.msg}}
+  </uib-alert>
 
+  <md-card-content>
+    <div class="panel-body" ng-if="vm.cache.view === 'readInfo'">
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-primary" ng-click="vm.goToViewChangeInfoUser()">Sửa</md-button>
+      </md-card-actions>
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Email</label>
+
+          <div class="col-sm-3">
+            <p class="form-control-static">{{$root.currentUser.user.email}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Họ và tên</label>
+
+          <div class="col-sm-3">
+            <p class="form-control-static">{{$root.currentUser.user.name}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Số điện thoại</label>
+
+          <div class="col-sm-3">
+            <p class="form-control-static">{{$root.currentUser.user.phoneNumber}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Địa chỉ</label>
+
+          <div class="col-sm-3">
+            <div class="form-control-static">{{$root.currentUser.user.address}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <md-content class="md-padding" layout-xs="column" ng-if="vm.cache.view === 'writeInfo'">
+      <form name="loginForm">
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Nhập email</label>
+          <md-icon class="email">
+            <i class="fa fa-envelope"></i>
+          </md-icon>
+          <input required type="email" name="email" ng-model="vm.cache.currentUser.email" ng-pattern="/^.+@.+\..+$/">
+
+          <div ng-messages="loginForm.email.$error">
+            <div ng-message-exp="['required', 'pattern']">
+              Bạn phải nhập email! Thực sự là một email.
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Nhập họ tên</label>
+          <md-icon>
+            <i class="fa fa-user"></i>
+          </md-icon>
+          <input required name="name" ng-model="vm.cache.currentUser.name">
+
+          <div ng-messages="loginForm.name.$error">
+            <div ng-message="required">Bạn phải nhập họ tên.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Nhập số điện thoại</label>
+          <md-icon>
+            <i class="fa fa-phone"></i>
+          </md-icon>
+          <input required name="phoneNumber" ng-model="vm.cache.currentUser.phoneNumber">
+
+          <div ng-messages="loginForm.phoneNumber.$error">
+            <div ng-message="required">Bạn phải nhập số điện thoại.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Nhập địa chỉ</label>
+          <md-icon>
+            <i class="fa fa-map-marker"></i>
+          </md-icon>
+          <textarea required name="address" ng-model="vm.cache.currentUser.address"></textarea>
+
+          <div ng-messages="loginForm.address.$error">
+            <div ng-message="required">Bạn phải nhập địa chỉ.</div>
+          </div>
+        </md-input-container>
+      </form>
+      <div class="pull-right">
+        <md-button class="md-raised md-primary" ng-disabled="!loginForm.$valid"
+                   ng-click="vm.applyNewInfo(vm.cache.currentUser)">Xác Nhận</md-button>
+      </div>
+    </md-content>
+  </md-card-content>
 </div>
+

@@ -8,14 +8,20 @@
       USER_APP: 'app123456',
       YOUR_CART: 'app123456_cart',
 
-      anon: 0,
-      user: 9,
-      admin: 999,
+      ANON: 0,
+      USER_AUTH: 9,
+      ADMIN_AUTH: 999,
 
       core: {
         api: {
           addUser: 'auth/register',
           login: 'auth/authenticate'
+        }
+      },
+
+      user: {
+        api: {
+          model: 'user'
         }
       },
 
