@@ -1,3 +1,13 @@
 .product-view .image-card {
   max-width: 400px;
 }
+.product-view .right-side-product-view .real-price {
+  font-size: 18px;
+  text-decoration: line-through;
+  color: #999;
+}
+.product-view .right-side-product-view .save-money {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}

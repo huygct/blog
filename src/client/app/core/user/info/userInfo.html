@@ -1,12 +1,14 @@
 <div class="android-more-section blog-content">
-  <uib-alert type="{{vm.alert.type}}" close="vm.closeAlert()" ng-show="vm.alert.show">
-    {{vm.alert.msg}}
-  </uib-alert>
+  <my-alert type="vm.cache.alert.type"
+            show="vm.cache.alert.show"
+            msg="vm.cache.alert.msg"
+    ></my-alert>
 
-  <md-card-content>
+  <md-card-content spinner-loading="vm.cache.spinnerLoading">
     <div class="panel-body" ng-if="vm.cache.view === 'readInfo'">
       <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-primary" ng-click="vm.goToViewChangeInfoUser()">Sửa</md-button>
+        <md-button class="md-primary" ng-click="vm.goToViewChangeInfoUser()">
+          Sửa</md-button>
       </md-card-actions>
       <div class="form-horizontal">
         <div class="form-group">
@@ -45,6 +47,10 @@
 
     <md-content class="md-padding" layout-xs="column" ng-if="vm.cache.view === 'writeInfo'">
       <form name="loginForm">
+        <md-button class="md-primary" ng-click="vm.backReadInfoUserView()">
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          Quay về
+        </md-button>
         <md-input-container class="md-icon-float md-block">
           <!-- Use floating label instead of placeholder -->
           <label>Nhập email</label>

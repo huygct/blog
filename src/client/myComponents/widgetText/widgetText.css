@@ -13,14 +13,21 @@
 }
 .widget-text-box .bottom-widget-text .name-widget {
   display: block;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.3rem;
   padding: 10px 0;
+  color: #000;
 }
 .widget-text-box .bottom-widget-text .cost-widget {
-  font-size: 1rem;
+  padding-top: 8px;
+  font-size: 1.3rem;
   font-weight: bold;
-  color: #f00;
+  color: #000;
+}
+.widget-text-box .bottom-widget-text .old-widget {
+  padding-top: 8px;
+  font-size: 1rem;
+  text-decoration: line-through;
+  color: #999;
 }
 .view {
   height: 100%;

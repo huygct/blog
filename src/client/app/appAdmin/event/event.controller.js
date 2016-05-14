@@ -101,6 +101,7 @@
       vm.cache.currentEvent = {
         id: currentEvent.id,
         name: currentEvent.name,
+        percentSale: currentEvent.percentSale || 0,
         description:  currentEvent.description
       };
 

@@ -64,6 +64,16 @@
     }
 
     /**
+     * upload info user
+     */
+    function updateInfoUser(newInfo) {
+      var currentUser = localStorageService.get(appConstant.USER_APP);
+      currentUser.user = newInfo;
+      $rootScope.currentUser = currentUser;
+      localStorageService.set(appConstant.USER_APP, currentUser);
+    }
+
+    /**
      * Api
      */
     var api = {
@@ -108,6 +118,7 @@
     service.saveCurrentUser = saveCurrentUser;
     service.getCurrentUser = getCurrentUser;
     service.removeCurrentUser = removeCurrentUser;
+    service.updateInfoUser = updateInfoUser;
 
     service.openYourCard = openYourCard;
 

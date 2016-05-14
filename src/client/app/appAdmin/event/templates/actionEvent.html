@@ -19,6 +19,14 @@
         <textarea ng-model="vm.cache.currentEvent.description" md-select-on-focus></textarea>
       </md-input-container>
 
+      <md-input-container class="md-block">
+        <label>Sale (sale > 0 and sale < 80 - đơn vị %)</label>
+        <input required name="sale" ng-model="vm.cache.currentEvent.percentSale" type="number" step="1" max="80">
+        <div ng-messages="actionEventForm.sale.$error">
+          <div ng-message="required">This is required and it must be number.</div>
+        </div>
+      </md-input-container>
+
       <div class="box-choose-and-upload-image">
         <label>Image Source</label>
         <input type="file" name="imageSource" file-model="vm.cache.file.myFile"

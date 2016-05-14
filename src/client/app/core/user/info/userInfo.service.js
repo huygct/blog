@@ -8,12 +8,13 @@
     .module('app.core')
     .factory('userInfoService', userInfoService);
 
-  userInfoService.$inject = ['$http', '$q', 'exception', 'logger', 'coreService', 'appConstant'];
+  userInfoService.$inject = ['$http', 'commonService', 'exception', 'logger', 'coreService', 'appConstant'];
   /* @ngInject */
-  function userInfoService($http, $q, exception, logger, coreService, appConstant) {
+  function userInfoService($http, commonService, exception, logger, coreService, appConstant) {
     var service = {};
 
     var cache = {
+      alert: commonService.createAlert('danger', '', false),
       view: 'readInfo',
       currentUser: {}
     };

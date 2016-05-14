@@ -16,6 +16,13 @@
           <div ng-message="required">This is required and it must be number.</div>
         </div>
       </md-input-container>
+      <md-input-container class="md-block">
+        <label>Sale (Giá sau khi giảm giá)</label>
+        <input required name="sale" ng-model="vm.cache.currentProduct.sale" type="number" step="0.1" max="vm.cache.currentProduct.price">
+        <div ng-messages="actionProductForm.sale.$error">
+          <div ng-message="required">This is required and it must be number.</div>
+        </div>
+      </md-input-container>
 
       <md-input-container class="md-block">
         <label>Rate (rate >= 0 and rate <= 5)</label>

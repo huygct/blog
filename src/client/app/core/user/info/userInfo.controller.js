@@ -20,25 +20,30 @@
       vm.cache.currentUser = angular.copy(_.get($rootScope, 'currentUser.user'));
     };
 
+    vm.backReadInfoUserView = function backReadInfoUserView() {
+      vm.cache.view = 'readInfo';
+      vm.cache.currentUser = {};
+    };
+
     // update info user
     vm.applyNewInfo = function applyNewInfo(newUser) {
       var alert = vm.cache.alert;
       alert.show = false;
       vm.cache.spinnerLoading = true;
       userInfoService.api.updateUser(newUser)
-        .then(function () {
-
+        .then(function (response) {
+          var newUser = _.get(response, 'data');
+          coreService.updateInfoUser(newUser);
+          vm.cache.view = 'readInfo';
         })
         .catch(function () {
-
+          alert.type = 'danger';
+          alert.msg = 'Thực hiện không thành công!!! Vui lòng thực hiện lại...';
+          alert.show = true;
         })
         .finally(function () {
-
+          vm.cache.spinnerLoading = false;
         });
-
-
-      vm.cache.view = 'readInfo';
-
     }
   }
 })();

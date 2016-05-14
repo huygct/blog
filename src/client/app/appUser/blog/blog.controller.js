@@ -33,8 +33,10 @@
           if(_.get(response, 'data.length') > 0) {
             var index = 0;
             _.forEach(response.data, function (event) {
-              event.index = index++;
-              vm.events.push(event);
+              if(event.imageUrl) {
+                event.index = index++;
+                vm.events.push(event);
+              }
             })
           }
         })
