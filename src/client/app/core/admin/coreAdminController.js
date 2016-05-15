@@ -48,6 +48,12 @@
         name: 'Products',
         icon: 'whatshot',
         selected: $state.is('app.appAdmin.productManager')
+      },
+      {
+        state: 'app.appAdmin.offlineSale',
+        name: 'Offline Sale',
+        icon: 'accessibility',
+        selected: $state.is('app.appAdmin.offlineSale')
       }
     ];
 

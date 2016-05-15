@@ -7,13 +7,10 @@
   </div>
 
   <div spinner-loading="vm.cache.spinnerLoading" class="product-manager-view">
-    <h2>
-      <span>Order</span>
-    </h2>
     <div class="table-content">
       <md-list>
         <md-subheader class="md-no-sticky">{{vm.orderList.length}} đơn đặc hàng</md-subheader>
-        <md-list-item ng-repeat="order in vm.orderList"
+        <md-list-item ng-repeat="order in vm.orderList track by order.id"
                       class="md-3-line noright">
           <img ng-src="images/app/User-icon.png" class="md-avatar" ng-if="order.user"/>
           <img ng-src="images/app/kh-vl.jpg" class="md-avatar" ng-if="!order.user"/>

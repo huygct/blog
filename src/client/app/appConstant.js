@@ -89,6 +89,17 @@
           model: 'setting',
           uploadLogo: 'api/uploadFile'
         }
+      },
+
+      offlineSale: {
+        api: {
+          model: 'offlineSale'
+        },
+        urlTemplates: {
+          main: 'app/appAdmin/offlineSale/templates/listOfflineSale.html',
+          add: 'app/appAdmin/offlineSale/templates/actionOfflineSale.html',
+          edit: 'app/appAdmin/offlineSale/templates/actionOfflineSale.html'
+        }
       }
 
     });

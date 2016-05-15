@@ -27,6 +27,7 @@
       'app.admin.order',
       'app.admin.event',
       'app.admin.setting',
+      'app.admin.offlineSale',
 
 
       'app.user.blog',

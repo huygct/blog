@@ -1,0 +1,71 @@
+<div spinner-loading="vm.cache.spinnerLoading">
+  <md-content layout-padding>
+    <form name="offlineSaleForm">
+      <md-input-container class="md-block">
+        <label>Họ tên khách hàng</label>
+        <input md-maxlength="30" required name="name" ng-model="vm.cache.currentOfflineSale.nameCustomer">
+        <div ng-messages="offlineSaleForm.name.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">This name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Số điện thoại</label>
+        <input md-maxlength="15" required name="phone" ng-model="vm.cache.currentOfflineSale.phoneCustomer">
+        <div ng-messages="offlineSaleForm.phone.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">Phone number has to be less than 15 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Địa chỉ giao hàng</label>
+        <input required name="address" ng-model="vm.cache.currentOfflineSale.addressCustomer">
+        <div ng-messages="offlineSaleForm.address.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input name="email" ng-model="vm.cache.currentOfflineSale.emailCustomer">
+      </md-input-container>
+
+      <div class="md-padding selectdemoSelectHeader" ng-cloak="">
+        <div>
+          <h1 class="md-title">Pick a vegetable below</h1>
+          <div layout="row">
+            <md-input-container>
+              <label>Vegetables</label>
+              <md-select ng-model="selectedVegetables" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                <md-select-header class="demo-select-header">
+                  <input ng-model="searchTerm" type="search" placeholder="Search for a vegetable.." class="demo-header-searchbox md-text">
+                </md-select-header>
+                <md-optgroup label="vegetables">
+                  <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+              filter:searchTerm">{{vegetable}}</md-option>
+                </md-optgroup>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+
+    <div class="pull-right">
+      <md-button class="md-raised md-primary" ng-disabled="!offlineSaleForm.$valid"
+                 ng-click="vm.addProduct(vm.cache.currentProduct)"
+                 ng-if="vm.cache.currentView.name === 'add'"
+      >
+        Add
+      </md-button>
+      <md-button class="md-raised md-primary" ng-disabled="!offlineSaleForm.$valid"
+                 ng-click="vm.updateProduct(vm.cache.currentProduct)"
+                 ng-if="vm.cache.currentView.name === 'edit'"
+      >
+        Update
+      </md-button>
+      <md-button class="md-raised" ng-click="vm.backToListOrderView()">Cancer</md-button>
+    </div>
+  </md-content>
+</div>
