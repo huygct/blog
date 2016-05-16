@@ -31,36 +31,62 @@
 
       <div class="md-padding selectdemoSelectHeader" ng-cloak="">
         <div>
-          <h1 class="md-title">Pick a vegetable below</h1>
+          <h1 class="md-title">Chọn sản phẩm được mua</h1>
           <div layout="row">
             <md-input-container>
-              <label>Vegetables</label>
-              <md-select ng-model="selectedVegetables" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+              <label>Sản phẩm</label>
+              <md-select ng-model="vm.cache.currentOfflineSale.productList" md-on-close="vm.clearSearchTerm()" md-on-open="vm.getProducts()" data-md-container-class="selectdemoSelectHeader" multiple="">
                 <md-select-header class="demo-select-header">
-                  <input ng-model="searchTerm" type="search" placeholder="Search for a vegetable.." class="demo-header-searchbox md-text">
+                  <input ng-model="vm.searchTerm" type="search" placeholder="Tìm product.." class="demo-header-searchbox md-text">
                 </md-select-header>
-                <md-optgroup label="vegetables">
-                  <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
-              filter:searchTerm">{{vegetable}}</md-option>
+                <md-optgroup label="Sản phẩm">
+                  <md-option ng-value="product" ng-repeat="product in vm.products |
+              filter:vm.searchTerm">{{product.name}}</md-option>
                 </md-optgroup>
               </md-select>
             </md-input-container>
           </div>
+          <div>
+            <div ng-repeat="p in vm.cache.currentOfflineSale.productList" class="row">
+              <div class="col-md-3">
+                <p ng-if="p.sale > 0">{{p.name}} - {{p.sale.formatMoney(0, '.', ',')}} (sau khi giảm giá)</p>
+                <p ng-if="!(p.sale > 0)">{{p.name}} - {{p.price.formatMoney(0, '.', ',')}} (giá gốc)</p>
+              </div>
+              <div class="col-md-1">
+                <p>x</p>
+              </div>
+              <div class="col-md-4">
+                <number-spinner value="p.quantityWillBuy" config="{min: 0, max: 10}"></number-spinner>
+              </div>
+              <div class="col-md-4">
+                <p ng-if="p.sale > 0">{{(p.sale * p.quantityWillBuy).formatMoney(0, '.', ',')}}</p>
+                <p ng-if="!(p.sale > 0)">{{(p.price * p.quantityWillBuy).formatMoney(0, '.', ',')}}</p>
+              </div>
+              <hr/>
+            </div>
+            <div class="row form-group">
+              <label class="col-sm-3 control-label">Phụ thu</label>
+
+              <div class="col-sm-3">
+                <input ng-model="vm.cache.currentOfflineSale.otherCost" class="form-control" format-currency="">
+              </div>
+            </div>
+            <hr>
+            <span ng-show="vm.cache.currentOfflineSale.productList.length > 0">Tổng thành tiền: {{vm.getSumMoney(vm.cache.currentOfflineSale.productList, vm.cache.currentOfflineSale.otherCost)}}</span>
+          </div>
         </div>
       </div>
-
-
     </form>
 
     <div class="pull-right">
       <md-button class="md-raised md-primary" ng-disabled="!offlineSaleForm.$valid"
-                 ng-click="vm.addProduct(vm.cache.currentProduct)"
+                 ng-click="vm.addOfflineSale(vm.cache.currentOfflineSale)"
                  ng-if="vm.cache.currentView.name === 'add'"
       >
         Add
       </md-button>
       <md-button class="md-raised md-primary" ng-disabled="!offlineSaleForm.$valid"
-                 ng-click="vm.updateProduct(vm.cache.currentProduct)"
+                 ng-click="vm.updateOfflineSale(vm.cache.currentOfflineSale)"
                  ng-if="vm.cache.currentView.name === 'edit'"
       >
         Update
