@@ -29,7 +29,8 @@
     vm.yourProducts = yourCart;
     vm.moneyMustPay = 0;
     _.forEach(vm.yourProducts, function (item) {
-      vm.moneyMustPay += (item.price * item.quantityWillBuy);
+      var cost = item.sale || item.price;
+      vm.moneyMustPay += (item.quantityWillBuy * cost);
     });
 
     /**
@@ -120,7 +121,8 @@
               imageUrl: item.imageUrl,
               quantityWillBuy: item.quantityWillBuy,
               name: item.name,
-              price: item.price
+              price: item.price,
+              sale: item.sale
             })
         })
       }

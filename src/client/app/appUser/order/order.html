@@ -22,7 +22,7 @@
               <div class="margin-bottom-16 detail-item" ng-repeat="item in vm.yourProducts">
                 <p class="price-and-name-item">{{item.quantityWillBuy}} x {{item.name}}</p>
 
-                <p class="total-price-item">{{(item.quantityWillBuy * item.price).formatMoney(0, '.', ',')}}</p>
+                <p class="total-price-item">{{(item.quantityWillBuy * item.sale || item.price).formatMoney(0, '.', ',')}}</p>
               </div>
             </md-card-title-text>
             <md-card-title-text class="margin-bottom-16 total-cost">

@@ -1,3 +1,13 @@
+.cart-view .left-side-cart-view .list-group-cart-all-item-body {
+  max-height: none !important;
+}
+.cart-view .right-side-cart-view .box-cal-money {
+  position: relative;
+}
+.cart-view .right-side-cart-view .box-cal-money .text-vat {
+  position: absolute;
+  right: 0;
+}
 .cart-footer .sum-money {
   font-weight: bold;
   font-size: 1.5rem;

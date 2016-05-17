@@ -27,11 +27,14 @@
               </md-card>
             </li>
             <li class="column-format text-in-right cart-price">
-              <span ng-if="item.sale > 0">{{item.sale.formatMoney(0, '.', ',')}}</span>
-              <span ng-if="!(item.sale > 0)">{{item.price.formatMoney(0, '.', ',')}}</span>
+              <div ng-if="item.sale > 0">
+                <p><b>{{item.sale.formatMoney(0, '.', ',')}}</b></p>
+                <p class="line-through">{{item.price.formatMoney(0, '.', ',')}}</p>
+              </div>
+              <p ng-if="!(item.sale > 0)">{{item.price.formatMoney(0, '.', ',')}}</p>
             </li>
             <li class="column-format text-in-right cart-count">
-              <input type="number" class="form-control max-width-100" ng-model="item.quantityWillBuy">
+              <p>{{item.quantityWillBuy}}</p>
             </li>
             <li class="column-format text-in-right cart-prices">
               <span ng-if="item.sale > 0">{{(item.sale * item.quantityWillBuy).formatMoney(0, '.', ',')}}</span>

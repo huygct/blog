@@ -96,6 +96,7 @@
           name: product.name,
           quantityWillBuy: product.quantityWillBuy,
           price: product.price,
+          imageUrl: product.imageUrl,
           sale: product.sale
         })
       });
@@ -152,10 +153,10 @@
     vm.deleteOfflineSale = function deleteOfflineSale(orderOfflineSale) {
       var confirm = $mdDialog.confirm()
         .title('Bạn muốn xoá đơn hàng này?')
-        .textContent('Đơn hàng này sẽ bị xoá sau khi bấm ĐỒNG Ý.')
+        .textContent('�?ơn hàng này sẽ bị xoá sau khi bấm �?ỒNG �?.')
         .ariaLabel('change order')
         .targetEvent(originatorEv)
-        .ok('Đồng ý!')
+        .ok('�?ồng ý!')
         .cancel('Hủy');
       $mdDialog.show(confirm).then(function() {
         var alert = vm.cache.alert;

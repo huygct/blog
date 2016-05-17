@@ -17,7 +17,6 @@
 
     var currentProductId = $stateParams.productId;
     var currentCategoryId = $stateParams.categoryId;
-    console.log('-- , ', currentProductId + ' - ' + $stateParams.categoryId);
 
     vm.cache = productService.cache;
     vm.productsByCategoryId = [];

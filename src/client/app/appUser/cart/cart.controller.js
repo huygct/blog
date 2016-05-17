@@ -43,8 +43,10 @@
 
     vm.sumMoney = function() {
       var sum = 0;
+      var cost = 0;
       _.forEach(vm.productList, function (item) {
-        sum += (item.price * item.quantityWillBuy);
+        cost = item.sale || item.price;
+        sum += (cost * item.quantityWillBuy);
       });
       return sum.formatMoney(0, '.', ',');
     };
@@ -53,7 +55,9 @@
       $state.go('app.appUser.blog');
     };
 
-    vm.goToOrder = function () {
+    vm.goToOrder = function (productList) {
+      var YOUR_CART_KEY = appConstant.YOUR_CART;
+      localStorageService.set(YOUR_CART_KEY, productList);
       $state.go('app.appUser.order', {checkoutId: '95237041b02096bbdb38980f727e33c3local'});
     };
 

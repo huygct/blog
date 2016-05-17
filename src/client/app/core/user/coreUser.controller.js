@@ -90,7 +90,7 @@
     vm.logout = function() {
       coreService.removeCurrentUser();
       vm.currentUser = {};
-    }
+    };
 
    runUserApp();
   }

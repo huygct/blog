@@ -28,11 +28,14 @@
                 <em ng-if="vm.currentProduct.quantity > 0" class="md-subhead">(còn hàng)</em>
                 <em ng-if="vm.currentProduct.quantity <= 0" class="md-subhead">(hết hàng)</em>
               </p>
-              <p class="margin-bottom-16" ng-if="vm.currentProduct.sale || vm.currentProduct.sale > 0">
+              <div class="margin-bottom-16" ng-if="vm.currentProduct.sale > 0">
                 <p class="md-headline text-red-color">Giá bán: {{vm.currentProduct.sale.formatMoney(0, '.', ',')}}</p>
                 <p class="md-headline real-price">Giá thị trường: {{vm.currentProduct.price.formatMoney(0, '.', ',')}}</p>
                 <span class="save-money">Tiết kiệm: {{(vm.currentProduct.price - vm.currentProduct.sale).formatMoney(0, '.', ',')}}</span>
-              </p>
+              </div>
+              <div class="margin-bottom-16" ng-if="!(vm.currentProduct.sale > 0)">
+                <p class="md-headline text-red-color">Giá bán: {{vm.currentProduct.price.formatMoney(0, '.', ',')}}</p>
+              </div>
             </md-card-title-text>
           </md-card-title>
           <hr/>

@@ -42,7 +42,7 @@
     vm.sumMoney = function() {
       var sum = 0;
       _.forEach(vm.productList, function (item) {
-        sum += (item.price * item.quantityWillBuy);
+        sum += (item.quantityWillBuy * (item.sale || item.price));
       });
       return sum.formatMoney(0, '.', ',');
     };
@@ -54,7 +54,7 @@
 
     vm.goToOrder = function () {
       $uibModalInstance.close(vm.productList);
-      $state.go('app.appUser.order', {checkoutId: '95237041b02096bbdb38980f727e33c3local'});
+      $state.go('app.appUser.order', {checkoutId: '95237041b02096bbdb38980f727e33c3local'}, {reload: true});
     };
 
     //vm.cancel = function () {
