@@ -40,9 +40,21 @@
     };
 
     var api = {
-      saveOrderOffline: function () {
-        var url = coreService.formatApi(appConstant.setting.api.model);
+      getAllOrderOffline: function () {
+        var url = coreService.formatApi(appConstant.offlineSale.api.model);
         return $http.get(url);
+      },
+      addOrderOffline: function (newOfflineSale) {
+        var url = coreService.formatApi(appConstant.offlineSale.api.model);
+        return $http.post(url, newOfflineSale);
+      },
+      updateOrderOffline: function (newOfflineSale) {
+        var url = coreService.formatApi(appConstant.offlineSale.api.model) + '/' + newOfflineSale.id;
+        return $http.put(url, newOfflineSale);
+      },
+      deleteOrderOffline: function (id) {
+        var url = coreService.formatApi(appConstant.offlineSale.api.model) + '/' + id;
+        return $http.delete(url);
       }
     };
 

@@ -8,11 +8,12 @@
     .module('app.admin.setting')
     .controller('OfflineSaleController', OfflineSaleController);
 
-  OfflineSaleController.$inject = ['$rootScope', '$scope', 'productManagerService', 'offlineSaleService'];
-  function OfflineSaleController($rootScope, $scope, productManagerService, offlineSaleService) {
+  OfflineSaleController.$inject = ['$rootScope', '$scope', 'productManagerService', 'offlineSaleService', '$mdDialog'];
+  function OfflineSaleController($rootScope, $scope, productManagerService, offlineSaleService, $mdDialog) {
     $rootScope.nameApp = 'Offline Sale';
 
     var vm = this;
+    var originatorEv;
 
     vm.cache = offlineSaleService.cache;
     vm.products = [];
@@ -38,7 +39,21 @@
     }
 
     function getOrderOfflineSale() {
-
+      var alert = vm.cache.alert;
+      alert.show = false;
+      vm.cache.spinnerLoading = true;
+      offlineSaleService.api.getAllOrderOffline()
+        .then(function (response) {
+          vm.orderOfflineSaleList = response.data;
+        })
+        .catch(function () {
+          alert.type = 'danger';
+          alert.msg = 'Lỗi thực hiện!!! Vui lòng thực hiện lại...';
+          alert.show = true;
+        })
+        .finally(function() {
+          vm.cache.spinnerLoading = false;
+        })
     }
 
     function getSumMoney(selectedProducts, otherCost) {
@@ -54,7 +69,8 @@
           sum+=(p.price * numberBuy);
         }
       });
-      return (sum + other).formatMoney(0, '.', ',');
+      vm.cache.currentOfflineSale.sumMoney = (sum + other);
+      return (sum + other);
     }
 
     vm.backToListOrderView = function() {
@@ -73,16 +89,104 @@
     };
 
     vm.addOfflineSale = function addOfflineSale(newOfflineSale) {
-      console.log('-- ', newOfflineSale);
+      var productList = [];
+      _.forEach(newOfflineSale.productList, function (product) {
+        productList.push({
+          id: product.id,
+          name: product.name,
+          quantityWillBuy: product.quantityWillBuy,
+          price: product.price,
+          sale: product.sale
+        })
+      });
+      newOfflineSale.productList = productList;
+
+      var alert = vm.cache.alert;
+      alert.show = false;
+      vm.cache.spinnerLoading = true;
+      offlineSaleService.api.addOrderOffline(newOfflineSale)
+        .then(function () {
+          vm.backToListOrderView();
+          getOrderOfflineSale();
+          alert.type = 'success';
+          alert.msg = 'Thêm thành công đơn hàng offline!!!';
+          alert.show = true;
+        })
+        .catch(function () {
+          alert.type = 'danger';
+          alert.msg = 'Thêm đặc hàng offline thất bại!!! Vui lòng thực hiện lại...';
+          alert.show = true;
+        })
+        .finally(function() {
+          vm.cache.spinnerLoading = false;
+        })
     };
 
-    vm.updateOfflineSale = function updateOfflineSale(upd) {
+    vm.openMenuChangeStatusOrder = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
 
+    vm.updateOfflineSale = function updateOfflineSale(newOfflineSale) {
+      var alert = vm.cache.alert;
+      alert.show = false;
+      vm.cache.spinnerLoading = true;
+      offlineSaleService.api.updateOrderOffline(newOfflineSale)
+        .then(function () {
+          vm.backToListOrderView();
+          getOrderOfflineSale();
+          alert.type = 'success';
+          alert.msg = 'Thay đổi đơn hàng thành công !!!';
+          alert.show = true;
+        })
+        .catch(function () {
+          alert.type = 'danger';
+          alert.msg = 'Thực hiện thất bại!!! Vui lòng thực hiện lại...';
+          alert.show = true;
+        })
+        .finally(function() {
+          vm.cache.spinnerLoading = false;
+        })
+    };
+
+    vm.deleteOfflineSale = function deleteOfflineSale(orderOfflineSale) {
+      var confirm = $mdDialog.confirm()
+        .title('Bạn muốn xoá đơn hàng này?')
+        .textContent('Đơn hàng này sẽ bị xoá sau khi bấm ĐỒNG Ý.')
+        .ariaLabel('change order')
+        .targetEvent(originatorEv)
+        .ok('Đồng ý!')
+        .cancel('Hủy');
+      $mdDialog.show(confirm).then(function() {
+        var alert = vm.cache.alert;
+        alert.show = false;
+        vm.cache.spinnerLoading = true;
+        offlineSaleService.api.deleteOrderOffline(orderOfflineSale.id)
+          .then(function () {
+            getOrderOfflineSale();
+            alert.type = 'success';
+            alert.msg = 'Xoá đơn hàng thành công !!!';
+            alert.show = true;
+          })
+          .catch(function () {
+            alert.type = 'danger';
+            alert.msg = 'Thực hiện thất bại!!! Vui lòng thực hiện lại...';
+            alert.show = true;
+          })
+          .finally(function() {
+            vm.cache.spinnerLoading = false;
+          })
+      }, function() {
+
+      });
+      originatorEv = null;
     };
 
     //------------------------------------------------
     vm.getProducts = getProducts;
     vm.getSumMoney = getSumMoney;
+
+    getOrderOfflineSale();
 
   }
 

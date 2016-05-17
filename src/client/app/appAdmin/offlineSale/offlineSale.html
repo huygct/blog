@@ -5,4 +5,7 @@
   ></my-alert>
 </div>
 
-<div ng-include="vm.cache.currentView.urlTpl"></div>
+<div spinner-loading="vm.cache.spinnerLoading">
+  <div ng-include="vm.cache.currentView.urlTpl"></div>
+</div>
+

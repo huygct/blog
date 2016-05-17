@@ -1,4 +1,4 @@
-<div spinner-loading="vm.cache.spinnerLoading">
+<div>
   <md-content layout-padding>
     <form name="offlineSaleForm">
       <md-input-container class="md-block">
@@ -46,11 +46,11 @@
               </md-select>
             </md-input-container>
           </div>
-          <div>
+          <div class="number-spinner-and-product">
             <div ng-repeat="p in vm.cache.currentOfflineSale.productList" class="row">
               <div class="col-md-3">
-                <p ng-if="p.sale > 0">{{p.name}} - {{p.sale.formatMoney(0, '.', ',')}} (sau khi giảm giá)</p>
-                <p ng-if="!(p.sale > 0)">{{p.name}} - {{p.price.formatMoney(0, '.', ',')}} (giá gốc)</p>
+                <p class="text-result" ng-if="p.sale > 0">{{p.name}} - {{p.sale.formatMoney(0, '.', ',')}} (sau khi giảm giá)</p>
+                <p class="text-result" ng-if="!(p.sale > 0)">{{p.name}} - {{p.price.formatMoney(0, '.', ',')}} (giá gốc)</p>
               </div>
               <div class="col-md-1">
                 <p>x</p>
@@ -59,8 +59,8 @@
                 <number-spinner value="p.quantityWillBuy" config="{min: 0, max: 10}"></number-spinner>
               </div>
               <div class="col-md-4">
-                <p ng-if="p.sale > 0">{{(p.sale * p.quantityWillBuy).formatMoney(0, '.', ',')}}</p>
-                <p ng-if="!(p.sale > 0)">{{(p.price * p.quantityWillBuy).formatMoney(0, '.', ',')}}</p>
+                <p class="text-result" ng-if="p.sale > 0"> = {{(p.sale * p.quantityWillBuy).formatMoney(0, '.', ',')}}</p>
+                <p class="text-result" ng-if="!(p.sale > 0)"> = {{(p.price * p.quantityWillBuy).formatMoney(0, '.', ',')}}</p>
               </div>
               <hr/>
             </div>
@@ -68,15 +68,17 @@
               <label class="col-sm-3 control-label">Phụ thu</label>
 
               <div class="col-sm-3">
-                <input ng-model="vm.cache.currentOfflineSale.otherCost" class="form-control" format-currency="">
+                <input ng-model="vm.cache.currentOfflineSale.otherCost" class="form-control" type="number">
               </div>
             </div>
             <hr>
-            <span ng-show="vm.cache.currentOfflineSale.productList.length > 0">Tổng thành tiền: {{vm.getSumMoney(vm.cache.currentOfflineSale.productList, vm.cache.currentOfflineSale.otherCost)}}</span>
+            <span class="pull-right text-result" ng-show="vm.cache.currentOfflineSale.productList.length > 0">Tổng thành tiền: {{vm.getSumMoney(vm.cache.currentOfflineSale.productList, vm.cache.otherCost).formatMoney(0, '.', ',')}}</span>
           </div>
         </div>
       </div>
     </form>
+
+    <br/>
 
     <div class="pull-right">
       <md-button class="md-raised md-primary" ng-disabled="!offlineSaleForm.$valid"

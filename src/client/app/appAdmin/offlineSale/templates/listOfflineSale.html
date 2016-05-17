@@ -2,37 +2,28 @@
   <div class="table-content">
     <div class="action-button">
       <md-button class="md-primary" ng-click="vm.goToAddOrderView()">Add Order</md-button>
-      <md-button class="md-primary" ng-click="vm.goToEditOrderView()" ng-disabled="vm.selectedProduct.length !== 1">Edit Order</md-button>
     </div>
     <md-list>
-      <md-subheader class="md-no-sticky">{{vm.orderList.length}} đơn đặc hàng</md-subheader>
-      <md-list-item ng-repeat="order in vm.orderList"
+      <md-subheader class="md-no-sticky">{{vm.orderOfflineSaleList.length}} đơn đặc hàng</md-subheader>
+      <md-list-item ng-repeat="order in vm.orderOfflineSaleList track by order.id"
                     class="md-3-line noright">
-        <md-checkbox ng-model="order.selected"></md-checkbox>
         <div class="md-list-item-text" layout="column" >
           <h3>
             Tên khách hàng: {{ order.nameCustomer }}
             <md-menu>
-              <md-button aria-label="Open phone interactions menu" ng-disabled="order.loading" ng-click="vm.openMenuChangeStatusOrder($mdOpenMenu, $event)">
-                <span class="label label-success" ng-if="order.status" button-spinner="order.loading">Đã hoàn thành</span>
-                <span class="label label-warning" ng-if="!order.status" button-spinner="order.loading">Chưa giao hàng</span>
+              <md-button aria-label="Open phone interactions menu" ng-disabled="order.loading"
+                         ng-click="vm.openMenuChangeStatusOrder($mdOpenMenu, $event)">
+                <span class="label label-warning" button-spinner="order.loading">Action</span>
               </md-button>
               <md-menu-content width="4">
                 <md-menu-item>
-                  <md-button ng-disabled="!order.status" ng-click="vm.changeStatusOrder(order, false)">
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    Chưa giao hàng
-                  </md-button>
-                </md-menu-item>
-                <md-menu-item>
-                  <md-button ng-disabled="order.status" ng-click="vm.changeStatusOrder(order, true)">
-                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                    Đã giao hàng
+                  <md-button ng-click="vm.goToEditOrderView(order)">
+                    Thay đổi đơn hàng
                   </md-button>
                 </md-menu-item>
                 <md-menu-divider></md-menu-divider>
                 <md-menu-item>
-                  <md-button ng-click="vm.deleteOrder(order)">
+                  <md-button ng-click="vm.deleteOfflineSale(order)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                     Xóa đơn đặc hàng
                   </md-button>
@@ -42,6 +33,7 @@
           </h3>
           <p>Số điện thoại: {{ order.phoneCustomer }}</p>
           <p>Địa chỉ giao hàng: {{ order.addressCustomer }}</p>
+          <p>Phụ thu: {{ order.otherCost.formatMoney(0, '.', ',') }}</p>
           <uib-accordion>
             <uib-accordion-group is-open="status.open">
               <uib-accordion-heading>
