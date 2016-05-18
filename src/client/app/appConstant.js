@@ -80,7 +80,8 @@
 
       order: {
         api: {
-          model: 'order'
+          model: 'order',
+          getNumberNotDeliver: 'order/getNumberNotDeliver'
         }
       },
 

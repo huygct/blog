@@ -11,12 +11,14 @@
     .module('app.core')
     .controller('CoreAdminController', CoreAdminController);
 
-  CoreAdminController.$inject = ['$state', '$http', '$location', '$stateParams'];
+  CoreAdminController.$inject = ['$state', '$rootScope', 'orderManagerService', '$stateParams'];
   /* @ngInject */
-  function CoreAdminController($state, $http, $location, $stateParams) {
+  function CoreAdminController($state, $rootScope, orderManagerService, $stateParams) {
     var vm = this;
 
     vm.title = 'Core';
+
+    $rootScope.numberOtherNotDeliver = orderManagerService.cache.numberOtherNotDeliver;
 
     vm.navigation = [
       {
@@ -57,6 +59,19 @@
       }
     ];
 
+    /**
+     * get number other that is not deliver
+     */
+    function getNumberNotDeliver() {
+      orderManagerService.api.getNumberNotDeliver()
+        .then(function (response) {
+          $rootScope.numberOtherNotDeliver = response.data;
+        })
+        .catch(function () {
+          $rootScope.numberOtherNotDeliver = 0;
+        })
+    }
 
+    getNumberNotDeliver();
   }
 })();

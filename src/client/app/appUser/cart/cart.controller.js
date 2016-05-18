@@ -61,10 +61,10 @@
       $state.go('app.appUser.order', {checkoutId: '95237041b02096bbdb38980f727e33c3local'});
     };
 
-    function activate() {
-      logger.info('Activated Cart View');
-    }
-
-    activate();
+    //function activate() {
+    //  logger.info('Activated Cart View');
+    //}
+    //
+    //activate();
   }
 })();

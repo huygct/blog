@@ -54,7 +54,7 @@
     function activate() {
       loadProductById(currentProductId);
       getProductByCategoryId(currentCategoryId);
-      logger.info('Activated Product View');
+      //logger.info('Activated Product View');
     }
 
     activate();

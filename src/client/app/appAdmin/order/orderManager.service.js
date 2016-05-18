@@ -19,7 +19,8 @@
 
     var cache = {
       alert: commonService.createAlert('danger', '', false),
-      spinnerLoading: false
+      spinnerLoading: false,
+      numberOtherNotDeliver: 0
     };
 
     api = {
@@ -37,6 +38,10 @@
       deleteOrder: function (order) {
         var url = coreService.formatApi(appConstant.order.api.model) + '/' + order.id;
         return $http.delete(url);
+      },
+      getNumberNotDeliver: function () {
+        var url = coreService.formatApi(appConstant.order.api.getNumberNotDeliver);
+        return $http.get(url);
       }
     };
 

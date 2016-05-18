@@ -4,6 +4,10 @@
     <div flex-xs="" flex-gt-xs="66" layout="column" class="left-side-cart-view">
       <md-card>
         <div ng-include="'app/appUser/cart/dialog/tableProduct.html'"></div>
+        <md-button class="md-raised md-primary" aria-label="mua hang" ng-click="vm.goToPageShowProducts()" ng-if="vm.productList.length > 0">
+          Tiếp Tục mua hàng
+          <i class="fa fa-hand-o-right"></i>
+        </md-button>
       </md-card>
     </div>
     <div flex-xs="" flex-gt-xs="33" layout="column" class="right-side-cart-view"

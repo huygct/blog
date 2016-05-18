@@ -44,6 +44,11 @@
         orderManagerService.api.updateStatusOrder(order, status)
           .then(function (response) {
             order.status = _.get(response, 'data.status');
+            if(order.status) {
+              $rootScope.numberOtherNotDeliver--;
+            } else {
+              $rootScope.numberOtherNotDeliver++;
+            }
           })
           .catch(function () {
             alert.type = 'danger';

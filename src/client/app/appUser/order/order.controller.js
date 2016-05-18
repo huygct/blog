@@ -157,10 +157,10 @@
       };
     }
 
-    function activate() {
-      logger.info('Activated Order View');
-    }
-
-    activate();
+    //function activate() {
+    //  logger.info('Activated Order View');
+    //}
+    //
+    //activate();
   }
 })();

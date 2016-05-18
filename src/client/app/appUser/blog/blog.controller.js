@@ -84,7 +84,7 @@
     function activate() {
       getProduct(vm.defaultValue.currentPage);
       getEvent();
-      logger.info('Activated Blog View');
+      //logger.info('Activated Blog View');
     }
 
     activate();
