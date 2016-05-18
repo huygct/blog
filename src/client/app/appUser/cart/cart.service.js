@@ -8,9 +8,9 @@
     .module('app.user.cart')
     .factory('cartService', cartService);
 
-  cartService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'localStorageService'];
+  cartService.$inject = ['appConstant', 'localStorageService'];
   /* @ngInject */
-  function cartService($http, $q, exception, logger, appConstant, localStorageService) {
+  function cartService(appConstant, localStorageService) {
 
     var service = {};
 

@@ -114,7 +114,7 @@
                 paginatedRows: '=',
                 mdtRow: '=',
                 mdtRowPaginator: '&?',
-                mdtRowPaginatorErrorMessage:"@",
+                mdtRowPaginatorErrorMessage:'@',
                 virtualRepeat: '='
             },
             controller: function mdtTableController($scope){
@@ -173,9 +173,10 @@
 
                             addRawDataToStorage(mdtRow['data']);
                         }, true);
-                    }else{
-                        //if it's used for 'Ajax pagination'
                     }
+                    //else{
+                    //    //if it's used for 'Ajax pagination'
+                    //}
                 }
 
                 function addRawDataToStorage(data){

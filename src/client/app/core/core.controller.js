@@ -1,12 +1,6 @@
 /**
  * Created by thuynghi on 12/04/2016.
  */
-/**
- * Created by thuynghi on 04/03/2016.
- */
-/**
- * Created by thuynghi on 04/03/2016.
- */
 (function () {
   'use strict';
 

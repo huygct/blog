@@ -69,7 +69,7 @@
         })
         .catch(function () {
           $rootScope.numberOtherNotDeliver = 0;
-        })
+        });
     }
 
     getNumberNotDeliver();

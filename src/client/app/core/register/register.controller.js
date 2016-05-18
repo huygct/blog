@@ -38,6 +38,6 @@
 
     vm.closeAlert = function () {
       vm.alert.show = false;
-    }
+    };
   }
 })();

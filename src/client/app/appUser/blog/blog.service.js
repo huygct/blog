@@ -8,9 +8,9 @@
     .module('app.user.blog')
     .factory('blogService', blogService);
 
-  blogService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'coreService'];
+  blogService.$inject = ['$http', 'appConstant', 'coreService'];
   /* @ngInject */
-  function blogService($http, $q, exception, logger, appConstant, coreService) {
+  function blogService($http, appConstant, coreService) {
     var service = {};
 
     var cache = {
@@ -32,10 +32,10 @@
 
           cache.status = false;
         })
-        .catch(function (error) {
+        .catch(function () {
           // fail
           cache.status = false; // notify fail network
-        })
+        });
     }
 
     getNumberProduct();

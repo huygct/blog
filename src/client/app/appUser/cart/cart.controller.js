@@ -8,11 +8,10 @@
     .module('app.user.cart')
     .controller('CartController', cartController);
 
-  cartController.$inject = ['$q', 'logger', '$scope', '$mdDialog', 'localStorageService', 'appConstant',
-    '$state'];
+  cartController.$inject = ['$mdDialog', 'localStorageService', 'appConstant', '$state'];
   /* @ngInject */
-  function cartController($q, logger, $scope, $mdDialog, localStorageService, appConstant,
-                          $state) {
+  function cartController($mdDialog, localStorageService, appConstant, $state) {
+
     var vm = this;
 
     var YOUR_CART_KEY = appConstant.YOUR_CART;

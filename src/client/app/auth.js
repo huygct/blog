@@ -21,7 +21,7 @@
     }
 
     function authorize(access) {
-      if (access === appConstant.admin) {
+      if (access === appConstant.ADMIN_AUTH) {
         return isAuthenticated();
       } else {
         return false;

@@ -8,10 +8,10 @@
     .module('app.user.blog')
     .controller('BlogController', BlogController);
 
-  BlogController.$inject = ['$state', '$scope', 'logger', 'productManagerService', 'blogService',
+  BlogController.$inject = ['$state', 'productManagerService', 'blogService',
     'eventService', '$location', '$anchorScroll'];
   /* @ngInject */
-  function BlogController($state, $scope, logger, productManagerService, blogService,
+  function BlogController($state, productManagerService, blogService,
                           eventService, $location, $anchorScroll) {
     var vm = this;
     vm.title = 'Blog';
@@ -37,12 +37,12 @@
                 event.index = index++;
                 vm.events.push(event);
               }
-            })
+            });
           }
         })
         .catch(function () {
           vm.events = [];
-        })
+        });
     }
 
     /**
@@ -60,12 +60,12 @@
 
           vm.cache.status = true;
         })
-        .catch(function (error) {
+        .catch(function () {
           vm.cache.status = false;
         })
         .finally(function () {
 
-        })
+        });
     }
 
     vm.showProductOfEvent = function (productList, eventId) {

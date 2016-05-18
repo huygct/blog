@@ -44,8 +44,8 @@ function getPerson(req, res, next) {
 function uploadFile(req, res) {
     upload(req, res, function (err) {
         if (err) {
-            return res.end("Error uploading file.");
+            return res.end('Error uploading file.');
         }
-        res.json({status: 204, files: req.file})
+        res.json({status: 204, files: req.file});
     });
 }

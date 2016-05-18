@@ -8,10 +8,10 @@
     .module('app.admin.product')
     .factory('productManagerService', productManagerService);
 
-  productManagerService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'coreService',
+  productManagerService.$inject = ['$http', 'appConstant', 'coreService',
     'commonService'];
   /* @ngInject */
-  function productManagerService($http, $q, exception, logger, appConstant, coreService,
+  function productManagerService($http, appConstant, coreService,
                                  commonService) {
 
     var api;

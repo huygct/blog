@@ -1,3 +1,5 @@
+/*jshint -W079 */
+
 var args = require('yargs').argv;
 var browserSync = require('browser-sync');
 var config = require('./gulp.config')();
@@ -41,8 +43,8 @@ gulp.task('vet', function() {
         .pipe($.if(args.verbose, $.print()))
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
-        .pipe($.jshint.reporter('fail'))
-        .pipe($.jscs());
+        .pipe($.jshint.reporter('fail'));
+        //.pipe($.jscs());
 });
 
 /**

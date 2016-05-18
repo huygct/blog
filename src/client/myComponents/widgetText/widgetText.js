@@ -29,7 +29,7 @@
         categoryId = category;
       }
       $state.go('app.appUser.product', {productId: productId, categoryId: categoryId});
-    }
+    };
   }
 
 })();

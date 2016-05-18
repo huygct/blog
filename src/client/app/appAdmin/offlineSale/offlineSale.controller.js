@@ -8,8 +8,8 @@
     .module('app.admin.setting')
     .controller('OfflineSaleController', OfflineSaleController);
 
-  OfflineSaleController.$inject = ['$rootScope', '$scope', 'productManagerService', 'offlineSaleService', '$mdDialog'];
-  function OfflineSaleController($rootScope, $scope, productManagerService, offlineSaleService, $mdDialog) {
+  OfflineSaleController.$inject = ['$rootScope', 'productManagerService', 'offlineSaleService', '$mdDialog'];
+  function OfflineSaleController($rootScope, productManagerService, offlineSaleService, $mdDialog) {
     $rootScope.nameApp = 'Offline Sale';
 
     var vm = this;
@@ -35,7 +35,7 @@
         })
         .catch(function () {
           vm.products = [];
-        })
+        });
     }
 
     function getOrderOfflineSale() {
@@ -53,7 +53,7 @@
         })
         .finally(function() {
           vm.cache.spinnerLoading = false;
-        })
+        });
     }
 
     function getSumMoney(selectedProducts, otherCost) {
@@ -98,7 +98,7 @@
           price: product.price,
           imageUrl: product.imageUrl,
           sale: product.sale
-        })
+        });
       });
       newOfflineSale.productList = productList;
 
@@ -120,7 +120,7 @@
         })
         .finally(function() {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     vm.openMenuChangeStatusOrder = function($mdOpenMenu, ev) {
@@ -147,16 +147,16 @@
         })
         .finally(function() {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     vm.deleteOfflineSale = function deleteOfflineSale(orderOfflineSale) {
       var confirm = $mdDialog.confirm()
         .title('Bạn muốn xoá đơn hàng này?')
-        .textContent('�?ơn hàng này sẽ bị xoá sau khi bấm �?ỒNG �?.')
+        .textContent('Đơn hàng này sẽ bị xoá sau khi bấm ĐỒNG Ý.')
         .ariaLabel('change order')
         .targetEvent(originatorEv)
-        .ok('�?ồng ý!')
+        .ok('Đồng ý!')
         .cancel('Hủy');
       $mdDialog.show(confirm).then(function() {
         var alert = vm.cache.alert;
@@ -176,7 +176,7 @@
           })
           .finally(function() {
             vm.cache.spinnerLoading = false;
-          })
+          });
       }, function() {
 
       });

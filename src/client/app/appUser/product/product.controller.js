@@ -30,7 +30,7 @@
         })
         .catch(function (error) {
           vm.cache.status = false;
-        })
+        });
     }
 
     function getProductByCategoryId(categoryId) {
@@ -44,7 +44,7 @@
         .catch(function () {
           vm.productsByCategoryId = [];
           vm.cache.status = false;
-        })
+        });
     }
 
 

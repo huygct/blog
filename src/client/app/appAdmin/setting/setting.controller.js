@@ -37,7 +37,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     }
 
     /**

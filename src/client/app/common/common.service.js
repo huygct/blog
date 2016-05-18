@@ -8,11 +8,9 @@
     .module('app')
     .factory('commonService', commonService);
 
-  commonService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant',
-                           'coreService'];
+  commonService.$inject = ['appConstant', 'coreService'];
   /* @ngInject */
-  function commonService($http, $q, exception, logger, appConstant,
-                         coreService) {
+  function commonService(appConstant, coreService) {
 
     var service = {};
 
@@ -21,7 +19,7 @@
         type: type || 'danger',
         msg: msg || type === 'danger' ? 'Failing...' : 'Success',
         show: show || false
-      }
+      };
     }
 
     service.createAlert = createAlert;

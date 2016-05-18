@@ -8,10 +8,10 @@
     .module('app.admin.offlineSale')
     .factory('offlineSaleService', offlineSaleService);
 
-  offlineSaleService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'commonService',
+  offlineSaleService.$inject = ['$http', 'appConstant', 'commonService',
                             'coreService'];
   /* @ngInject */
-  function offlineSaleService($http, $q, exception, logger, appConstant, commonService, coreService) {
+  function offlineSaleService($http, appConstant, commonService, coreService) {
 
     var service = {};
 

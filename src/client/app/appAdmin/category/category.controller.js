@@ -8,11 +8,11 @@
     .module('app.admin.category')
     .controller('CategoryController', CategoryController);
 
-  CategoryController.$inject = ['$rootScope', '$http', 'appConstant', 'logger', 'categoryService', '$scope', 'coreService',
+  CategoryController.$inject = ['$rootScope', 'appConstant', 'logger', 'categoryService', '$scope', 'coreService',
     '$mdDialog'];
 
   /* @ngInject */
-  function CategoryController($rootScope, $http, appConstant, logger, categoryService, $scope, coreService,
+  function CategoryController($rootScope, appConstant, logger, categoryService, $scope, coreService,
                               $mdDialog) {
     $rootScope.nameApp = 'Category Manager';
     var vm = this;
@@ -52,7 +52,7 @@
           return {
             results: categoryList.data,
             totalResultCount: categoryList.total
-          }
+          };
         });
     }
 
@@ -89,7 +89,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     /**
@@ -125,7 +125,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     vm.backToTableView = function () {
@@ -172,7 +172,7 @@
         })
         .finally(function() {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     activate();

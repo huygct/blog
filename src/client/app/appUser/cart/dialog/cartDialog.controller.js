@@ -8,10 +8,10 @@
     .module('app.user.cart')
     .controller('CartDialogController', CartDialogController);
 
-  CartDialogController.$inject = ['$q', 'logger', '$scope', '$uibModalInstance', 'cartService',
+  CartDialogController.$inject = ['$uibModalInstance', 'cartService',
     'appConstant', '$state', 'localStorageService', 'productForCart'];
   /* @ngInject */
-  function CartDialogController($q, logger, $scope, $uibModalInstance, cartService,
+  function CartDialogController($uibModalInstance, cartService,
                                 appConstant, $state, localStorageService, productForCart) {
     var vm = this;
 

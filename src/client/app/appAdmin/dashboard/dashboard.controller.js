@@ -5,9 +5,9 @@
     .module('app.admin.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+  DashboardController.$inject = ['logger'];
   /* @ngInject */
-  function DashboardController($q, dataservice, logger) {
+  function DashboardController(logger) {
     var vm = this;
     vm.title = 'Dashboard';
 

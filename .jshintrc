@@ -4,12 +4,12 @@
     "curly": true,
     "eqeqeq": true,
     "es3": false,
-    "forin": true,
-    "freeze": true,
+    "forin": false,
+    "freeze": false,
     "immed": true,
     "indent": 4,
     "latedef": "nofunc",
-    "newcap": true,
+    "newcap": false,
     "noarg": true,
     "noempty": true,
     "nonbsp": true,
@@ -19,11 +19,6 @@
     "undef": true,
     "unused": false,
     "strict": false,
-    "maxparams": 10,
-    "maxdepth": 5,
-    "maxstatements": 40,
-    "maxcomplexity": 8,
-    "maxlen": 120,
 
     "asi": false,
     "boss": false,
@@ -48,13 +43,25 @@
     "shadow": false,
     "sub": true,
     "supernew": false,
-    "validthis": false,
+    "validthis": true,
     "noyield": false,
 
     "browser": true,
     "node": true,
-
     "globals": {
-        "angular": false
+        "angular": false,
+        "Slick": false,
+        "$": false,
+        "_": false,
+        "Phaser": false,
+        "PIXI": false,
+        "moment": false,
+        "d3": false,
+        "Storage": false,
+        "CodeMirror": false,
+        "Dottie": false,
+        "Papa": false,
+        "saveAs": false,
+        "ov": false
     }
 }

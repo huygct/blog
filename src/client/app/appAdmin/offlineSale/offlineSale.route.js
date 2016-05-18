@@ -25,7 +25,7 @@
           title: 'Offline Sale'
         }
       }
-    ]
+    ];
   }
 
 })();

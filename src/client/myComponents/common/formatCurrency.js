@@ -12,7 +12,9 @@
   formatCurrency.$inject = [];
   function formatCurrency () {
     function linkFunc(scope, elem, attrs, ctrl) {
-      if (!ctrl) return;
+      if (!ctrl) {
+        return;
+      }
 
       /**
        * Formatters change how model values will appear in the view.
@@ -32,24 +34,23 @@
 
       function formatNumber(newValue) {
         if (!newValue || newValue === '') {
-          console.log('www');
           return '';
         }
         if (angular.isNumber(newValue)) {
           newValue = newValue.toString();
         }
         //clearing left side zeros
-        while (newValue.charAt(0) == '0') {
+        while (newValue.charAt(0) === '0') {
           newValue = newValue.substr(1);
         }
         //newValue = newValue.replace(/[^\d.\',']/g, '');
 
-        var point = newValue.indexOf(".");
+        var point = newValue.indexOf('.');
         if (point >= 0) {
           newValue = newValue.slice(0, point + 3);
         }
 
-        var decimalSplit = newValue.split(".");
+        var decimalSplit = newValue.split('.');
         var intPart = decimalSplit[0];
         var decPart = decimalSplit[1];
 
@@ -57,7 +58,7 @@
         if (intPart.length > 3) {
           var intDiv = Math.floor(intPart.length / 3);
           while (intDiv > 0) {
-            var lastComma = intPart.indexOf(",");
+            var lastComma = intPart.indexOf(',');
             if (lastComma < 0) {
               lastComma = intPart.length;
             }
@@ -70,10 +71,10 @@
         }
 
         if (decPart === undefined) {
-          decPart = "";
+          decPart = '';
         }
         else {
-          decPart = "." + decPart;
+          decPart = '.' + decPart;
         }
         return intPart + decPart;
       }

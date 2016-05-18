@@ -4,6 +4,6 @@
 (function () {
   'use strict';
 
-  angular.module('app.admin.offlineSale', [])
+  angular.module('app.admin.offlineSale', []);
 
 })();

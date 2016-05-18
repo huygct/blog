@@ -24,8 +24,8 @@
         });
 
         scope.$on('$destroy', function (e) {
-          element.unbind('change')
-        })
+          element.unbind('change');
+        });
       }
     };
   }

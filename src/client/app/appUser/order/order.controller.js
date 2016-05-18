@@ -123,8 +123,8 @@
               name: item.name,
               price: item.price,
               sale: item.sale
-            })
-        })
+            });
+        });
       }
       order.productList = productList; // add productList
 

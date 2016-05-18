@@ -8,10 +8,10 @@
     .module('app.admin.category')
     .factory('categoryService', categoryService);
 
-  categoryService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant',
+  categoryService.$inject = ['$http', 'exception', 'logger', 'appConstant',
       'coreService', 'commonService'];
   /* @ngInject */
-  function categoryService($http, $q, exception, logger, appConstant,
+  function categoryService($http, exception, logger, appConstant,
                            coreService, commonService) {
 
     var api;

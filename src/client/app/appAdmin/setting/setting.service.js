@@ -8,10 +8,10 @@
     .module('app.admin.setting')
     .factory('settingService', settingService);
 
-  settingService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', 'commonService',
+  settingService.$inject = ['$http', 'appConstant', 'commonService',
     'coreService'];
   /* @ngInject */
-  function settingService($http, $q, exception, logger, appConstant, commonService, coreService) {
+  function settingService($http, appConstant, commonService, coreService) {
 
     var service = {};
 

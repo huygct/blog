@@ -57,7 +57,7 @@
           })
           .finally(function () {
             order.loading = false;
-          })
+          });
       }, function() {
 
       });
@@ -90,7 +90,7 @@
           })
           .finally(function () {
             vm.cache.spinnerLoading = false;
-          })
+          });
       }, function() {
 
       });

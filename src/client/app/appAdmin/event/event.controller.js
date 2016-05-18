@@ -48,7 +48,7 @@
 
       eventService.api.getEventList()
         .then(function (response) {
-          vm.eventList = response.data
+          vm.eventList = response.data;
         })
         .catch(function (error) {
           vm.eventList.length = 0;
@@ -58,7 +58,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     }
 
     /**
@@ -90,7 +90,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     /**
@@ -128,7 +128,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
     //---------------------------------------------------------------------------------
 
@@ -169,7 +169,7 @@
             .finally(function () {
               vm.cache.spinnerLoading = false;
               loadEvent();
-            })
+            });
         }
       }, function () {
 
@@ -222,7 +222,7 @@
         })
         .finally(function () {
           vm.cache.file.loading = false;
-        })
+        });
     };
 
     /**
@@ -298,7 +298,7 @@
             $scope.productSelectList.length = 0;
             _.forEach($scope.productListCanAction, function (productId) {
               $scope.productSelectList.push(productId);
-            })
+            });
           }
         }
       };

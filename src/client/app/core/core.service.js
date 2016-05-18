@@ -29,7 +29,7 @@
         return response.data;
       }
       function fail() {
-        return exception.catcher('Read env.json fail...')
+        return exception.catcher('Read env.json fail...');
       }
     }
 

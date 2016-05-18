@@ -58,7 +58,7 @@
           })
           .finally(function() {
             vm.cache.spinnerLoading = false;
-          })
+          });
       }, function() {
         // not delete
       });
@@ -89,7 +89,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     }
 
     function loadData (page, pageSize) {
@@ -108,7 +108,7 @@
           return {
             results: productList.data,
             totalResultCount: productList.total
-          }
+          };
         })
         .catch(function (error) {
           alert.type = 'danger';
@@ -117,8 +117,8 @@
           return {
             results: [],
             totalResultCount: 0
-          }
-        })
+          };
+        });
     }
 
     /**
@@ -165,7 +165,7 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     /**
@@ -208,14 +208,14 @@
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;
-        })
+        });
     };
 
     vm.backToTableView = function () {
       vm.cache.currentProduct = {};
       vm.selectedProduct = [];
       vm.cache.file = {};
-      vm.cache.currentView = productManagerService.getView.main
+      vm.cache.currentView = productManagerService.getView.main;
     };
 
     /**
@@ -236,7 +236,7 @@
         })
         .finally(function () {
           vm.cache.file.loading = false;
-        })
+        });
     };
 
     /**

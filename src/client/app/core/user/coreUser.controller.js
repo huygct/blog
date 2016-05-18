@@ -26,7 +26,7 @@
         })
         .catch(function () {
           vm.logoUrl = '';
-        })
+        });
     }
 
     /**

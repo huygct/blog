@@ -8,10 +8,10 @@
     .module('app.admin.event')
     .factory('eventService', eventService);
 
-  eventService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant',
+  eventService.$inject = ['$http', 'appConstant',
     'coreService', 'commonService'];
   /* @ngInject */
-  function eventService($http, $q, exception, logger, appConstant,
+  function eventService($http, appConstant,
                            coreService, commonService) {
 
     var api;
