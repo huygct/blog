@@ -3,11 +3,11 @@
 
   angular
     .module('app.core')
-    .factory('myInterceptors', trackingInterceptors);
+    .factory('myInterceptors', myInterceptors);
 
-  trackingInterceptors.$inject = ['loginService', '$q', '$location'];
+  myInterceptors.$inject = ['$q', '$injector', 'localStorageService', 'appConstant'];
   /* @ngInject */
-  function trackingInterceptors(loginService, $q, $location) {
+  function myInterceptors($q, $injector, localStorageService, appConstant) {
     var flag = 1;
     var service = {
       request: function (config) {
@@ -20,13 +20,19 @@
         return $q.reject(response);
       }
     };
+
     return service;
 
     function addHeader (config) {
-      var token = loginService.getCurrentUser().token;
+      var user = localStorageService.get(appConstant.USER_APP) ;
+      var token = user ? user.token : null;
       if (token) {
         // Set the `Authorization` header for every outgoing HTTP request: Authorization: Bearer <TOKEN_STRING>
         config.headers.Authorization = 'Bearer ' + token;
+        //config.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
+        //config.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+        //config.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
         flag = 1;
       }
 
@@ -34,17 +40,11 @@
     }
 
     function preformRejection (response) {
-      if (response.status === 401) {
-        // handle session timeouts: notice timeout on login dialog
-        if(angular.isFunction(loginService.signInAgain) && flag === 1){
-          loginService.signInAgain('Session timeout! Please login again.');
-          flag = 0;
-        }else{// remove user from localStorage
-          localStorage.removeItem('user');
-        }
-      } else if(response.status === 403){
-        $location.path('/403');
+      if (response.status === 401 || response.status === 403) {
+        localStorageService.remove(appConstant.USER_APP);
+        $injector.get('$state').go('app.404');
       }
+      return $q.reject(response);
     }
   }
 })();

@@ -8,10 +8,10 @@
     .module('app.core')
     .factory('coreService', coreService);
 
-  coreService.$inject = ['$http', '$q', 'exception', 'logger', 'appConstant', '$rootScope',
+  coreService.$inject = ['$http', 'exception', 'logger', 'appConstant', '$rootScope',
     '$uibModal', 'localStorageService'];
   /* @ngInject */
-  function coreService($http, $q, exception, logger, appConstant, $rootScope,
+  function coreService($http, exception, logger, appConstant, $rootScope,
                        $uibModal, localStorageService) {
     var service = {};
 
