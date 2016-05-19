@@ -5,13 +5,19 @@
     .module('app.core')
     .factory('myInterceptors', myInterceptors);
 
-  myInterceptors.$inject = ['$q', '$injector', 'localStorageService', 'appConstant'];
+  myInterceptors.$inject = ['$q', '$window', '$injector', 'localStorageService', 'appConstant', '$location'];
   /* @ngInject */
-  function myInterceptors($q, $injector, localStorageService, appConstant) {
+  function myInterceptors($q, $window, $injector, localStorageService, appConstant, $location) {
     var flag = 1;
     var service = {
       request: function (config) {
-        return addHeader(config);
+        var url = $location.path();
+        var param1 = url.split('/')[1] || '';
+        if(param1 === 'admin') {
+          return addHeaderAdmin(config);
+        } else {
+          return addHeaderUser(config);
+        }
       },
       responseError: function (response) {
         preformRejection(response);
@@ -23,7 +29,19 @@
 
     return service;
 
-    function addHeader (config) {
+    function addHeaderAdmin (config) {
+      var adminString = $window.sessionStorage.getItem(appConstant.ADMIN_APP);
+      var admin = JSON.parse(adminString);
+      var token = admin ? admin.token : null;
+      if (token) {
+        config.headers.Authorization = 'Bearer ' + token;
+        flag = 1;
+      }
+
+      return config;
+    }
+
+    function addHeaderUser (config) {
       var user = localStorageService.get(appConstant.USER_APP) ;
       var token = user ? user.token : null;
       if (token) {

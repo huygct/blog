@@ -8,9 +8,9 @@
     .module('app.core')
     .controller('LoginDialogController', loginDialogController);
 
-  loginDialogController.$inject = ['$state', '$uibModalInstance', 'logger', '$scope', 'coreService'];
+  loginDialogController.$inject = ['$state', '$uibModalInstance', '$window', 'appConstant', 'coreService'];
   /* @ngInject */
-  function loginDialogController($state, $uibModalInstance, logger, $scope, coreService) {
+  function loginDialogController($state, $uibModalInstance, $window, appConstant, coreService) {
     var vm = this;
     var user;
 
@@ -22,8 +22,13 @@
     vm.login = function (user) {
       coreService.api.login(user)
         .then(function(response) {
-          coreService.saveCurrentUser(response.data);
-          vm.msgError = '';
+          var type = _.get(response, 'data.type');
+          if(type === 'admin') {
+            $window.sessionStorage.setItem(appConstant.ADMIN_APP, JSON.stringify(response.data));
+          } else {
+            coreService.saveCurrentUser(response.data);
+            vm.msgError = '';
+          }
           $uibModalInstance.close(user);
         })
         .catch(function(error) {

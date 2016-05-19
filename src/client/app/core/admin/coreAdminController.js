@@ -11,9 +11,9 @@
     .module('app.core')
     .controller('CoreAdminController', CoreAdminController);
 
-  CoreAdminController.$inject = ['$state', '$rootScope', 'orderManagerService', '$stateParams'];
+  CoreAdminController.$inject = ['$state', '$rootScope', '$window', 'orderManagerService', 'appConstant'];
   /* @ngInject */
-  function CoreAdminController($state, $rootScope, orderManagerService, $stateParams) {
+  function CoreAdminController($state, $rootScope, $window, orderManagerService, appConstant) {
     var vm = this;
 
     vm.title = 'Core';
@@ -71,6 +71,11 @@
           $rootScope.numberOtherNotDeliver = 0;
         });
     }
+
+    vm.logoutAdmin = function logoutAdmin() {
+      $window.sessionStorage.removeItem(appConstant.ADMIN_APP);
+      $state.go('app.appUser.blog');
+    };
 
     getNumberNotDeliver();
   }
