@@ -29,10 +29,6 @@
       if (token) {
         // Set the `Authorization` header for every outgoing HTTP request: Authorization: Bearer <TOKEN_STRING>
         config.headers.Authorization = 'Bearer ' + token;
-        //config.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
-        //config.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-        //config.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-
         flag = 1;
       }
 
