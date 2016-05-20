@@ -26,6 +26,7 @@
       );
       function success(response) {
         service.env = response.data;
+        console.log('----1 ', service.env);
         return response.data;
       }
       function fail() {
@@ -34,6 +35,16 @@
     }
 
     function formatApi(api) {
+      console.log('----2 ', service.env);
+      if(!service.env) {
+        service.env = {
+          server: {
+            address: 'myweb-backend-huy-gct.c9users.io',
+            port: '',
+            protocol: 'https://'
+          }
+        }
+      }
       var config = service.env.server;
       return config.protocol + config.address + (config.port ? ':' + config.port : '') + '/' + api;
     }

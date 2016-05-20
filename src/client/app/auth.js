@@ -8,22 +8,27 @@
     .module('app')
     .factory('Auth', authService);
 
-  authService.$inject = ['appConstant', 'localStorageService'];
+  authService.$inject = ['$window', 'appConstant', 'localStorageService'];
   /* @ngInject */
-  function authService(appConstant, localStorageService) {
+  function authService($window, appConstant, localStorageService) {
 
     var service = {};
 
-    var USER_APP = appConstant.USER_APP;
+    function isAdminAuthenticated() {
+      return $window.sessionStorage.getItem(appConstant.ADMIN_APP);
+    }
 
-    function isAuthenticated() {
-      return localStorageService.get(USER_APP);
+    function isUserAuthenticated() {
+      return localStorageService.get(appConstant.USER_AUTH);
     }
 
     function authorize(access) {
       if (access === appConstant.ADMIN_AUTH) {
-        return isAuthenticated();
+        return isAdminAuthenticated();
       } else {
+        if(access === appConstant.USER_AUTH) {
+          return isUserAuthenticated();
+        }
         return false;
       }
     }
