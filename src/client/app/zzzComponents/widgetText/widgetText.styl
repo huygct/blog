@@ -1,0 +1,133 @@
+@import '../../../../../node_modules/nib'
+
+
+.widget-text-box
+  padding-bottom 64px
+  position relative
+  cursor pointer
+  .bottom-widget-text
+    width 100%
+    position absolute
+    bottom 0
+    padding-bottom 8px
+    margin auto
+    text-align center
+    .name-widget
+      display: block
+      font-size 1.3rem
+      padding 10px 0
+      color black
+    .cost-widget
+      padding-top 8px
+      font-size 1.3rem
+      font-weight bold
+      color black
+    .old-widget
+      padding-top 8px
+      font-size 1rem
+      text-decoration line-through
+      color #999
+
+// hover image
+// ---------------------default--------------------------------------
+.view {
+  //width: 100%;
+  height: 100%;
+  //margin: 10px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+
+}
+.view .mask, .view .content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0
+}
+.view img {
+  display: block;
+  position: relative
+}
+.view h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 8px 0 0 0
+}
+.view p {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  position: relative;
+  color: #fff;
+  //padding: 10px 20px 20px;
+  text-align: center
+}
+.view a.info {
+  display: inline-block;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  text-decoration: none;
+  padding: 7px 14px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 0 1px #000
+  font-weight bold
+}
+.view a.info:hover {
+  box-shadow: 0 0 5px #000
+}
+// ---------------------write hover--------------------------------------
+.view-first img {
+  transition: all 0.2s linear;
+}
+.view-first .mask {
+  opacity: 0;
+  background-color: rgba(219,127,8, 0.7);
+  transition: all 0.4s ease-in-out;
+}
+.view-first h2 {
+  transform: translateY(-100px);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.view-first p {
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+.view-first a.info{
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+//-----------------------Effect--------------------------------------------
+.view-first:hover img {
+  transform: scale(1.1);
+}
+.view-first:hover .mask {
+  opacity: 1;
+}
+.view-first:hover h2,
+.view-first:hover p,
+.view-first:hover a.info {
+  opacity: 1;
+  transform: translateY(0px);
+}
+.view-first:hover p {
+  transition-delay: 0.1s;
+}
+.view-first:hover a.info {
+  transition-delay: 0.2s;
+}

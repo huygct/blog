@@ -2,7 +2,6 @@ module.exports = function() {
     var client = './src/client/';
     var server = './src/server/';
     var clientApp = client + 'app/';
-    var myComponents = client + 'myComponents/';
     var report = './report/';
     var root = './';
     var specRunnerFile = 'specs.html';
@@ -29,24 +28,26 @@ module.exports = function() {
         client: client,
         css: [
             temp + 'styles.css',
-            myComponents + '**/*.css',
             clientApp + '**/*.css'
         ],
-        fonts: bower.directory + 'font-awesome/fonts/**/*.*',
+        fonts: [
+            bower.directory + 'font-awesome/fonts/**/*.*',
+            bower.directory + 'bootstrap/fonts/**/*.*',
+            bower.directory + 'material-design-icons/iconfont/**/*.*'
+        ],
         html: client + '**/*.html',
-        htmltemplates: clientApp + '**/*.html',
-        images: client + 'images/**/*.*',
+        htmltemplates: [
+            clientApp + '**/*.html'
+        ],
+        images: './images/**/*.*',
         index: client + 'index.html',
         // app js, with no specs
         js: [
-            myComponents + '**/*.module.js',
-            myComponents + '**/*.js',
             clientApp + '**/*.module.js',
             clientApp + '**/*.js',
             '!' + clientApp + '**/*.spec.js'
         ],
         jsOrder: [
-            '**/myComponents.module.js',
             '**/app.module.js',
             '**/*.module.js',
             '**/*.js'

@@ -12,14 +12,16 @@
   /* @ngInject */
   function loginDialogController($state, $uibModalInstance, $window, appConstant, coreService) {
     var vm = this;
-    var user;
 
     vm.msgError = '';
+    vm.loading = false;
 
     /**
      * login
      */
     vm.login = function (user) {
+      vm.loading = true;
+      vm.msgError = '';
       coreService.api.login(user)
         .then(function(response) {
           var type = _.get(response, 'data.type');
@@ -35,6 +37,9 @@
           if(error.status >= 400) {
             vm.msgError = _.get(error, 'data.err');
           }
+        })
+        .finally(function () {
+          vm.loading = false;
         });
     };
     /**
@@ -42,10 +47,6 @@
      */
     vm.goToRegister = function () {
       $state.go('app.appUser.register');
-      $uibModalInstance.dismiss('cancel');
-    };
-
-    vm.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
   }

@@ -40,7 +40,7 @@
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         if(toState.data && !Auth.authorize(toState.data.access)) {
           event.preventDefault();
-          $state.go('app.404');
+          $state.go('app.appUser.blog');
         }
       });
     }]);

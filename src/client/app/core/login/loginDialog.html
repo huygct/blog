@@ -25,9 +25,12 @@
         <md-input-container layout-align="center center" style="width: 100%; text-align: center">
           <span class="text-danger">{{vm.msgError}}</span>
           <div>
-            <md-button type="submit" class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.login(vm.user)">
-              Đăng nhập
-            </md-button>
+            <button class="btn btn-primary" style="width: 100%" type="submit" ng-disabled="!(vm.user.email && vm.user.password) || vm.loading"
+                    ng-click="vm.login(vm.user)"
+                    button-spinner="vm.loading"
+                    id="login-button-app-bon-bon">
+              <i class="fa fa-sign-in"></i> Đăng nhập
+            </button>
           </div>
         </md-input-container>
       </form>
