@@ -12,15 +12,18 @@
         <p>{{ event.name }}</p>
         <!--<md-checkbox class="md-secondary" ng-model="event.selected"></md-checkbox>-->
 
-        <md-icon ng-click="vm.goToEditEventView(event)" aria-label="Edit Event" class="md-secondary md-hue-3" >
-          <i class="fa fa-pencil-square-o md-secondary md-hue-3" aria-hidden="true"></i>
-        </md-icon>
-        <md-icon class="md-secondary" ng-click="vm.assignToProduct(event, $event)" aria-label="Delete Event">
+        <md-button class="md-icon-button font-size-20" ng-click="vm.goToEditEventView(event)" aria-label="Edit Event">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </md-button>
+
+        <md-button class="md-icon-button font-size-20" ng-click="vm.assignToProduct(event, $event)" aria-label="assign Event">
           <i class="fa fa-link" aria-hidden="true"></i>
-        </md-icon>
-        <md-icon class="md-secondary" ng-click="vm.deleteRowCallback(event, $event)" aria-label="Delete Event">
-          <i class="fa fa-trash-o md-secondary" aria-hidden="true"></i>
-        </md-icon>
+        </md-button>
+
+        <md-button class="md-icon-button font-size-20" ng-click="vm.deleteRowCallback(event, $event)" aria-label="Delete Event">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </md-button>
+        <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
   </div>

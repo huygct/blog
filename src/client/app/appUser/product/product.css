@@ -1,6 +1,9 @@
 .product-view .image-card {
   max-width: 400px;
 }
+.product-view .right-side-product-view .quantity-session {
+  width: 100%;
+}
 .product-view .right-side-product-view .real-price {
   font-size: 18px;
   text-decoration: line-through;

@@ -7,7 +7,7 @@
     'ngMessages',
     'ui.bootstrap',
     'ckeditor',
-    'mdDataTable'
+    'ngImageInputWithPreview'
   ]);
 
 })();

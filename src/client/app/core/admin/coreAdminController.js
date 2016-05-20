@@ -77,6 +77,10 @@
       $state.go('app.appUser.blog');
     };
 
+    vm.goToOrder = function goToOrder() {
+      $state.go('app.appAdmin.orderManager');
+    };
+
     getNumberNotDeliver();
   }
 })();

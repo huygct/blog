@@ -13,7 +13,8 @@
         </div>
       </div>
 
-      <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{$root.numberOtherNotDeliver}}">info</div>
+      <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{$root.numberOtherNotDeliver}}"
+          ng-click="vm.goToOrder()">info</div>
 
       <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
         <i class="material-icons">more_vert</i>
@@ -27,20 +28,32 @@
   </header>
   <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
     <header class="demo-drawer-header">
-      <img src="images/app/logoAdmin.jpg" class="demo-avatar">
-      <div class="demo-avatar-dropdown">
-        <span>Admin</span>
-        <div class="mdl-layout-spacer"></div>
-        <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-          <i class="material-icons" role="presentation">arrow_drop_down</i>
-          <span class="visuallyhidden">Accounts</span>
-        </button>
-        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-          <li class="mdl-menu__item" ng-click="vm.logoutAdmin()">logout</li>
-          <!--<li class="mdl-menu__item">info@example.com</li>-->
-          <!--<li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>-->
-        </ul>
-      </div>
+      <md-menu md-position-mode="target-right target" class="demo-avatar-dropdown">
+        <img src="images/app/logoAdmin.jpg" class="demo-avatar" ng-click="$mdOpenMenu($event)">
+        <md-menu-content width="2" >
+          <md-menu-item>
+            <md-button ng-click="vm.logoutAdmin()">
+              <div>
+                <p class="padding-left-right-8">logout</p>
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+              </div>
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <!--<div class="demo-avatar-dropdown">-->
+        <!--<span>Admin</span>-->
+        <!--<div class="mdl-layout-spacer"></div>-->
+        <!--<button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button&#45;&#45;icon">-->
+          <!--<i class="material-icons" role="presentation">arrow_drop_down</i>-->
+          <!--<span class="visuallyhidden">Accounts</span>-->
+        <!--</button>-->
+        <!--<ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">-->
+          <!--<li class="mdl-menu__item" ng-click="vm.logoutAdmin()">logout</li>-->
+          <!--&lt;!&ndash;<li class="mdl-menu__item">info@example.com</li>&ndash;&gt;-->
+          <!--&lt;!&ndash;<li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>&ndash;&gt;-->
+        <!--</ul>-->
+      <!--</div>-->
     </header>
     <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
       <a class="mdl-navigation__link" ui-sref="{{nav.state}}" ui-sref-active="highlighted-nav-menu" ng-repeat="nav in vm.navigation">

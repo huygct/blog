@@ -9,14 +9,7 @@
       'app.core',
       'app.widgets',
       'app.layout',
-
-      'textAngular',
-      'ngMaterial',
-      'ngMessages',
-      'ui.bootstrap',
-      'ckeditor',
       'mdDataTable',
-      'ngImageInputWithPreview',
 
       'app.demo',
 
@@ -28,7 +21,6 @@
       'app.admin.event',
       'app.admin.setting',
       'app.admin.offlineSale',
-
 
       'app.user.blog',
       'app.user.product',

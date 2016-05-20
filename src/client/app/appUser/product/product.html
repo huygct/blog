@@ -41,14 +41,22 @@
           <hr/>
           <md-card-actions layout="row" layout-align="start center">
             <!--<select class="form-control choose-number-will-buy" ng-model="vm.quantity" ng-options="opt for opt in vm.number"></select>-->
-            <div class="form-group">
-              <label class="control-label">Số lượng:</label>
-              <input type="number" class="form-control max-width-100" ng-model="vm.currentProduct.quantityWillBuy" min="1" max="vm.currentProduct.quantity">
+            <div class="panel-body quantity-session">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="pull-left padding-8px">Số lượng:</label>
+                  <div class="pull-left padding-left-right-8">
+                    <input type="number" class="form-control max-width-100" ng-model="vm.currentProduct.quantityWillBuy" min="1" max="vm.currentProduct.quantity">
+                  </div>
+                  <div class="pull-left">
+                    <md-button class="md-primary" aria-label="mua hang" ng-click="vm.openYourCard(vm.currentProduct)">
+                      <i class="fa fa-cart-plus"></i>
+                      Cho vào giỏ hàng
+                    </md-button>
+                  </div>
+                </div>
+                </div>
             </div>
-            <md-button class="md-primary" aria-label="mua hang" ng-click="vm.openYourCard(vm.currentProduct)">
-              <i class="fa fa-cart-plus"></i>
-              Cho vào giỏ hàng
-            </md-button>
           </md-card-actions>
 
           <hr/>

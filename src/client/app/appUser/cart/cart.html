@@ -21,15 +21,23 @@
                 <span class="pull-right text-red-color">{{vm.sumMoney()}}</span>
               </p>
               <hr/>
+              <!--phu phi-->
+              <!--<div>-->
+                <!--<p class="margin-bottom-16">-->
+                  <!--<span>Phí giao hàng</span>-->
+                  <!--<span class="pull-right text-red-color">1500d</span>-->
+                <!--</p>-->
+              <!--</div>-->
+              <!-- $$ -->
               <p class="margin-bottom-16">
-                <span>Thành tiền</span>
-                <span class="pull-right text-red-color">{{vm.sumMoney()}}</span>
+                <span><b>Thành tiền</b></span>
+                <span class="pull-right text-red-color"><b>{{vm.sumMoney()}}</b></span>
               </p>
-              <span class="text-vat"><i>đã bao gồm VAT</i></span>
+              <span class="text-vat"><i>(đã bao gồm VAT)</i></span>
             </md-card-title-text>
           </md-card-title>
 
-          <md-card-actions layout="row" layout-align="start center">
+          <md-card-actions layout="row" layout-align="start center" class="pull-right">
             <md-button class="md-raised md-accent" aria-label="thanh toán" ng-click="vm.goToOrder(vm.productList)">
               Tiến hành thanh toán
               <i class="fa fa-long-arrow-right"></i>
@@ -37,6 +45,20 @@
           </md-card-actions>
         </md-card-content>
       </md-card>
+      <md-card>
+        <md-card-content>
+          <md-card-title>
+            <md-card-title-text class="margin-bottom-16 box-cal-money">
+              <p class="margin-bottom-16">
+                Phí giao hàng tuỳ khu vực...
+                Thông thường 15.000 ~ 20.000VNĐ trong nội thành tpHCM.
+                <i>Miễn phí giao hàng trong nội thành tpHCM với hoá đơn > 100.000VNĐ.</i>
+              </p>
+            </md-card-title-text>
+          </md-card-title>
+        </md-card-content>
+      </md-card>
+
     </div>
   </md-content>
 
