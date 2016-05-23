@@ -1,2 +1,5 @@
 npm install nib
-node server.js ./path 9000
+
+ui: node server.js ./path 9000
+forever start app.js --prod
+PORT=1234 forever start app.js 

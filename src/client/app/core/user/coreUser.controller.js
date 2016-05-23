@@ -9,10 +9,10 @@
     .controller('CoreUserController', CoreUserController);
 
   CoreUserController.$inject = ['$scope', '$state', 'settingService', 'logger', 'localStorageService',
-    'appConstant', '$stateParams', '$uibModal', 'coreService', '$rootScope'];
+    'appConstant', '$location', '$uibModal', 'coreService', '$anchorScroll'];
   /* @ngInject */
   function CoreUserController($scope, $state, settingService, logger, localStorageService,
-                              appConstant, $stateParams, $uibModal, coreService, $rootScope) {
+                              appConstant, $location, $uibModal, coreService, $anchorScroll) {
     var vm = this;
 
     vm.title = 'Core';
@@ -71,7 +71,7 @@
 
       modalInstance.result.then(
         function (user) {
-          console.log('user: ', user);
+          // console.log('user: ', user);
         }, function () {
           logger.info('Modal dismissed at: ' + new Date());
         });
@@ -92,6 +92,14 @@
       vm.currentUser = {};
     };
 
-   runUserApp();
+    /**
+     * go to top page
+     */
+    vm.goToTop = function goToTop() {
+      $location.hash('web-cay-canh-bon-bon-welcome');
+      $anchorScroll();
+    };
+
+    runUserApp();
   }
 })();

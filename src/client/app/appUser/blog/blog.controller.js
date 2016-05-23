@@ -68,12 +68,12 @@
         });
     }
 
-    vm.showProductOfEvent = function (productList, eventId) {
+    vm.showProductOfEvent = function (productList, eventId, eventName) {
       if(productList.length === 1) { // go to details of one product
         $state.go('app.appUser.product', {productId:productList[0].id, categoryId: productList[0].category});
       } else {
         if(productList.length > 1) { // show list products
-          $location.hash('eventId' + eventId);
+          $location.hash('su-kien-' + eventId + eventName);
           $anchorScroll();
         }
       }

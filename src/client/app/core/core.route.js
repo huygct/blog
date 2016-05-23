@@ -8,7 +8,7 @@
   appRun.$inject = ['routerHelper', 'appConstant'];
   /* @ngInject */
   function appRun(routerHelper, appConstant) {
-    var otherwise = '/404';
+    var otherwise = '/';
     routerHelper.configureStates(getStates(appConstant), otherwise);
   }
 

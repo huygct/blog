@@ -3,7 +3,7 @@
   <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
     <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title">
-            <img class="android-logo-image" src="{{vm.logoUrl}}" ng-click="vm.goToHomePage()">
+            <img class="android-logo-image" src="{{::vm.logoUrl}}" ng-click="vm.goToHomePage()">
           </span>
       <!-- Add spacer, to align navigation to the right in desktop -->
       <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -55,7 +55,7 @@
       <!--</nav>-->
       <!--</div>-->
           <span class="android-mobile-title mdl-layout-title" >
-            <img class="android-logo-image" src="{{vm.logoUrl}}">
+            <img class="android-logo-image" src="{{::vm.logoUrl}}" ng-click="vm.goToHomePage()">
           </span>
     </div>
   </div>
@@ -64,6 +64,38 @@
     <a name="top"></a>
 
     <div ui-view layout="row" flex class="content-app"></div>
+
+    <footer class="android-footer mdl-mega-footer">
+      <div class="mdl-mega-footer--top-section">
+        <div class="mdl-mega-footer--left-section">
+          <button class="mdl-mega-footer--social-btn"></button>
+          &nbsp;
+          <button class="mdl-mega-footer--social-btn"></button>
+          &nbsp;
+          <button class="mdl-mega-footer--social-btn"></button>
+        </div>
+        <div class="mdl-mega-footer--right-section">
+          <a class="mdl-typography--font-light" href="" ng-click="vm.goToTop()">
+            Back to Top
+            <i class="material-icons">expand_less</i>
+          </a>
+        </div>
+      </div>
+
+      <div class="mdl-mega-footer--middle-section">
+        <p class="mdl-typography--font-light">Cây cảnh bỏ túi bonbon - 218/28 An Dương Vương, quận 8</p>
+        <p class="mdl-typography--font-light">Điện thoại: 0946 779 296 - 0939 344 928</p>
+        <p class="mdl-typography--font-light"><b>Small bud - Big tree</b></p>
+      </div>
+
+      <div class="mdl-mega-footer--bottom-section">
+        <a class="android-link mdl-typography--font-light" href="/">
+          Trang chủ
+        </a>
+        <a class="android-link mdl-typography--font-light" target="_blank" href="https://www.facebook.com/caycanhbotuibonbon/">Facebook</a>
+      </div>
+
+    </footer>
   </div>
 
 </div>

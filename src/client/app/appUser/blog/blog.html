@@ -1,9 +1,9 @@
-<div class="android-more-section blog-content">
+<div class="android-more-section blog-content" id="web-cay-canh-bon-bon-welcome">
   <div ng-if="vm.events.length > 0">
     <div style="max-height: 305px">
       <uib-carousel active="vm.active" interval="vm.myInterval" no-wrap="vm.noWrapSlides">
         <uib-slide ng-repeat="slide in vm.events track by slide.id" index="slide.index"
-          ng-click="vm.showProductOfEvent(slide.products, slide.id)">
+          ng-click="vm.showProductOfEvent(slide.products, slide.id, slide.name)">
           <img ng-src="{{slide.imageUrl}}" style="margin:auto; max-height: 300px">
           <div class="carousel-caption">
             <p>{{slide.description}}</p>
@@ -19,7 +19,7 @@
     <title-box title="'Sản Phẩm'"></title-box>
     <my-widget-text class="android-card-container mdl-grid" data="vm.productList"></my-widget-text>
 
-    <div class="event-of-web" id="eventId{{event.id}}" ng-repeat="event in vm.events track by event.id" ng-if="event.products.length > 1">
+    <div class="event-of-web" id="su-kien-{{event.id}}{{event.name}}" ng-repeat="event in vm.events track by event.id" ng-if="event.products.length > 1">
       <title-box title="event.name"></title-box>
       <my-widget-text class="android-card-container mdl-grid" data="event.products"></my-widget-text>
     </div>
