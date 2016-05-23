@@ -23,7 +23,7 @@
           templateUrl: 'app/appUser/blog/blog.html',
           controller: 'BlogController',
           controllerAs: 'vm',
-          title: 'Blog'
+          title: 'Home'
         }
       }
     ];
