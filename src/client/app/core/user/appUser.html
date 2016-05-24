@@ -1,13 +1,13 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header user-app">
 
-  <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+  <div class="android-header mdl-layout__header mdl-layout__header--waterfall height-header-app">
     <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title">
             <img class="android-logo-image" src="{{::vm.logoUrl}}" ng-click="vm.goToHomePage()">
           </span>
       <!-- Add spacer, to align navigation to the right in desktop -->
       <div class="android-header-spacer mdl-layout-spacer"></div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="padding: 28px 12px">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable top-40-px" style="padding: 28px 12px">
         <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
           <i class="material-icons">search</i>
         </label>
@@ -16,14 +16,14 @@
           <label class="mdl-textfield__label" for="search">Enter your query...</label>
         </div>
       </div>
-      <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{vm.getNumberProductInCart()}}" ng-click="vm.openYourCard()">
+      <div class="material-icons mdl-badge mdl-badge--overlap top-40-px" data-badge="{{vm.getNumberProductInCart()}}" ng-click="vm.openYourCard()">
         <i class="material-icons">shopping_cart</i>
       </div>
-      <md-button md-no-ink class="md-primary" ng-click="vm.loginApp()" ng-if="!$root.currentUser">
+      <md-button md-no-ink class="md-primary top-40-px" ng-click="vm.loginApp()" ng-if="!$root.currentUser">
         <i class="fa fa-sign-in"></i>
         Đăng nhập
       </md-button>
-      <md-menu md-position-mode="target-right target" class="user-name-menu" ng-if="$root.currentUser">
+      <md-menu md-position-mode="target-right target" class="user-name-menu top-40-px" ng-if="$root.currentUser">
         <md-button aria-label="Open user interactions menu" class="md-primary button-user-name" ng-click="vm.openMenu($mdOpenMenu, $event)">
           <i class="fa fa-smile-o" aria-hidden="true"></i>
           {{$root.currentUser.user.name}}
