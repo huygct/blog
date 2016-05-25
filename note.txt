@@ -1,5 +1,9 @@
 npm install nib
 
-ui: node server.js ./path 9000
+ui:
+	node server.js ./path 9000
+	run server to upload image:
+		Folder: copy server to build
+			run: node app.js
+
 forever start app.js --prod
-PORT=1234 forever start app.js 

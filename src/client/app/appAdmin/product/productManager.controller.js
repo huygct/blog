@@ -129,7 +129,7 @@
     // Called when the editor is completely ready.
     vm.onReady = function () {
       // ...
-      console.log('finish description');
+      //console.log('finish description');
     };
 
     /**
@@ -248,7 +248,6 @@
       _.forEach(ids, function (id) {
         vm.selectedProduct.push(_.find(productList.data, 'id', id));
       });
-      console.log(vm.selectedProduct);
     };
 
     /**

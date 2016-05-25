@@ -37,6 +37,14 @@
       return config.protocol + config.address + (config.port ? ':' + config.port : '') + '/' + api;
     }
 
+    function formatApiUploadImage(api) {
+      var config = service.env.serverImage || null;
+      if(!config) {
+        return api;
+      }
+      return config.protocol + config.address + (config.port ? ':' + config.port : '') + '/' + api;
+    }
+
     /**
      * save user into localStore
      * @param user
@@ -114,6 +122,7 @@
     service.api = api;
     service.getEnv = getEnv;
     service.formatApi = formatApi;
+    service.formatApiUploadImage = formatApiUploadImage;
     service.saveCurrentUser = saveCurrentUser;
     service.getCurrentUser = getCurrentUser;
     service.removeCurrentUser = removeCurrentUser;

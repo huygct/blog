@@ -82,7 +82,7 @@
         return $http.get(url);
       },
       uploadImage: function(imageSource) {
-        var url = appConstant.product.api.uploadImage;
+        var url = coreService.formatApiUploadImage(appConstant.product.api.uploadImage);
         //create form data object
         var fd = new FormData();
         fd.append('file', imageSource);

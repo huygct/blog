@@ -35,7 +35,7 @@
         return $http.put(url, data);
       },
       uploadLogo: function(imageSource) {
-        var url = appConstant.setting.api.uploadLogo;
+        var url = coreService.formatApiUploadImage(appConstant.setting.api.uploadLogo);
         //create form data object
         var fd = new FormData();
         fd.append('file', imageSource);
