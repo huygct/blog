@@ -1,9 +1,10 @@
 npm install nib
 
 ui:
-	node server.js ./path 9000
+	node server.js ./path 9000 || forever start server_gzip.js ./ 9000
 	run server to upload image:
 		Folder: copy server to build
-			run: node app.js
+			run: node app.js || forever start server/app.js
 
-forever start app.js --prod
+sails:
+  forever start app.js --prod

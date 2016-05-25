@@ -115,7 +115,7 @@
           var YOUR_CART_KEY = appConstant.YOUR_CART;
           localStorageService.set(YOUR_CART_KEY, productList);
         }, function () {
-          logger.info('Modal dismissed at: ' + new Date());
+          //logger.info('Modal dismissed at: ' + new Date());
         });
     }
 
