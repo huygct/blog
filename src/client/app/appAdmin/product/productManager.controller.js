@@ -9,10 +9,10 @@
     .controller('ProductManagerController', ProductManagerController);
 
   ProductManagerController.$inject = ['$rootScope', '$mdDialog', 'logger', 'productManagerService',
-    '$scope', '$mdMedia', 'appConstant', 'categoryService'];
+    '$scope', '$mdMedia', 'appConstant', 'categoryService', 'coreService'];
   /* @ngInject */
   function ProductManagerController($rootScope, $mdDialog, logger, productManagerService,
-                                    $scope, $mdMedia, appConstant, categoryService) {
+                                    $scope, $mdMedia, appConstant, categoryService, coreService) {
     $rootScope.nameApp = 'Product Manager';
     var vm = this;
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -234,15 +234,15 @@
 
       //======= Step 2 - Upload compressed image to server =========
       //Here we set the params like endpoint, var name (server side) and filename
-      var serverEndpoint = appConstant.product.api.uploadImage,
+      var serverEndpoint = coreService.formatApiUploadImage(appConstant.product.api.uploadImage),
         serverVarName = 'file',
         filename = 'small-bonbon-' + fileOrigial.name;
 
       //Here goes the magic
       jic.upload(imageSrc, serverEndpoint, serverVarName, filename, successCallback, errorCallback);
 
-      function successCallback(responseSmailImage) {
-        var responseJson = JSON.parse(responseSmailImage);
+      function successCallback(responseSmallImage) {
+        var responseJson = JSON.parse(responseSmallImage);
         var smallfile = responseJson.files;
         vm.cache.currentProduct.imageSmallUrl = smallfile.path;
 
