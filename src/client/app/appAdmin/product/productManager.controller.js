@@ -221,22 +221,54 @@
     /**
      * upload image to server
      */
-    vm.uploadImageToServer = function(imageSource) {
+    vm.uploadImageToServer = function(fileOrigial) {
       vm.cache.file.loading = true;
       vm.cache.currentProduct.imageUrl = '';
-      productManagerService.api.uploadImage(imageSource)
-        .then(function(response){
-          // get path of image
-          var file = response.data.files;
-          vm.cache.file.imageSource = {};
-          vm.cache.currentProduct.imageUrl = file.path;
-        })
-        .catch(function() {
-          vm.cache.currentProduct.imageUrl = '';
-        })
-        .finally(function () {
-          vm.cache.file.loading = false;
-        });
+      //An Integer from 0 to 100
+      var quality =  40;
+      // output file format (jpg || png)
+      var outputFormat = 'jpg';
+      //This function returns an Image Object
+      var imageSrc = document.getElementById('123456789');
+      imageSrc.src = jic.compress(imageSrc, quality, outputFormat).src;
+
+      //======= Step 2 - Upload compressed image to server =========
+      //Here we set the params like endpoint, var name (server side) and filename
+      var serverEndpoint = appConstant.product.api.uploadImage,
+        serverVarName = 'file',
+        filename = 'small-bonbon-' + fileOrigial.name;
+
+      //This is the callback that will be triggered once the upload is completed
+      var callback = function(response){ console.log(response); };
+
+      //Here goes the magic
+      jic.upload(imageSrc, serverEndpoint, serverVarName, filename, successCallback, errorCallback);
+
+      function successCallback(response) {
+        var responseJson = JSON.parse(response);
+        var file = responseJson.files;
+        vm.cache.file.imageSource = {};
+        vm.cache.currentProduct.imageUrl = file.path;
+
+        productManagerService.api.uploadImage(fileOrigial)
+          .then(function(){
+            vm.cache.file.imageSource = {};
+          })
+          .catch(function() {
+            vm.cache.currentProduct.imageUrl = '';
+          })
+          .finally(function () {
+            vm.cache.file.loading = false;
+          });
+      }
+
+      //=======  Optional parameters example: errorCallback, duringCallback and customHeaders =======
+      // This function gets called on an error response of the server - status code of >= 400.
+      function errorCallback () {
+        // Handle upload failure
+        vm.cache.currentProduct.imageUrl = '';
+        vm.cache.file.loading = false;
+      }
     };
 
     /**
