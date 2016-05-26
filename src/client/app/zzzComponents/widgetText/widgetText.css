@@ -13,15 +13,16 @@
 }
 .widget-text-box .bottom-widget-text .name-widget {
   display: block;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: normal;
   padding: 10px 0;
-  color: #000;
+  color: #1b5f01;
 }
 .widget-text-box .bottom-widget-text .cost-widget {
   padding-top: 8px;
   font-size: 1.3rem;
   font-weight: bold;
-  color: #000;
+  color: #9c0505;
 }
 .widget-text-box .bottom-widget-text .old-widget {
   padding-top: 8px;

@@ -225,11 +225,11 @@
       vm.cache.file.loading = true;
       vm.cache.currentProduct.imageUrl = '';
       //An Integer from 0 to 100
-      var quality =  40;
+      var quality =  80;
       // output file format (jpg || png)
       var outputFormat = 'jpg';
       //This function returns an Image Object
-      var imageSrc = document.getElementById('123456789');
+      var imageSrc = document.getElementById('image-preview-of-product-id-bonbon');
       imageSrc.src = jic.compress(imageSrc, quality, outputFormat).src;
 
       //======= Step 2 - Upload compressed image to server =========
@@ -238,21 +238,19 @@
         serverVarName = 'file',
         filename = 'small-bonbon-' + fileOrigial.name;
 
-      //This is the callback that will be triggered once the upload is completed
-      var callback = function(response){ console.log(response); };
-
       //Here goes the magic
       jic.upload(imageSrc, serverEndpoint, serverVarName, filename, successCallback, errorCallback);
 
-      function successCallback(response) {
-        var responseJson = JSON.parse(response);
-        var file = responseJson.files;
-        vm.cache.file.imageSource = {};
-        vm.cache.currentProduct.imageUrl = file.path;
+      function successCallback(responseSmailImage) {
+        var responseJson = JSON.parse(responseSmailImage);
+        var smallfile = responseJson.files;
+        vm.cache.currentProduct.imageSmallUrl = smallfile.path;
 
         productManagerService.api.uploadImage(fileOrigial)
-          .then(function(){
+          .then(function(response){
+            var file = response.data.files;
             vm.cache.file.imageSource = {};
+            vm.cache.currentProduct.imageUrl = file.path;
           })
           .catch(function() {
             vm.cache.currentProduct.imageUrl = '';

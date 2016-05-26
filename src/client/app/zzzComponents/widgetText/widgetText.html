@@ -32,7 +32,7 @@
   <div ng-if="!(sp.sale > 0)">
     <div class="widget-content">
       <div class="mdl-card__media show-button-link">
-        <img ng-src={{sp.imageUrl}} onerror="this.src='images/default_product.png'">
+        <img ng-src={{sp.imageSmallUrl}} onerror="this.src='images/default_product.png'">
       </div>
 
       <div class="bottom-widget-text">
@@ -52,7 +52,7 @@
   <div ng-if="sp.sale > 0">
     <div class="widget-content">
       <div class="mdl-card__media show-button-link">
-        <img ng-src={{sp.imageUrl}} onerror="this.src='images/default_product.png'">
+        <img ng-src={{sp.imageSmallUrl}} onerror="this.src='images/default_product.png'">
       </div>
 
       <div class="bottom-widget-text" ng-if="sp.sale || sp.sale > 0">
