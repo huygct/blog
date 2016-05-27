@@ -30,10 +30,10 @@
                       <img ng-src="{{item.imageUrl}}" class="md-card-image" alt="Washed Out">
                     </div>
                   </md-card-title-media>
-                  <md-card-title-text>
+                  <md-card-title-text class="padding-left-right-8">
                     <span class="md-headline">{{item.name}}</span>
                     <span class="md-subhead" ng-if="item.category.name">{{item.category.name}}</span>
-                    <md-button class="md-warn button-remove-item" id="remove-margin-and-uppercase"
+                    <md-button class="md-warn button-remove-item"
                                ng-click="vm.removeProductFromCart(item, $event)">
                       <i class="fa fa-trash-o"></i>
                       Bỏ sản phẩm
@@ -44,7 +44,7 @@
             </li>
             <li class="column-format text-in-right cart-price">
               <div ng-if="item.sale > 0">
-                <p><b>{{item.sale.formatMoney(0, '.', ',')}}</b></p>
+                <span><b>{{item.sale.formatMoney(0, '.', ',')}}</b></span>
                 <span class="line-through">{{item.price.formatMoney(0, '.', ',')}}</span>
               </div>
               <span ng-if="!(item.sale > 0)" >{{item.price.formatMoney(0, '.', ',')}}</span>

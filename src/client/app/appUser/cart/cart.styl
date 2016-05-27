@@ -59,7 +59,7 @@
         text-align right
 
       .list-group-cart-all-item-body
-        max-height 200px
+        max-height 400px
         overflow auto
       .line-separate-item
         border-bottom 1px dotted #cccccc
@@ -72,5 +72,56 @@
             box-shadow none
             .button-remove-item
               max-width 120px
+              margin 0
+              text-transform none
         .cart-count
           padding 0 16px
+
+@media(max-width: 992px)
+  .card-view
+    .container-card
+      .list-group-cart-item
+        .list-group-cart-item-body
+          position relative
+          .cart-product
+            .detail-item-card
+              .button-remove-item
+                margin-top 24px
+
+        .list-group-cart-item-heading
+          display none
+        .cart-product
+          display block
+          float none
+          width auto
+        .cart-price
+          display block
+          float none
+          width auto
+          font-weight bold
+          position absolute
+          left 100px
+          bottom 40px
+        .cart-count
+          display block
+          float none
+          width auto
+          font-weight normal
+          position absolute
+          right 16px
+          top 32px
+        .cart-prices
+          display block
+          float none
+          width auto
+          font-weight bold
+          position absolute
+          right 35px
+          top 70px
+
+        .column-format
+          padding 0
+
+        .text-in-right
+          text-align left
+

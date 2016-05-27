@@ -73,7 +73,7 @@
         function (user) {
           // console.log('user: ', user);
         }, function () {
-          logger.info('Modal dismissed at: ' + new Date());
+          //logger.info('Modal dismissed at: ' + new Date());
         });
     };
 

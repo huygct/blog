@@ -98,7 +98,7 @@
     function openYourCard(product) {
 
       var modalInstance = $uibModal.open({
-        animation: false,
+        animation: true,
         templateUrl: appConstant.cart.urlTemplates.dialogCart,
         controller: 'CartDialogController',
         controllerAs: 'vm',
