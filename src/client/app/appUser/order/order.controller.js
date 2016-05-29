@@ -28,10 +28,15 @@
      */
     vm.yourProducts = yourCart;
     vm.moneyMustPay = 0;
-    _.forEach(vm.yourProducts, function (item) {
-      var cost = item.sale || item.price;
-      vm.moneyMustPay += (item.quantityWillBuy * cost);
-    });
+    if(vm.yourProducts.length !== 0) {
+      _.forEach(vm.yourProducts, function (item) {
+        var cost = item.sale || item.price;
+        vm.moneyMustPay += (item.quantityWillBuy * cost);
+      });
+    } else {
+      $state.go('app.appUser.blog');
+    }
+
 
     /**
      * login
@@ -118,7 +123,8 @@
           productList
             .push({
               id: item.id,
-              imageUrl: item.imageUrl,
+              imageSmallUrl: item.imageSmallUrl,
+              category: item.category,
               quantityWillBuy: item.quantityWillBuy,
               name: item.name,
               price: item.price,

@@ -104,6 +104,7 @@
       orderManagerService.api.getAllOrder()
         .then(function (response) {
           vm.orderList = response.data;
+          $rootScope.numberOtherNotDeliver = _.get(vm.orderList, 'length');
         }, function (error) {
           alert.type = 'danger';
           alert.msg = 'Xảy ra lỗi!!! Vui lòng thực hiện lại...';
