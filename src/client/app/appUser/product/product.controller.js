@@ -8,10 +8,10 @@
     .module('app.user.product')
     .controller('ProductController', ProductController);
 
-  ProductController.$inject = ['logger', '$scope', 'productManagerService', 'productService',
+  ProductController.$inject = ['$rootScope', '$location', 'productManagerService', 'productService',
     '$stateParams', 'coreService'];
   /* @ngInject */
-  function ProductController(logger, $scope, productManagerService, productService,
+  function ProductController($rootScope, $location, productManagerService, productService,
                              $stateParams, coreService) {
     var vm = this;
 
@@ -27,8 +27,18 @@
           vm.currentProduct = response.data;
           vm.currentProduct.quantityWillBuy = 1;
           vm.cache.status = true;
+          /**
+           * Use to put to meta for facebook post link image
+           * @type {{url: *, description: *, siteName: *, image: string}}
+           */
+          $rootScope.currentProduct = {
+            url: $location.absUrl(),
+            description: vm.currentProduct.description,
+            siteName: vm.currentProduct.name,
+            image: $location.protocol() + '://' + location.host + '/' + vm.currentProduct.imageUrl
+          };
         })
-        .catch(function (error) {
+        .catch(function () {
           vm.cache.status = false;
         });
     }

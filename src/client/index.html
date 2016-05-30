@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css" />
   <link rel="stylesheet" href="/bower_components/textAngular/dist/textAngular.css" />
   <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.css" />
+  <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.theme.default.css" />
   <link rel="stylesheet" href="/bower_components/ng-image-input-with-preview/dist/ng-image-input-with-preview.css" />
   <link rel="stylesheet" href="/bower_components/mdDataTable/dist/md-data-table-style.css" />
   <!-- endbower -->
@@ -56,6 +57,19 @@
   <link rel="stylesheet" href="/src/client/app/zzzComponents/widgetText/widgetText.css">
   <!-- endinject -->
   <!-- endbuild -->
+
+  <!--Facebook post link image-->
+  <meta name="generator" content="Powered by Cay Canh Bon Bon">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cây Cảnh bon bon">
+  <meta property="og:url" content="{{$root.currentProduct.url}}">
+  <meta property="og:description" content="{{$root.currentProduct.description}}">
+  <meta property="og:site_name" content="{{$root.currentProduct.siteName}}">
+  <meta property="og:image" content="{{$root.currentProduct.image}}">
+  <meta property="og:image:width" content="737">
+  <meta property="og:image:height" content="737">
+  <meta property="og:locale" content="vi_VN">
+
 </head>
 <body id="body-app-id">
 
