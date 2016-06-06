@@ -21,9 +21,12 @@
 
   core.config(configure);
 
-  configure.$inject = ['$logProvider', '$httpProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
+  configure.$inject = ['$logProvider', '$httpProvider', 'routerHelperProvider', 'exceptionHandlerProvider', '$locationProvider'];
   /* @ngInject */
-  function configure($logProvider, $httpProvider, routerHelperProvider, exceptionHandlerProvider) {
+  function configure($logProvider, $httpProvider, routerHelperProvider, exceptionHandlerProvider, $locationProvider) {
+    // enable HTML5 mode as hashbang-type URLs will not work with mod_rewrite redirection
+    $locationProvider.html5Mode(true);
+
     if ($logProvider.debugEnabled) {
       $logProvider.debugEnabled(true);
     }

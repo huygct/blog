@@ -15,11 +15,11 @@
     routerHelper.configureStates(getStates());
   }
 
-  loadProductById.$inject = ['$rootScope', '$location', 'productManagerService', '$stateParams'];
-  function loadProductById($rootScope, $location, productManagerService, $stateParams) {
+  getProductById.$inject = ['$rootScope', '$location', 'productManagerService', '$stateParams', 'env'];
+  function getProductById($rootScope, $location, productManagerService, $stateParams, env) {
     var productId = $stateParams.productId;
 
-    productManagerService.api.getProductById(productId)
+    return productManagerService.api.getProductById(productId, env)
       .then(function (response) {
         var currentProduct = response.data;
         currentProduct.quantityWillBuy = 1;
@@ -38,12 +38,12 @@
       });
   }
 
-  loadProductById.$inject = ['productManagerService', '$stateParams'];
-  function getProductByCategoryId(productManagerService, $stateParams) {
+  getProductByCategoryId.$inject = ['productManagerService', '$stateParams', 'env'];
+  function getProductByCategoryId(productManagerService, $stateParams, env) {
     var currentProductId = $stateParams.productId;
     var categoryId = $stateParams.categoryId;
 
-    productManagerService.api.getProductByCategoryId(categoryId)
+    return productManagerService.api.getProductByCategoryId(categoryId, env)
       .then(function (response) {
         return _.filter(response.data, function(product) {
           return product.id !== currentProductId;
@@ -68,7 +68,7 @@
           controllerAs: 'vm',
           title: 'Product',
           resolve: {
-            currentProduct: loadProductById,
+            currentProduct: getProductById,
             productsByCategoryId: getProductByCategoryId
           }
         }
