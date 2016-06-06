@@ -141,3 +141,17 @@
     text-align: left;
   }
 }
+@media (max-width: 450px) {
+  .card-view .container-card .list-group-cart-item .cart-count {
+    display: block;
+    float: none;
+    width: 94px;
+    font-weight: normal;
+    position: absolute;
+    left: 0;
+    top: 94px;
+  }
+  .card-view .container-card .list-group-cart-item .cart-prices {
+    display: none;
+  }
+}
