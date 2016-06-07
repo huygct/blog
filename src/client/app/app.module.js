@@ -10,6 +10,7 @@
       'app.widgets',
       'app.layout',
       'mdDataTable',
+      'jkuri.gallery',
 
       'app.demo',
 

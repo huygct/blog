@@ -41,7 +41,8 @@
         "ng-image-input-with-preview": "^0.0.6",
         "angular-local-storage": "^0.2.7",
         "angular-ckeditor": "1.0.3",
-        "mdDataTable": "1.4.3"
+        "mdDataTable": "1.4.3",
+        "ngGallery": ""
     },
     "resolutions": {
         "angular": "1.3.17"

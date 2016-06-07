@@ -84,6 +84,11 @@
         </div>
       </div>
 
+      <md-input-container class="md-block">
+        <label>Short description</label>
+        <textarea ng-model="vm.cache.currentProduct.shortDescription" md-select-on-focus></textarea>
+      </md-input-container>
+
       <div class="md-block">
         <label>Description</label>
         <div ckeditor="vm.optionsEditor" ng-model="vm.cache.descriptionForProduct" ready="vm.onReady()"></div>

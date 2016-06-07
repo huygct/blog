@@ -4,19 +4,8 @@
     <div flex-xs="" flex-gt-xs="50" layout="column" class="image-card left-side-product-view">
       <md-card>
         <img ng-src="{{vm.currentProduct.imageUrl}}" class="md-card-image" alt="Washed Out">
-        <!--<md-card-actions layout="row" layout-align="start center">-->
-          <!--<md-card-icon-actions>-->
-            <!--<md-button class="md-icon-button" aria-label="Favorite">-->
-              <!--<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>-->
-            <!--</md-button>-->
-            <!--<md-button class="md-icon-button" aria-label="Share">-->
-              <!--<md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>-->
-            <!--</md-button>-->
-          <!--</md-card-icon-actions>-->
-          <!--<md-button>Action 1</md-button>-->
-          <!--<md-button>Action 2</md-button>-->
-        <!--</md-card-actions>-->
       </md-card>
+      <ng-gallery images="images"></ng-gallery>
     </div>
     <div flex-xs="" flex-gt-xs layout="column" class="right-side-product-view">
       <md-card>
@@ -60,7 +49,7 @@
           </md-card-actions>
 
           <hr/>
-          <div ng-bind-html="vm.currentProduct.description"></div>
+          <div ng-bind-html="vm.currentProduct.shortDescription"></div>
 
         </md-card-content>
       </md-card>
@@ -92,7 +81,10 @@
     <!--</div>-->
 
   </md-content>
-
+  <br/>
+  <md-content class="md-padding">
+    <div ng-bind-html="vm.currentProduct.description"></div>
+  </md-content>
   <br/>
   <md-content class="md-padding">
     <div class="event-of-web" ng-if="vm.productsByCategoryId.length > 1">
