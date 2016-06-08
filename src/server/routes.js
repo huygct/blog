@@ -24,6 +24,9 @@ var storage = multer.diskStorage({
 });
 var upload = multer({storage: storage}).single('file');
 router.post('/uploadFile', upload, uploadFile);
+
+var uploadMulti = multer({storage: storage}).array('photos', 5);
+router.post('/uploadPhotos', uploadMulti, uploadPhotos);
 //-----------------------------------------------------------------------------------------
 
 function getPeople(req, res, next) {
@@ -50,6 +53,15 @@ function uploadFile(req, res) {
         }
         res.json({status: 204, files: req.file});
     });
+}
+
+function uploadPhotos(req, res) {
+  upload(req, res, function (err) {
+    if (err) {
+      return res.end('Error uploading file.');
+    }
+    res.json({status: 204, files: req.file});
+  });
 }
 
 //-------------------------------------------------------------------------------------------
