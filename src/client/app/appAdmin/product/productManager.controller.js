@@ -230,7 +230,7 @@
       var outputFormat = 'jpg';
       //This function returns an Image Object
       var imageSrc = document.getElementById('image-preview-of-product-id-bonbon');
-      imageSrc.src = jic.compress(imageSrc, quality, outputFormat).src;
+      imageSrc.src = jic.compress(imageSrc, quality, outputFormat, {width: 175, height: 200}).src;
 
       //======= Step 2 - Upload compressed image to server =========
       //Here we set the params like endpoint, var name (server side) and filename

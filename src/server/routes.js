@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var multer = require('multer');
+var Jimp = require("jimp");
 var http = require('http');
 var four0four = require('./utils/404')();
 var data = require('./data');
@@ -25,7 +26,7 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage}).single('file');
 router.post('/uploadFile', upload, uploadFile);
 
-var uploadMulti = multer({storage: storage}).array('photos', 5);
+var uploadMulti = multer({storage: storage}).array('photos', 6);
 router.post('/uploadPhotos', uploadMulti, uploadPhotos);
 //-----------------------------------------------------------------------------------------
 
@@ -60,8 +61,24 @@ function uploadPhotos(req, res) {
     if (err) {
       return res.end('Error uploading file.');
     }
-    res.json({status: 204, files: req.file});
+    var files = req.files;
+    // create file thumbs
+    for(var i = 0; i < files.length; i++) {
+      resizePhoto(files[i]); // nen xem lai
+    }
+
+    res.json({status: 204, files: req.files});
   });
+}
+
+function resizePhoto(photo) {
+  Jimp.read(photo.path)
+    .then(function (p) {
+      p.resize(50, 50) // resize
+        .write('./images/thumbs/' + photo.originalname); // save
+    }).catch(function (err) {
+      console.error(err);
+    });
 }
 
 //-------------------------------------------------------------------------------------------

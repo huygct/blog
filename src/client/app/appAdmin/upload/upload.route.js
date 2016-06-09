@@ -18,7 +18,7 @@
       {
         state: 'app.appAdmin.upload',
         config: {
-          url: '/admin/setting',
+          url: '/admin/update',
           templateUrl: 'app/appAdmin/upload/upload.html',
           controller: 'UploadController',
           controllerAs: 'vm',
