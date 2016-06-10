@@ -11,7 +11,15 @@
     <a class="btn btn-primary"
        ng-click="vm.fileNameChanged()" button-spinner="vm.cache.buttonLoading" ng-disabled="vm.cache.buttonLoading">Upload</a>
   </div>
-  <div>
-    <ng-gallery images="vm.photoList"></ng-gallery>
+  <br/>
+  <div class="padding-8px">
+    <md-input-container class="width-100-percent" ng-show="vm.cache.currentPhoto.id">
+      <label>Url Photo</label>
+      <input ng-model="vm.cache.currentPhoto.urlPhoto" ng-disabled="true">
+    </md-input-container>
+    <div ng-repeat="photo in vm.photoList track by $index">
+      <img class="ng-thumb" src="images/thumbs/{{photo.name}}" ng-click="vm.selectedPhoto(photo)"
+           ng-class="{'selected-photo': photo.id === vm.cache.currentPhoto.id}">
+    </div>
   </div>
 </div>

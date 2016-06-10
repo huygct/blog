@@ -16,6 +16,9 @@
 
     var cache = {
       alert: commonService.createAlert('danger', '', false),
+      currentPhoto: {
+        urlPhoto: ''
+      },
       spinnerLoading: false
     };
 

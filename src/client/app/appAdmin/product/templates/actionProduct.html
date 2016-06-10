@@ -56,7 +56,20 @@
         </div>
       </md-input-container>
 
-      <div class="box-choose-and-upload-image">
+      <md-input-container class="md-block">
+        <label>Short description</label>
+        <textarea ng-model="vm.cache.currentProduct.shortDescription" md-select-on-focus></textarea>
+      </md-input-container>
+
+      <md-radio-group ng-model="vm.cache.typeInputImage">
+        <md-radio-button value="available">Đã có hình</md-radio-button>
+        <md-radio-button value="notAvailable">Upload hình bây giờ</md-radio-button>
+      </md-radio-group>
+      <md-input-container class="md-block" ng-if="vm.cache.typeInputImage === 'available'">
+        <label>URL Image</label>
+        <input ng-model="vm.cache.currentProduct.imageUrl">
+      </md-input-container>
+      <div ng-if="vm.cache.typeInputImage === 'notAvailable'">
         <label>Image Source</label>
         <input type="file" name="imageSource" file-model="vm.cache.file.myFile"
                image-with-preview ng-model="vm.cache.file.imageSource"
@@ -69,25 +82,21 @@
         <span class="error-text" ng-show="actionProductForm.imageSource.$error.dimensions">
           Image height should be smaller than 400!
         </span>
-        <div ng-show="vm.cache.file.imageSource.src || vm.cache.currentProduct.imageUrl">
-          <img ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview" id="image-preview-of-product-id-bonbon"/>
-          <span><i> Image's product => </i></span>
-          <img ng-src="{{vm.cache.currentProduct.imageUrl}}" class="show-image-preview"/>
-          <div ng-if="!vm.cache.currentProduct.imageUrl">
-            <div class="text-danger">Please click upload button to upload this image!!!</div>
-          </div>
-          <div ng-if="vm.cache.currentProduct.imageUrl">
-            <div class="text-success">This is url of image: {{vm.cache.currentProduct.imageUrl}}</div>
-          </div>
-          <a class="btn btn-primary" ng-show="!vm.cache.currentProduct.imageUrl || vm.cache.file.imageSource.src" ng-click="vm.uploadImageToServer(vm.cache.file.myFile)"
-             button-spinner="vm.cache.file.loading" ng-disabled="vm.cache.file.loading">Upload</a>
-        </div>
       </div>
-
-      <md-input-container class="md-block">
-        <label>Short description</label>
-        <textarea ng-model="vm.cache.currentProduct.shortDescription" md-select-on-focus></textarea>
-      </md-input-container>
+      <!--show preview image-->
+      <div class="box-choose-and-upload-image" ng-show="vm.cache.file.imageSource.src || vm.cache.currentProduct.imageUrl">
+        <img ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview" id="image-preview-of-product-id-bonbon"/>
+        <span><i> Image's product => </i></span>
+        <img ng-src="{{vm.cache.currentProduct.imageUrl}}" class="show-image-preview"/>
+        <div ng-if="!vm.cache.currentProduct.imageUrl">
+          <div class="text-danger">Please click upload button to upload this image!!!</div>
+        </div>
+        <div ng-if="vm.cache.currentProduct.imageUrl">
+          <div class="text-success">This is url of image: {{vm.cache.currentProduct.imageUrl}}</div>
+        </div>
+        <a class="btn btn-primary" ng-show="!vm.cache.currentProduct.imageUrl || vm.cache.file.imageSource.src" ng-click="vm.uploadImageToServer(vm.cache.file.myFile)"
+           button-spinner="vm.cache.file.loading" ng-disabled="vm.cache.file.loading">Upload</a>
+      </div>
 
       <div class="md-block">
         <label>Description</label>

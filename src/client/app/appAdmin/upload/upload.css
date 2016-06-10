@@ -1,11 +1,8 @@
-.upload-app .ng-gallery-content > img {
-  position: absolute;
-  max-height: 70%;
-  max-width: 60%;
+.upload-app .ng-thumb {
+  transition: opacity 0.25s ease;
+  opacity: 0.3;
 }
-.upload-app .ng-gallery-content {
-  position: absolute;
-}
-.upload-app .ng-overlay {
-  position: absolute;
+.upload-app .selected-photo {
+  transition: opacity 0.25s ease;
+  opacity: 1;
 }

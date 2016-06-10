@@ -8,14 +8,15 @@
     .module('app.admin.upload')
     .controller('UploadController', UploadController);
 
-  UploadController.$inject = ['$rootScope', '$scope', '$http', 'uploadService'];
-  function UploadController($rootScope, $scope, $http, uploadService) {
+  UploadController.$inject = ['$rootScope', '$scope', '$http', 'uploadService', '$location'];
+  function UploadController($rootScope, $scope, $http, uploadService, $location) {
     $rootScope.nameApp = 'Upload';
 
     var vm = this;
     vm.cache = uploadService.cache;
     vm.alert = vm.cache.alert;
     vm.photoList = [];
+    var address = $location.protocol() + '://' + location.host + '/';
 
     var photos = [];
 
@@ -58,6 +59,11 @@
       });
     };
 
+    vm.selectedPhoto = function(photo) {
+      vm.cache.currentPhoto = angular.copy(photo);
+      vm.cache.currentPhoto.urlPhoto = address + vm.cache.currentPhoto.path;
+    };
+
     function updateToServer(photos) {
       // modify photos
       var photoList = [];
@@ -72,10 +78,15 @@
       });
       uploadService.api.addGallery(photoList)
         .then(function (response) {
-          console.log('-- ', response.data);
+          var newPhotos = response.data || [];
+          _.forEach(newPhotos, function (photo) {
+            vm.photoList.push(photo);
+          });
         })
         .catch(function () {
-
+          vm.alert.type = 'danger';
+          vm.alert.msg = 'Upload photos thất bại...';
+          vm.alert.show = true;
         })
         .finally(function () {
           vm.cache.buttonLoading = false;
@@ -83,20 +94,17 @@
     }
     
     function getGallery() {
+      vm.alert.show = false;
       vm.cache.spinnerLoading = true;
       uploadService.api.getGallery()
         .then(function (response) {
-          var files = response.data;
-          _.forEach(files, function (file) {
-            vm.photoList.push({
-              thumb: 'images/thumbs/' + file.name,
-              img: 'images/' + file.name,
-              description: file.description || ''
-            })
-          })
+          vm.photoList = response.data || [];
         })
         .catch(function () {
-
+          vm.photoList = [];
+          vm.alert.type = 'danger';
+          vm.alert.msg = 'Lấy thông tin gallery thất bại...';
+          vm.alert.show = true;
         })
         .finally(function () {
           vm.cache.spinnerLoading = false;

@@ -181,6 +181,7 @@
       }
       vm.cache.currentProduct.category = _.get(vm.cache.currentProduct, 'category.id', null);
       vm.cache.descriptionForProduct = vm.cache.currentProduct.description;
+      vm.cache.typeInputImage = vm.cache.currentProduct.imageUrl ? 'available' : '';
       vm.cache.currentView = productManagerService.getView.edit;
 
       loadCategory(vm.cache.currentProduct.category);
@@ -215,6 +216,7 @@
       vm.cache.currentProduct = {};
       vm.selectedProduct = [];
       vm.cache.file = {};
+      vm.cache.typeInputImage = '';
       vm.cache.currentView = productManagerService.getView.main;
     };
 

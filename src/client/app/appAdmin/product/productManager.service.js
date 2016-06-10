@@ -37,6 +37,7 @@
     var cache = {
       currentView: getView().main,
       currentProduct: {},
+      typeInputImage: '',
       file: {
         myFile: {},
         imageSource: {},
