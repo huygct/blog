@@ -19,12 +19,15 @@
       currentPhoto: {
         urlPhoto: ''
       },
+      currentIcon: {
+        urlPhoto: ''
+      },
       spinnerLoading: false
     };
 
     var api = {
       addGallery: function(photos){
-        var url = coreService.formatApi('gallery');
+        var url = coreService.formatApi('gallery/addFiles');
         return $http.post(url, photos);
       },
       getGallery: function() {

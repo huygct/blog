@@ -28,6 +28,8 @@ router.post('/uploadFile', upload, uploadFile);
 
 var uploadMulti = multer({storage: storage}).array('photos', 6);
 router.post('/uploadPhotos', uploadMulti, uploadPhotos);
+
+router.post('/uploadIcons', uploadMulti, uploadIconImage);
 //-----------------------------------------------------------------------------------------
 
 function getPeople(req, res, next) {
@@ -56,6 +58,21 @@ function uploadFile(req, res) {
     });
 }
 
+function uploadIconImage(req, res) {
+  upload(req, res, function (err) {
+    if (err) {
+      return res.end('Error uploading file.');
+    }
+    var files = req.files;
+    // create file icon
+    for(var i = 0; i < files.length; i++) {
+      resizePhoto(files[i], './images/icons/', 175, 200); // nen xem lai
+    }
+
+    res.json({status: 204, files: req.files});
+  });
+}
+
 function uploadPhotos(req, res) {
   upload(req, res, function (err) {
     if (err) {
@@ -64,18 +81,18 @@ function uploadPhotos(req, res) {
     var files = req.files;
     // create file thumbs
     for(var i = 0; i < files.length; i++) {
-      resizePhoto(files[i]); // nen xem lai
+      resizePhoto(files[i], './images/thumbs/', 50, 50); // nen xem lai
     }
 
     res.json({status: 204, files: req.files});
   });
 }
 
-function resizePhoto(photo) {
+function resizePhoto(photo, address, width, height) {
   Jimp.read(photo.path)
     .then(function (p) {
-      p.resize(50, 50) // resize
-        .write('./images/thumbs/' + photo.originalname); // save
+      p.resize(width, height) // resize
+        .write(address + photo.originalname); // save
     }).catch(function (err) {
       console.error(err);
     });

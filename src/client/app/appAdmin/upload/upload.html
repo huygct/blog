@@ -5,21 +5,50 @@
               msg="vm.alert.msg"
       ></my-alert>
   </div>
-  <div>
-    <input type="file" name="photos" multiple onchange="angular.element(this).scope().fileNameChanged(this)"/>
-    <br/>
-    <a class="btn btn-primary"
-       ng-click="vm.fileNameChanged()" button-spinner="vm.cache.buttonLoading" ng-disabled="vm.cache.buttonLoading">Upload</a>
-  </div>
-  <br/>
-  <div class="padding-8px">
-    <md-input-container class="width-100-percent" ng-show="vm.cache.currentPhoto.id">
-      <label>Url Photo</label>
-      <input ng-model="vm.cache.currentPhoto.urlPhoto" ng-disabled="true">
-    </md-input-container>
-    <div ng-repeat="photo in vm.photoList track by $index">
-      <img class="ng-thumb" src="images/thumbs/{{photo.name}}" ng-click="vm.selectedPhoto(photo)"
-           ng-class="{'selected-photo': photo.id === vm.cache.currentPhoto.id}">
-    </div>
-  </div>
+
+  <uib-accordion>
+    <uib-accordion-group heading="Photo icon">
+      <div>
+        <input type="file" name="photos" multiple onchange="angular.element(this).scope().iconsChanged(this)"/>
+        <br/>
+        <a class="btn btn-primary"
+           ng-click="vm.disableButtonUploadIcon || vm.uploadIcon()" button-spinner="vm.cache.buttonIconLoading"
+           ng-disabled="vm.cache.buttonIconLoading || vm.disableButtonUploadIcon">Upload</a>
+      </div>
+      <br/>
+      <div class="padding-8px">
+        <md-input-container class="width-100-percent" ng-show="vm.cache.currentIcon.id">
+          <label>Url Icon</label>
+          <input ng-model="vm.cache.currentIcon.urlPhoto" ng-disabled="true">
+        </md-input-container>
+        <div ng-repeat="icon in vm.iconList track by $index">
+          <img class="ng-thumb" src="images/icons/{{icon.name}}" ng-click="vm.selectedIcon(icon)"
+               ng-class="{'selected-photo': icon.id === vm.cache.currentIcon.id}">
+        </div>
+      </div>
+    </uib-accordion-group>
+  </uib-accordion>
+
+  <uib-accordion>
+    <uib-accordion-group heading="Gallery">
+      <div>
+        <input type="file" name="photos" multiple onchange="angular.element(this).scope().photosChanged(this)"/>
+        <br/>
+        <a class="btn btn-primary"
+           ng-click="vm.disableButtonUploadImageNormal || vm.uploadPhoto()" button-spinner="vm.cache.buttonPhotoLoading"
+           ng-disabled="vm.cache.buttonPhotoLoading || vm.disableButtonUploadImageNormal">Upload</a>
+      </div>
+      <br/>
+      <div class="padding-8px">
+        <md-input-container class="width-100-percent" ng-show="vm.cache.currentPhoto.id">
+          <label>Url Photo</label>
+          <input ng-model="vm.cache.currentPhoto.urlPhoto" ng-disabled="true">
+        </md-input-container>
+        <div ng-repeat="photo in vm.photoList track by $index">
+          <img class="ng-thumb" src="images/thumbs/{{photo.name}}" ng-click="vm.selectedPhoto(photo)"
+               ng-class="{'selected-photo': photo.id === vm.cache.currentPhoto.id}">
+        </div>
+      </div>
+    </uib-accordion-group>
+  </uib-accordion>
 </div>
