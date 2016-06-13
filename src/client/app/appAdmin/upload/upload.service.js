@@ -26,10 +26,6 @@
     };
 
     var api = {
-      addGallery: function(photos){
-        var url = coreService.formatApi('gallery/addFiles');
-        return $http.post(url, photos);
-      },
       getGallery: function() {
         var url = coreService.formatApi('gallery');
         return $http.get(url);

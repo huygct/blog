@@ -8,8 +8,8 @@
     .module('app.admin.upload')
     .controller('UploadController', UploadController);
 
-  UploadController.$inject = ['$rootScope', '$scope', '$http', 'uploadService', '$location'];
-  function UploadController($rootScope, $scope, $http, uploadService, $location) {
+  UploadController.$inject = ['$rootScope', '$scope', '$http', 'uploadService', '$location', 'commonService'];
+  function UploadController($rootScope, $scope, $http, uploadService, $location, commonService) {
     $rootScope.nameApp = 'Upload';
 
     var vm = this;
@@ -29,10 +29,10 @@
 
     $scope.photosChanged = function (ele) {
       vm.alert.show = false;
-      if(ele.files.length > 6) {
+      if(ele.files.length > 6 || ele.files.length < 1) {
         photos = [];
         vm.alert.type = 'danger';
-        vm.alert.msg = 'Số lượng ảnh phải nhỏ hơn 6';
+        vm.alert.msg = 'Số lượng ảnh phải lớn hơn 1 hoặc nhỏ hơn 6';
         vm.alert.show = true;
         vm.disableButtonUploadImageNormal = true;
       } else {
@@ -47,7 +47,7 @@
       if(ele.files.length > 6) {
         icons = [];
         vm.alert.type = 'danger';
-        vm.alert.msg = 'Số lượng ảnh phải nhỏ hơn 6';
+        vm.alert.msg = 'Số lượng ảnh phải lớn hơn 1 hoặc nhỏ hơn 6';
         vm.alert.show = true;
         vm.disableButtonUploadIcon = true;
       } else {
@@ -111,29 +111,17 @@
 
     vm.selectedPhoto = function(photo) {
       vm.cache.currentPhoto = angular.copy(photo);
-      vm.cache.currentPhoto.urlPhoto = address + vm.cache.currentPhoto.path;
+      vm.cache.currentPhoto.urlPhoto = address + 'images'+ vm.cache.currentPhoto.name;
     };
 
     vm.selectedIcon = function(icon) {
       vm.cache.currentIcon = angular.copy(icon);
-      vm.cache.currentIcon.urlPhoto = address + vm.cache.currentIcon.path;
+      vm.cache.currentIcon.urlPhoto = address + 'images/icons/' + vm.cache.currentIcon.name;
     };
 
     function updateToServer(photos, type) {
-      // modify photos
-      var list = [];
-      _.forEach(photos, function (p) {
-        list.push({
-          name: p.filename,
-          path: p.path,
-          type: type,
-          destination: p.destination,
-          size: p.size
-        })
-      });
-      uploadService.api.addGallery(list)
-        .then(function (response) {
-          var newPhotos = response.data || [];
+      commonService.updateGallery(photos, 'normal')
+        .then(function (newPhotos) {
           var currentList = type === 'normal' ? vm.photoList : vm.iconList;
           _.forEach(newPhotos, function (photo) {
             if(!_.find(currentList, function (p) { return p.name === photo.name})) {
@@ -147,14 +135,14 @@
           vm.alert.show = true;
         })
         .finally(function () {
-          if(type === 'normal') {
+          if (type === 'normal') {
             vm.cache.buttonPhotoLoading = false;
           } else {
             vm.cache.buttonIconLoading = false;
           }
         });
     }
-    
+
     function getGallery() {
       vm.alert.show = false;
       vm.cache.spinnerLoading = true;

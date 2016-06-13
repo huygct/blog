@@ -29,7 +29,7 @@
       product: {
         api: {
           model: 'product',
-          uploadImage: 'api/uploadFile',
+          uploadImage: 'api/uploadIcons',
           getProductWithPage: 'product/getProductsWithPage',
           getProductsForPage: 'product/getProductsForPage',
           getNumberProduct: 'product/getNumberProduct'

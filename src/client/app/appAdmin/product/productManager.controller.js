@@ -9,10 +9,10 @@
     .controller('ProductManagerController', ProductManagerController);
 
   ProductManagerController.$inject = ['$rootScope', '$mdDialog', 'logger', 'productManagerService',
-    '$scope', '$mdMedia', 'appConstant', 'categoryService', 'coreService'];
+    '$scope', '$mdMedia', 'appConstant', 'categoryService', 'commonService'];
   /* @ngInject */
   function ProductManagerController($rootScope, $mdDialog, logger, productManagerService,
-                                    $scope, $mdMedia, appConstant, categoryService, coreService) {
+                                    $scope, $mdMedia, appConstant, categoryService, commonService) {
     $rootScope.nameApp = 'Product Manager';
     var vm = this;
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -69,6 +69,7 @@
       var alert = vm.cache.alert;
       alert.show = false;
       vm.cache.spinnerLoading = true;
+      vm.cache.categoryList.length = 0;
 
       categoryService.api.getCategoryList()
         .then(function (response) {
@@ -138,6 +139,8 @@
     vm.goToAddProductView = function () {
       vm.cache.currentView = productManagerService.getView.add;
       vm.cache.currentProduct = {};
+      vm.cache.descriptionForProduct = null;
+      vm.cache.typeInputImage = '';
 
       loadCategory();
     };
@@ -217,58 +220,39 @@
       vm.selectedProduct = [];
       vm.cache.file = {};
       vm.cache.typeInputImage = '';
+      vm.cache.descriptionForProduct = null;
+      vm.cache.categoryList.length = 0;
       vm.cache.currentView = productManagerService.getView.main;
     };
 
     /**
      * upload image to server
      */
-    vm.uploadImageToServer = function(fileOrigial) {
+    vm.uploadImageToServer = function(photo) {
       vm.cache.file.loading = true;
       vm.cache.currentProduct.imageUrl = '';
-      //An Integer from 0 to 100
-      var quality =  80;
-      // output file format (jpg || png)
-      var outputFormat = 'jpg';
-      //This function returns an Image Object
-      var imageSrc = document.getElementById('image-preview-of-product-id-bonbon');
-      imageSrc.src = jic.compress(imageSrc, quality, outputFormat, {width: 175, height: 200}).src;
 
-      //======= Step 2 - Upload compressed image to server =========
-      //Here we set the params like endpoint, var name (server side) and filename
-      var serverEndpoint = coreService.formatApiUploadImage(appConstant.product.api.uploadImage),
-        serverVarName = 'file',
-        filename = 'small-bonbon-' + fileOrigial.name;
-
-      //Here goes the magic
-      jic.upload(imageSrc, serverEndpoint, serverVarName, filename, successCallback, errorCallback);
-
-      function successCallback(responseSmallImage) {
-        var responseJson = JSON.parse(responseSmallImage);
-        var smallfile = responseJson.files;
-        vm.cache.currentProduct.imageSmallUrl = smallfile.path;
-
-        productManagerService.api.uploadImage(fileOrigial)
-          .then(function(response){
-            var file = response.data.files;
-            vm.cache.file.imageSource = {};
-            vm.cache.currentProduct.imageUrl = file.path;
-          })
-          .catch(function() {
-            vm.cache.currentProduct.imageUrl = '';
-          })
-          .finally(function () {
-            vm.cache.file.loading = false;
-          });
-      }
-
-      //=======  Optional parameters example: errorCallback, duringCallback and customHeaders =======
-      // This function gets called on an error response of the server - status code of >= 400.
-      function errorCallback () {
-        // Handle upload failure
-        vm.cache.currentProduct.imageUrl = '';
-        vm.cache.file.loading = false;
-      }
+      productManagerService.api.uploadImage(photo)
+        .then(function(response){
+          commonService.updateGallery(response.data.files, 'icon')
+            .then(function (newPhotos) {
+              console.log('newPhotos: ', newPhotos);
+              vm.cache.file.imageSource = {};
+              vm.cache.currentProduct.imageUrl = newPhotos[0].path;
+              vm.cache.currentProduct.imageSmallUrl = 'images/icons/' + newPhotos[0].name;
+            })
+            .catch(function () {
+              vm.alert.type = 'danger';
+              vm.alert.msg = 'Upload photos thất bại...';
+              vm.alert.show = true;
+            })
+            .finally(function () {
+              vm.cache.file.loading = false;
+            });
+        })
+        .catch(function() {
+          vm.cache.currentProduct.imageUrl = '';
+        });
     };
 
     /**

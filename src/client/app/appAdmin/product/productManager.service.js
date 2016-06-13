@@ -82,11 +82,11 @@
         var url = coreService.formatApi(appConstant.product.api.model) + '?category=' + categoryId;
         return $http.get(url);
       },
-      uploadImage: function(imageSource) {
+      uploadImage: function(photo) {
         var url = coreService.formatApiUploadImage(appConstant.product.api.uploadImage);
         //create form data object
         var fd = new FormData();
-        fd.append('file', imageSource);
+        fd.append('photos', photo);
         //send the file / data to your server
         return $http.post(url, fd, {
           transformRequest: angular.identity,
