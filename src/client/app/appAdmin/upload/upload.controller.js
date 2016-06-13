@@ -120,7 +120,7 @@
     };
 
     function updateToServer(photos, type) {
-      commonService.updateGallery(photos, 'normal')
+      commonService.updateGallery(photos, type)
         .then(function (newPhotos) {
           var currentList = type === 'normal' ? vm.photoList : vm.iconList;
           _.forEach(newPhotos, function (photo) {

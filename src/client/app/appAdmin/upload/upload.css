@@ -2,7 +2,3 @@
   transition: opacity 0.25s ease;
   opacity: 0.3;
 }
-.upload-app .selected-photo {
-  transition: opacity 0.25s ease;
-  opacity: 1;
-}

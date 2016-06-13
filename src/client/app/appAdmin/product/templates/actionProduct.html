@@ -67,7 +67,11 @@
       </md-radio-group>
       <md-input-container class="md-block" ng-if="vm.cache.typeInputImage === 'available'">
         <label>URL Image</label>
-        <input ng-model="vm.cache.currentProduct.imageUrl">
+        <div ng-repeat="icon in vm.cache.icons track by $index">
+          <img class="ng-thumb" src="images/icons/{{icon.name}}" ng-click="vm.selectedIconForProduct(icon)"
+               ng-class="{'selected-photo': icon.path === vm.cache.currentProduct.imageUrl}">
+        </div>
+        <!--<input ng-model="vm.cache.currentProduct.imageUrl">-->
       </md-input-container>
       <div ng-if="vm.cache.typeInputImage === 'notAvailable'">
         <label>Image Source</label>
@@ -85,7 +89,7 @@
       </div>
       <!--show preview image-->
       <div class="box-choose-and-upload-image" ng-show="vm.cache.file.imageSource.src || vm.cache.currentProduct.imageUrl">
-        <img ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview" id="image-preview-of-product-id-bonbon"/>
+        <img ng-show="!vm.cache.currentProduct.imageUrl || vm.cache.file.imageSource.src" ng-src="{{vm.cache.file.imageSource.src}}" class="show-image-preview" id="image-preview-of-product-id-bonbon"/>
         <span><i> Image's product => </i></span>
         <img ng-src="{{vm.cache.currentProduct.imageUrl}}" class="show-image-preview"/>
         <div ng-if="!vm.cache.currentProduct.imageUrl">

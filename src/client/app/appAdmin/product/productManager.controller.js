@@ -236,7 +236,6 @@
         .then(function(response){
           commonService.updateGallery(response.data.files, 'icon')
             .then(function (newPhotos) {
-              console.log('newPhotos: ', newPhotos);
               vm.cache.file.imageSource = {};
               vm.cache.currentProduct.imageUrl = newPhotos[0].path;
               vm.cache.currentProduct.imageSmallUrl = 'images/icons/' + newPhotos[0].name;
@@ -302,6 +301,10 @@
       });
     };
 
+    vm.selectedIconForProduct = function(icon) {
+      vm.cache.currentProduct.imageUrl = 'images/' + icon.name;
+      vm.cache.currentProduct.imageSmallUrl = 'images/icons/' + icon.name;
+    };
 
     /**
      * ended file
@@ -320,8 +323,27 @@
       };
     }
 
+    function getIconsProduct() {
+      var alert = vm.cache.alert;
+      alert.show = false;
+      vm.cache.spinnerLoading = true;
+      productManagerService.api.getIconsProduct()
+        .then(function (response) {
+          vm.cache.icons = response.data || [];
+        })
+        .catch(function () {
+          alert.type = 'danger';
+          alert.msg = 'Lấy hình ảnh icons thất bại!!! Vui lòng thực hiện lại...';
+          alert.show = true;
+        })
+        .finally(function () {
+          vm.cache.spinnerLoading = false;
+        });
+    }
+
     function activate() {
       logger.info('Activated Product View');
+      getIconsProduct();
     }
 
     activate();

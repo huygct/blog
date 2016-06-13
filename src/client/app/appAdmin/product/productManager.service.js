@@ -38,6 +38,7 @@
       currentView: getView().main,
       currentProduct: {},
       typeInputImage: '',
+      icons: [],
       file: {
         myFile: {},
         imageSource: {},
@@ -80,6 +81,10 @@
       },
       getProductByCategoryId: function(categoryId) {
         var url = coreService.formatApi(appConstant.product.api.model) + '?category=' + categoryId;
+        return $http.get(url);
+      },
+      getIconsProduct: function() {
+        var url = coreService.formatApi('gallery?type=icon');
         return $http.get(url);
       },
       uploadImage: function(photo) {

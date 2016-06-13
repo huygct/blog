@@ -56,6 +56,16 @@
 .user-app .user-name-menu .button-user-name {
   font-size: 24px;
 }
+.selected-photo {
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  -o-transition: opacity 0.25s ease;
+  -ms-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
 .box-choose-and-upload-image .error-text {
   color: #f00;
 }
