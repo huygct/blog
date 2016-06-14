@@ -9,7 +9,8 @@
   <uib-accordion>
     <uib-accordion-group heading="Photo icon">
       <div>
-        <input type="file" name="photos" multiple onchange="angular.element(this).scope().iconsChanged(this)"/>
+        <input type="file" name="photos" multiple onchange="angular.element(this).scope().iconsChanged(this)"
+               image-with-preview accept="image/jpeg,image/png" class="btn btn-default"/>
         <br/>
         <a class="btn btn-primary"
            ng-click="vm.disableButtonUploadIcon || vm.uploadIcon()" button-spinner="vm.cache.buttonIconLoading"
@@ -32,7 +33,8 @@
   <uib-accordion>
     <uib-accordion-group heading="Gallery">
       <div>
-        <input type="file" name="photos" multiple onchange="angular.element(this).scope().photosChanged(this)"/>
+        <input type="file" name="photos" multiple onchange="angular.element(this).scope().photosChanged(this)"
+               accept="image/jpeg,image/png" class="btn btn-default"/>
         <br/>
         <a class="btn btn-primary"
            ng-click="vm.disableButtonUploadImageNormal || vm.uploadPhoto()" button-spinner="vm.cache.buttonPhotoLoading"
