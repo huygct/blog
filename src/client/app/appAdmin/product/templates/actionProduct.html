@@ -66,9 +66,8 @@
         <md-radio-button value="notAvailable">Upload hình bây giờ</md-radio-button>
       </md-radio-group>
       <md-input-container class="md-block" ng-if="vm.cache.typeInputImage === 'available'">
-        <label>URL Image</label>
         <div ng-repeat="icon in vm.cache.icons track by $index">
-          <img class="ng-thumb" src="images/icons/{{icon.name}}" ng-click="vm.selectedIconForProduct(icon)"
+          <img class="ng-thumb opacity-of-photo-03" src="images/icons/{{icon.name}}" ng-click="vm.selectedIconForProduct(icon)"
                ng-class="{'selected-photo': icon.path === vm.cache.currentProduct.imageUrl}">
         </div>
         <!--<input ng-model="vm.cache.currentProduct.imageUrl">-->

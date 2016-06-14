@@ -302,8 +302,8 @@
     };
 
     vm.selectedIconForProduct = function(icon) {
-      vm.cache.currentProduct.imageUrl = 'images/' + icon.name;
-      vm.cache.currentProduct.imageSmallUrl = 'images/icons/' + icon.name;
+      vm.cache.currentProduct.imageUrl = 'images\\' + icon.name;
+      vm.cache.currentProduct.imageSmallUrl = 'images\\icons\\' + icon.name;
     };
 
     /**

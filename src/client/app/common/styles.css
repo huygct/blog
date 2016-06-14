@@ -62,9 +62,19 @@
   -o-transition: opacity 0.25s ease;
   -ms-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
+  opacity: 1 !important;
+  -ms-filter: none !important;
+  filter: none !important;
+}
+.opacity-of-photo-03 {
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  -o-transition: opacity 0.25s ease;
+  -ms-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+  opacity: 0.3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
 }
 .box-choose-and-upload-image .error-text {
   color: #f00;

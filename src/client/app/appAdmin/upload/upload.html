@@ -10,7 +10,7 @@
     <uib-accordion-group heading="Photo icon">
       <div>
         <input type="file" name="photos" multiple onchange="angular.element(this).scope().iconsChanged(this)"
-               image-with-preview accept="image/jpeg,image/png" class="btn btn-default"/>
+               accept="image/jpeg,image/png" class="btn btn-default"/>
         <br/>
         <a class="btn btn-primary"
            ng-click="vm.disableButtonUploadIcon || vm.uploadIcon()" button-spinner="vm.cache.buttonIconLoading"
