@@ -34,7 +34,7 @@
         "angular-chart.js": "0.8.4",
         "ng-csv": "0.3.5",
         "material-design-lite": "1.0.6",
-        "lodash": "3.10.1",
+        "lodash": "4.13.1",
         "angular-bootstrap": "0.14.3",
         "textAngular": "1.5.0",
         "owl.carousel": "2.0.0-beta.3",

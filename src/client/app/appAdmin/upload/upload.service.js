@@ -29,6 +29,10 @@
       getGallery: function() {
         var url = coreService.formatApi('gallery');
         return $http.get(url);
+      },
+      deleteGallery: function (idGallery) {
+        var url = coreService.formatApi('gallery/' + idGallery);
+        return $http.delete(url);
       }
     };
 

@@ -9,6 +9,7 @@ router.get('/people', getPeople);
 router.get('/product/:id', getProduct);
 router.get('/person/:id', getPerson);
 router.get('/*', four0four.notFoundMiddleware);
+router.delete('/deleteFile', deleteFile);
 
 module.exports = router;
 

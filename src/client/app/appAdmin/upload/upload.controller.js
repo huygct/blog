@@ -21,6 +21,8 @@
 
     vm.disableButtonUploadIcon = true;
     vm.disableButtonUploadImageNormal = true;
+    vm.disableButtonDeleteIcon = true;
+    vm.disableButtonDeleteImage = true;
 
     var address = $location.protocol() + '://' + location.host + '/';
 
@@ -119,6 +121,25 @@
       vm.cache.currentIcon.urlPhoto = address + 'images/icons/' + vm.cache.currentIcon.name;
     };
 
+    vm.deleteGallery = function(id) {
+      vm.alert.show = false;
+      vm.cache.spinnerLoading = true;
+      uploadService.api.deleteGallery(id)
+        .then(function (response) {
+          vm.alert.type = 'success';
+          vm.alert.msg = 'Đã xóa xong...';
+          vm.alert.show = true;
+        })
+        .catch(function () {
+          vm.alert.type = 'danger';
+          vm.alert.msg = 'Thực hiện xóa thất bại...';
+          vm.alert.show = true;
+        })
+        .finally(function () {
+          vm.cache.spinnerLoading = false;
+        });
+    };
+
     function updateToServer(photos, type) {
       commonService.updateGallery(photos, type)
         .then(function (newPhotos) {
@@ -167,7 +188,6 @@
         .finally(function () {
           vm.cache.spinnerLoading = false;
         });
-
     }
 
     getGallery();
