@@ -87,6 +87,10 @@
         var url = coreService.formatApi('gallery?type=icon');
         return $http.get(url);
       },
+      getImages: function() {
+        var url = coreService.formatApi('gallery?type=normal');
+        return $http.get(url);
+      },
       uploadImage: function(photo) {
         var url = coreService.formatApiUploadImage(appConstant.product.api.uploadImage);
         //create form data object

@@ -341,9 +341,28 @@
         });
     }
 
+    function getImages() {
+      var alert = vm.cache.alert;
+      alert.show = false;
+      vm.cache.spinnerLoading = true;
+      productManagerService.api.getImages()
+        .then(function (response) {
+          vm.cache.images = response.data || [];
+        })
+        .catch(function () {
+          alert.type = 'danger';
+          alert.msg = 'Lấy hình ảnh thất bại!!! Vui lòng thực hiện lại...';
+          alert.show = true;
+        })
+        .finally(function () {
+          vm.cache.spinnerLoading = false;
+        });
+    }
+
     function activate() {
       logger.info('Activated Product View');
       getIconsProduct();
+      getImages();
     }
 
     activate();

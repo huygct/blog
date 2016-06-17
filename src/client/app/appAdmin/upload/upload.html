@@ -17,7 +17,7 @@
            ng-disabled="vm.cache.buttonIconLoading || vm.disableButtonUploadIcon">Upload</a>
         <div class="pull-right">
           <a class="btn btn-primary"
-             ng-click="vm.disableButtonDeleteIcon || vm.deleteGallery(vm.cache.currentIcon.id)" button-spinner="vm.cache.buttonDeleteIconLoading"
+             ng-click="vm.disableButtonDeleteIcon || vm.deleteGallery(vm.cache.currentIcon.id, 'icon')" button-spinner="vm.cache.buttonDeleteIconLoading"
              ng-disabled="vm.cache.buttonDeleteIconLoading || vm.disableButtonDeleteIcon">Delete Icon</a>
         </div>
       </div>
@@ -46,7 +46,7 @@
            ng-disabled="vm.cache.buttonPhotoLoading || vm.disableButtonUploadImageNormal">Upload</a>
         <div class="pull-right">
           <a class="btn btn-primary"
-             ng-click="vm.disableButtonDeleteImage || vm.deleteGallery(vm.cache.currentPhoto.id)" button-spinner="vm.cache.buttonDeleteImageLoading"
+             ng-click="vm.disableButtonDeleteImage || vm.deleteGallery(vm.cache.currentPhoto.id, 'normal')" button-spinner="vm.cache.buttonDeleteImageLoading"
              ng-disabled="vm.cache.buttonDeleteImageLoading || vm.disableButtonDeleteImage">Delete Image</a>
         </div>
       </div>

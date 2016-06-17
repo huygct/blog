@@ -112,32 +112,56 @@
     };
 
     vm.selectedPhoto = function(photo) {
+      vm.disableButtonDeleteImage = false;
       vm.cache.currentPhoto = angular.copy(photo);
       vm.cache.currentPhoto.urlPhoto = address + 'images'+ vm.cache.currentPhoto.name;
     };
 
     vm.selectedIcon = function(icon) {
+      vm.disableButtonDeleteIcon = false;
       vm.cache.currentIcon = angular.copy(icon);
       vm.cache.currentIcon.urlPhoto = address + 'images/icons/' + vm.cache.currentIcon.name;
     };
 
-    vm.deleteGallery = function(id) {
+    vm.deleteGallery = function(id, type) {
       vm.alert.show = false;
+      if(type === 'icon') {
+        vm.cache.buttonDeleteIconLoading = true;
+        vm.disableButtonDeleteIcon = false;
+      } else {
+        vm.cache.buttonDeleteImageLoading = true;
+        vm.disableButtonDeleteImage = false;
+      }
       vm.cache.spinnerLoading = true;
       uploadService.api.deleteGallery(id)
         .then(function (response) {
-          vm.alert.type = 'success';
-          vm.alert.msg = 'Đã xóa xong...';
-          vm.alert.show = true;
+          $http.delete('api/deleteFile/' + response.data.name)
+            .then(function () {
+              vm.alert.type = 'success';
+              vm.alert.msg = 'Đã xóa xong file: ' + response.data.name + ' ...';
+              vm.alert.show = true;
+              getGallery();
+            })
+            .catch(function () {
+              vm.alert.type = 'danger';
+              vm.alert.msg = 'Thực hiện xóa thất bại...';
+              vm.alert.show = true;
+            }).finally(function () {
+              vm.cache.spinnerLoading = false;
+              if(type === 'icon') {
+                vm.cache.buttonDeleteIconLoading = false;
+                vm.disableButtonDeleteIcon = true;
+              } else {
+                vm.cache.buttonDeleteImageLoading = false;
+                vm.disableButtonDeleteImage = true;
+              }
+            });
         })
         .catch(function () {
           vm.alert.type = 'danger';
           vm.alert.msg = 'Thực hiện xóa thất bại...';
           vm.alert.show = true;
         })
-        .finally(function () {
-          vm.cache.spinnerLoading = false;
-        });
     };
 
     function updateToServer(photos, type) {
@@ -165,6 +189,8 @@
     }
 
     function getGallery() {
+      vm.photoList = [];
+      vm.iconList = [];
       vm.alert.show = false;
       vm.cache.spinnerLoading = true;
       uploadService.api.getGallery()

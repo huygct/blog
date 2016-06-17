@@ -2,6 +2,7 @@ var router = require('express').Router();
 var multer = require('multer');
 var Jimp = require("jimp");
 var http = require('http');
+var fs = require('fs');
 var four0four = require('./utils/404')();
 var data = require('./data');
 
@@ -9,7 +10,7 @@ router.get('/people', getPeople);
 router.get('/product/:id', getProduct);
 router.get('/person/:id', getPerson);
 router.get('/*', four0four.notFoundMiddleware);
-router.delete('/deleteFile', deleteFile);
+router.delete('/deleteFile/:filename', deleteFile);
 
 module.exports = router;
 
@@ -50,12 +51,25 @@ function getPerson(req, res, next) {
     }
 }
 
+function deleteFile(req, res) {
+  var file = './images/' + req.params.filename;
+  console.log('file : ', file);
+  fs.exists(file, function(exists) {
+    if(exists) {
+      fs.unlink(file);
+      res.json({status: 204});
+    } else {
+      res.json({status: 404});
+    }
+  });
+}
+
 function uploadFile(req, res) {
     upload(req, res, function (err) {
         if (err) {
             return res.end('Error uploading file.');
         }
-        res.json({status: 204, files: req.file});
+        res.json({status: 200, files: req.file});
     });
 }
 
@@ -70,7 +84,7 @@ function uploadIconImage(req, res) {
       resizePhoto(files[i], './images/icons/', 175, 200); // nen xem lai
     }
 
-    res.json({status: 204, files: req.files});
+    res.json({status: 200, files: req.files});
   });
 }
 
@@ -85,7 +99,7 @@ function uploadPhotos(req, res) {
       resizePhoto(files[i], './images/thumbs/', 50, 50); // nen xem lai
     }
 
-    res.json({status: 204, files: req.files});
+    res.json({status: 200, files: req.files});
   });
 }
 

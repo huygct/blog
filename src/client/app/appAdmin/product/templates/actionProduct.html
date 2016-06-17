@@ -61,6 +61,15 @@
         <textarea ng-model="vm.cache.currentProduct.shortDescription" md-select-on-focus></textarea>
       </md-input-container>
 
+      <md-list>
+        <md-subheader class="md-no-sticky">Hình ảnh cho sản phẩm</md-subheader>
+        <md-list-item ng-repeat="image in vm.cache.images" class="noright">
+          <img alt="{{ image.name }}" ng-src="./images/thumbs/{{ image.name }}" class="md-avatar" />
+          <p>{{ image.name }}</p>
+          <md-checkbox class="md-secondary" ng-model="image.selected"></md-checkbox>
+        </md-list-item>
+      </md-list>
+
       <md-radio-group ng-model="vm.cache.typeInputImage">
         <md-radio-button value="available">Đã có hình</md-radio-button>
         <md-radio-button value="notAvailable">Upload hình bây giờ</md-radio-button>
