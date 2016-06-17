@@ -61,7 +61,7 @@
         <textarea ng-model="vm.cache.currentProduct.shortDescription" md-select-on-focus></textarea>
       </md-input-container>
 
-      <md-list>
+      <md-list class="images-for-product">
         <md-subheader class="md-no-sticky">Hình ảnh cho sản phẩm</md-subheader>
         <md-list-item ng-repeat="image in vm.cache.images" class="noright">
           <img alt="{{ image.name }}" ng-src="./images/thumbs/{{ image.name }}" class="md-avatar" />
