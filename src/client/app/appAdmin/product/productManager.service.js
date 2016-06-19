@@ -36,7 +36,9 @@
 
     var cache = {
       currentView: getView().main,
-      currentProduct: {},
+      currentProduct: {
+        galleries: []
+      },
       typeInputImage: '',
       icons: [],
       file: {

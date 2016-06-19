@@ -138,8 +138,9 @@
      */
     vm.goToAddProductView = function () {
       vm.cache.currentView = productManagerService.getView.add;
-      vm.cache.currentProduct = {};
+      vm.cache.currentProduct = defaultProduct();
       vm.cache.descriptionForProduct = null;
+      vm.cache.currentImages = angular.copy(vm.cache.imagesOfApp);
       vm.cache.typeInputImage = '';
 
       loadCategory();
@@ -176,6 +177,20 @@
      */
     vm.goToEditProductView = function () {
       vm.cache.currentProduct = angular.copy(vm.selectedProduct[0]);
+      vm.cache.currentImages = angular.copy(vm.cache.imagesOfApp);
+      if(_.get(vm.cache, 'currentProduct.galleries.length', -1) > 0) {
+        _.forEach(vm.cache.currentProduct.galleries, function (image) {
+          var index = _.findIndex(vm.cache.currentImages, function(img) {
+            return image.name === img.name;
+          });
+          if(index !== -1){
+            vm.cache.currentImages[index].selected = true;
+          }
+        });
+      } else {
+        vm.cache.currentProduct.galleries = [];
+      }
+
       if(vm.cache.currentProduct.hasOwnProperty('createdAt')) {
         delete vm.cache.currentProduct['createdAt'];
       }
@@ -216,7 +231,7 @@
     };
 
     vm.backToTableView = function () {
-      vm.cache.currentProduct = {};
+      vm.cache.currentProduct = defaultProduct();
       vm.selectedProduct = [];
       vm.cache.file = {};
       vm.cache.typeInputImage = '';
@@ -306,6 +321,31 @@
       vm.cache.currentProduct.imageSmallUrl = 'images\\icons\\' + icon.name;
     };
 
+    vm.selectedImageForProduct = function selectedImageForProduct (image) {
+      var newValue = !image.selected;
+
+      if(newValue) {
+        if(_.get(vm.cache.currentProduct, 'galleries.length', -1) < 3){
+          image.selected = true;
+          vm.cache.currentProduct.galleries.push(image);
+        }
+      } else {
+        _.remove(vm.cache.currentProduct.galleries, function (img) {
+          return img.name === image.name;
+        });
+        image.selected = false;
+      }
+    };
+
+    /**
+     * get default product
+     */
+    function defaultProduct() {
+      return {
+        galleries: []
+      }
+    }
+
     /**
      * ended file
      */
@@ -347,7 +387,7 @@
       vm.cache.spinnerLoading = true;
       productManagerService.api.getImages()
         .then(function (response) {
-          vm.cache.images = response.data || [];
+          vm.cache.imagesOfApp = response.data || [];
         })
         .catch(function () {
           alert.type = 'danger';

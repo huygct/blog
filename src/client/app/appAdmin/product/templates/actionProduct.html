@@ -63,10 +63,10 @@
 
       <md-list class="images-for-product">
         <md-subheader class="md-no-sticky">Hình ảnh cho sản phẩm</md-subheader>
-        <md-list-item ng-repeat="image in vm.cache.images" class="noright">
-          <img alt="{{ image.name }}" ng-src="./images/thumbs/{{ image.name }}" class="md-avatar" />
+        <md-list-item ng-repeat="image in vm.cache.currentImages" class="noright"ng-click="vm.selectedImageForProduct(image)">
+          <img alt="{{ image.name }}" ng-src="/images/thumbs/{{ image.name }}" class="md-avatar" />
           <p>{{ image.name }}</p>
-          <md-checkbox class="md-secondary" ng-model="image.selected"></md-checkbox>
+          <div class="md-secondary" ng-if="image.selected"><i class="fa fa-check-circle-o" aria-hidden="true"></i></div>
         </md-list-item>
       </md-list>
 

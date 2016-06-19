@@ -5,7 +5,9 @@
       <md-card>
         <img ng-src="{{vm.currentProduct.imageUrl}}" class="md-card-image" alt="Washed Out">
       </md-card>
-      <ng-gallery images="images"></ng-gallery>
+      <div ng-if="vm.galleries.length > 0">
+        <ng-gallery images="vm.galleries"></ng-gallery>
+      </div>
     </div>
     <div flex-xs="" flex-gt-xs layout="column" class="right-side-product-view">
       <md-card>
