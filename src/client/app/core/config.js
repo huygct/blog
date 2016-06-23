@@ -54,4 +54,18 @@
       .accentPalette('orange');
   }
 
+  // connected facebook
+  core.config(connectFacebook);
+  connectFacebook.$inject = ['ezfbProvider'];
+  function connectFacebook(ezfbProvider) {
+    /**
+     * Basic setup
+     *
+     * https://github.com/pc035860/angular-easyfb#configuration
+     */
+    ezfbProvider.setInitParams({
+      appId: '1524712094499250'
+    });
+  }
+
 })();
