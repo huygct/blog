@@ -64,7 +64,7 @@
      * https://github.com/pc035860/angular-easyfb#configuration
      */
     ezfbProvider.setInitParams({
-      appId: '1524712094499250'
+      appId: '1534077266909553'
     });
   }
 
