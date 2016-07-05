@@ -17,6 +17,13 @@
     vm.loading = false;
 
     /**
+     * login by facebook
+     */
+    vm.loginByFacebook = function () {
+      coreService.facebook.loginByFacebook();
+    };
+
+    /**
      * login
      */
     vm.login = function (user) {

@@ -9,10 +9,10 @@
     .factory('coreService', coreService);
 
   coreService.$inject = ['$http', 'exception', 'logger', 'appConstant', '$rootScope',
-    '$uibModal', 'localStorageService'];
+    '$uibModal', 'localStorageService', 'ezfb'];
   /* @ngInject */
   function coreService($http, exception, logger, appConstant, $rootScope,
-                       $uibModal, localStorageService) {
+                       $uibModal, localStorageService, ezfb) {
     var service = {};
 
     /**
@@ -119,6 +119,75 @@
         });
     }
 
+    /**
+     * connect to facebook
+     */
+
+    /**
+     * Update loginStatus result
+     */
+    function updateLoginStatus (more) {
+      ezfb.getLoginStatus(function (res) {
+        //$scope.loginStatus = res;
+
+        (more || angular.noop)();
+      });
+    }
+
+    /**
+     * Update api('/me') result
+     */
+    function updateApiMe () {
+      ezfb.api('/me', function (res) {
+        console.log('--- Me ', res);
+        //$scope.apiMe = res;
+      });
+    }
+
+    function loginByFacebook() {
+      /**
+       * Calling FB.login with required permissions specified
+       * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
+       */
+      ezfb.login(function (res) {
+        /**
+         * no manual $scope.$apply, I got that handled
+         */
+        if (res.authResponse) {
+          console.log(res);
+          updateLoginStatus(updateApiMe);
+        }
+      }, {scope: 'email,user_likes'});
+    }
+
+    function logoutFacebook() {
+      /**
+       * Calling FB.logout
+       * https://developers.facebook.com/docs/reference/javascript/FB.logout
+       */
+      ezfb.logout(function () {
+        updateLoginStatus(updateApiMe);
+      });
+    }
+
+    function shareFacebook() {
+      ezfb.ui(
+        {
+          method: 'feed',
+          name: 'angular-easyfb API demo',
+          picture: 'http://plnkr.co/img/plunker.png',
+          link: 'http://plnkr.co/edit/qclqht?p=preview',
+          description: 'angular-easyfb is an AngularJS module wrapping Facebook SDK.' +
+          ' Facebook integration in AngularJS made easy!' +
+          ' Please try it and feel free to give feedbacks.'
+        },
+        function (res) {
+          // res: FB.ui response
+        }
+      );
+    }
+
+
     service.api = api;
     service.getEnv = getEnv;
     service.formatApi = formatApi;
@@ -129,6 +198,11 @@
     service.updateInfoUser = updateInfoUser;
 
     service.openYourCard = openYourCard;
+
+    service.facebook = {};
+    service.facebook.loginByFacebook = loginByFacebook;
+    service.facebook.logoutFacebook = logoutFacebook;
+    service.facebook.shareFacebook = shareFacebook;
 
     return service;
   }

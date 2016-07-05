@@ -34,6 +34,11 @@
           </div>
         </md-input-container>
       </form>
+      <button class="btn btn-primary" ng-click="vm.loginByFacebook()"
+              ng-disabled="loginStatus.status == 'connected'" style="width: 100%" >
+        Đăng nhập bằng Facebook
+      </button>
+
     </md-content>
   </div>
 </div>
