@@ -8,10 +8,10 @@
     .module('app.core')
     .factory('coreService', coreService);
 
-  coreService.$inject = ['$http', 'exception', 'logger', 'appConstant', '$rootScope',
+  coreService.$inject = ['$http', 'exception', '$state', 'appConstant', '$rootScope',
     '$uibModal', 'localStorageService', 'ezfb'];
   /* @ngInject */
-  function coreService($http, exception, logger, appConstant, $rootScope,
+  function coreService($http, exception, $state, appConstant, $rootScope,
                        $uibModal, localStorageService, ezfb) {
     var service = {};
 
@@ -89,6 +89,10 @@
       },
       login: function(user) {
         return $http.post(formatApi(appConstant.core.api.login), user);
+      },
+      getInfoFacebookUser: function (facebookId) {
+        var url = formatApi(appConstant.user.api.model) + '?facebookId=' + facebookId;
+        return $http.get(url);
       }
     };
 
@@ -122,15 +126,33 @@
     /**
      * connect to facebook
      */
+    function getInfoFacebookUser(facebookId) {
+      api.getInfoFacebookUser(facebookId)
+        .then(function (response) {
+          if(_.get(response, 'data.length') === 0) {
+            // login success with account haven't information yet
+            $state.go('app.appUser.userInfo', {mode: 'writeInfo', facebook: 'connected'});
+          } else {
+            // login success with account was existed information
+            $rootScope.currentUser = response.data[0];
+          }
+        })
+        .catch(function () {
+
+        })
+    }
 
     /**
      * Update loginStatus result
      */
     function updateLoginStatus (more) {
       ezfb.getLoginStatus(function (res) {
+        console.log(res);
         //$scope.loginStatus = res;
-
-        (more || angular.noop)();
+        $rootScope.facebook = res.status;
+        if(res.status === 'connected') {
+          (more || angular.noop)();
+        }
       });
     }
 
@@ -138,9 +160,9 @@
      * Update api('/me') result
      */
     function updateApiMe () {
-      ezfb.api('/me', function (res) {
-        console.log('--- Me ', res);
-        //$scope.apiMe = res;
+      ezfb.api('/me?fields=id,name,email,picture', function (res) {
+        $rootScope.facebookInfo = res;
+        getInfoFacebookUser(res.id);
       });
     }
 
@@ -154,7 +176,6 @@
          * no manual $scope.$apply, I got that handled
          */
         if (res.authResponse) {
-          console.log(res);
           updateLoginStatus(updateApiMe);
         }
       }, {scope: 'email,user_likes'});
@@ -166,7 +187,7 @@
        * https://developers.facebook.com/docs/reference/javascript/FB.logout
        */
       ezfb.logout(function () {
-        updateLoginStatus(updateApiMe);
+        updateLoginStatus();
       });
     }
 
@@ -187,6 +208,8 @@
       );
     }
 
+    updateLoginStatus(updateApiMe);
+    //logoutFacebook();
 
     service.api = api;
     service.getEnv = getEnv;

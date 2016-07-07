@@ -21,6 +21,7 @@
      */
     vm.loginByFacebook = function () {
       coreService.facebook.loginByFacebook();
+      $uibModalInstance.dismiss('cancel');
     };
 
     /**

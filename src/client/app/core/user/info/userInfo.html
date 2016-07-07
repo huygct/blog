@@ -47,7 +47,7 @@
 
     <md-content class="md-padding" layout-xs="column" ng-if="vm.cache.view === 'writeInfo'">
       <form name="loginForm">
-        <md-button class="md-primary" ng-click="vm.backReadInfoUserView()">
+        <md-button ng-if="!vm.facebook" class="md-primary" ng-click="vm.backReadInfoUserView()">
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
           Quay về
         </md-button>
@@ -100,8 +100,12 @@
         </md-input-container>
       </form>
       <div class="pull-right">
-        <md-button class="md-raised md-primary" ng-disabled="!loginForm.$valid"
+        <md-button ng-if="!vm.facebook" class="md-raised md-primary" ng-disabled="!loginForm.$valid"
                    ng-click="vm.applyNewInfo(vm.cache.currentUser)">Xác Nhận</md-button>
+        <md-button ng-if="vm.facebook" class="md-raised md-primary" ng-disabled="!loginForm.$valid"
+                   ng-click="vm.registerWithFacebook(vm.cache.currentUser)">Xác Nhận</md-button>
+        <md-button ng-if="vm.facebook" class="md-raised"
+                   ng-click="vm.destroyAction()">Hủy</md-button>
       </div>
     </md-content>
   </md-card-content>

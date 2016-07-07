@@ -20,7 +20,6 @@
     };
 
     vm.register = function (user) {
-      console.log('User: ', user);
       coreService.api.addUser(user)
         .then(function (response) {
           vm.alert.show = false;

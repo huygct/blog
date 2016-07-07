@@ -14,6 +14,14 @@
     routerHelper.configureStates(getStates());
   }
 
+  getParamsURL.$inject = ['$stateParams'];
+  function getParamsURL($stateParams) {
+    return {
+      mode: $stateParams.mode || '',
+      facebook: $stateParams.facebook || ''
+    }
+  }
+
   function getStates() {
     return [
       {
@@ -23,7 +31,14 @@
           templateUrl: 'app/core/user/info/userInfo.html',
           controller: 'UserInfoController',
           controllerAs: 'vm',
-          title: 'User Information'
+          title: 'User Information',
+          params: {
+            mode: '',
+            facebook: ''
+          },
+          resolve: {
+            paramsURL: getParamsURL
+          }
         }
       }
     ];
