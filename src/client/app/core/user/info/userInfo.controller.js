@@ -15,9 +15,9 @@
 
     vm.cache = userInfoService.cache;
 
-    if(paramsURL.modeView && paramsURL.facebook === 'connected') {
+    if(paramsURL.mode && paramsURL.facebook === 'connected') {
       var alert = vm.cache.alert;
-      vm.cache.view = paramsURL.modeView;
+      vm.cache.view = paramsURL.mode;
       vm.facebook = true;
       vm.cache.currentUser = {
         email: $rootScope.facebookInfo.email,
@@ -71,6 +71,7 @@
       var alert = vm.cache.alert;
       alert.show = false;
       vm.cache.spinnerLoading = true;
+      facebookUser.facebookID = $rootScope.facebookInfo.id;
       coreService.api.addUser(facebookUser)
         .then(function (response) {
           // save into localStore and $rootScope.currentUser
@@ -78,17 +79,19 @@
           // go to Home Page
           $state.go('app.appUser.blog');
         }, function (error) {
+          console.log('-- ', error);
           alert.type = 'danger';
           alert.msg = 'Thực hiện không thành công!!! Vui lòng thực hiện lại...';
           alert.show = true;
         })
         .finally(function () {
-
+          vm.cache.spinnerLoading = false;
         });
     };
 
-    $scope.$watch('$destroy', function () {
-      if($rootScope.facebook === 'connected') {
+    $scope.$on('$destroy', function () {
+      if(paramsURL.facebook === 'connected') {
+        delete $rootScope.facebookInfo;
         coreService.facebook.logoutFacebook();
       }
     })
