@@ -16,7 +16,8 @@
       core: {
         api: {
           addUser: 'auth/register',
-          login: 'auth/authenticate'
+          login: 'auth/authenticate',
+          authenticateByFacebook: 'auth/authenticateByFacebook'
         }
       },
 

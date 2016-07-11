@@ -90,6 +90,7 @@
     };
 
     $scope.$on('$destroy', function () {
+      console.log('$rootScope.facebookInfo: ', $rootScope.facebookInfo);
       if(paramsURL.facebook === 'connected') {
         delete $rootScope.facebookInfo;
         coreService.facebook.logoutFacebook();

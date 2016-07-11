@@ -91,8 +91,7 @@
         return $http.post(formatApi(appConstant.core.api.login), user);
       },
       getInfoFacebookUser: function (facebookId) {
-        var url = formatApi(appConstant.user.api.model) + '?facebookId=' + facebookId;
-        return $http.get(url);
+        return $http.post(formatApi(appConstant.core.api.authenticateByFacebook), {facebookID: facebookId});
       }
     };
 
@@ -134,7 +133,7 @@
             $state.go('app.appUser.userInfo', {mode: 'writeInfo', facebook: 'connected'});
           } else {
             // login success with account was existed information
-            $rootScope.currentUser = response.data[0];
+            saveCurrentUser(response.data);
           }
         })
         .catch(function () {
