@@ -19,6 +19,9 @@
 
     vm.user = vm.cache.user;
     vm.buyer = vm.cache.buyer;
+    
+    vm.allowOrder = allowOrder;
+    vm.loginByFacebook = loginByFacebook;
 
     var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     var YOUR_CART_KEY = appConstant.YOUR_CART;
@@ -49,7 +52,9 @@
         .then(function(response) {
           // login success
           coreService.saveCurrentUser(response.data);
-          vm.changeLayoutToShowInfoOrder();
+          user.email = '';
+          user.password = '';
+          // vm.changeLayoutToShowInfoOrder();
         })
         .catch(function(error) {
           if(error.status >= 400) {
@@ -103,6 +108,14 @@
         $scope.customFullscreen = (wantsFullScreen === true);
       });
     };
+    
+    function allowOrder () {
+      return _.get(vm, 'buyer.nameCustomer', '') !== '' && _.get(vm, 'buyer.phoneCustomer', '') !== '' && _.get(vm, 'buyer.addressCustomer', '') !== '';
+    }
+
+    function loginByFacebook () {
+      coreService.facebook.loginByFacebook();
+    }
 
     /**
      * controller dialog config order

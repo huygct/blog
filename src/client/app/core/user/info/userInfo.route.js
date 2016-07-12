@@ -8,10 +8,10 @@
     .module('app.core')
     .run(appRun);
 
-  appRun.$inject = ['routerHelper'];
+  appRun.$inject = ['routerHelper', 'appConstant'];
   /* @ngInject */
-  function appRun(routerHelper) {
-    routerHelper.configureStates(getStates());
+  function appRun(routerHelper, appConstant) {
+    routerHelper.configureStates(getStates(appConstant));
   }
 
   getParamsURL.$inject = ['$stateParams'];
@@ -22,7 +22,7 @@
     }
   }
 
-  function getStates() {
+  function getStates(appConstant) {
     return [
       {
         state: 'app.appUser.userInfo',
@@ -32,6 +32,9 @@
           controller: 'UserInfoController',
           controllerAs: 'vm',
           title: 'User Information',
+          data: {
+            access: appConstant.USER_AUTH
+          },
           params: {
             mode: '',
             facebook: ''

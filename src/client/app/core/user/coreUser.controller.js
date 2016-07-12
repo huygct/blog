@@ -8,10 +8,10 @@
     .module('app.core')
     .controller('CoreUserController', CoreUserController);
 
-  CoreUserController.$inject = ['$scope', '$state', 'settingService', 'logger', 'localStorageService',
+  CoreUserController.$inject = ['$scope', '$state', 'settingService', '$rootScope', 'localStorageService',
     'appConstant', '$location', '$uibModal', 'coreService', '$anchorScroll', 'ezfb', '$window', '$q'];
   /* @ngInject */
-  function CoreUserController($scope, $state, settingService, logger, localStorageService,
+  function CoreUserController($scope, $state, settingService, $rootScope, localStorageService,
                               appConstant, $location, $uibModal, coreService, $anchorScroll, ezfb, $window, $q) {
     var vm = this;
 
@@ -91,8 +91,10 @@
       coreService.removeCurrentUser();
       vm.currentUser = {};
       if(user.facebookID) {
+        delete $rootScope.facebookInfo;
         coreService.facebook.logoutFacebook();
       }
+      $state.reload();
     };
 
     /**

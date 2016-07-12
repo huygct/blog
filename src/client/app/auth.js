@@ -19,7 +19,7 @@
     }
 
     function isUserAuthenticated() {
-      return localStorageService.get(appConstant.USER_AUTH);
+      return localStorageService.get(appConstant.USER_APP);
     }
 
     function authorize(access) {

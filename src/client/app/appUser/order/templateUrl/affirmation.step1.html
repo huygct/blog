@@ -22,6 +22,9 @@
       <md-button type="submit" class="md-raised md-primary"
                  ng-disabled="!loginForm.$valid">Đăng nhập</md-button>
     </form>
+    <button class="btn btn-primary" ng-click="vm.loginByFacebook()" style="margin-left: 24px; width: calc(100% - 48px)" >
+      Đăng nhập bằng Facebook
+    </button>
   </md-card-content>
 
   <md-card-content spinner-loading="vm.cache.spinnerLoading" ng-if="vm.cache.typeBuyer === 'member' && $root.currentUser"

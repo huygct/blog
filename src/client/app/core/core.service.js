@@ -139,6 +139,9 @@
         .catch(function () {
 
         })
+        .finally(function () {
+          $rootScope.spinnerLoading = false;
+        })
     }
 
     /**
@@ -151,6 +154,8 @@
         $rootScope.facebook = res.status;
         if(res.status === 'connected') {
           (more || angular.noop)();
+        } else {
+          $rootScope.spinnerLoading = false;
         }
       });
     }
@@ -166,6 +171,7 @@
     }
 
     function loginByFacebook() {
+      $rootScope.spinnerLoading = true;
       /**
        * Calling FB.login with required permissions specified
        * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
@@ -176,6 +182,8 @@
          */
         if (res.authResponse) {
           updateLoginStatus(updateApiMe);
+        } else {
+          $rootScope.spinnerLoading = false;
         }
       }, {scope: 'email,user_likes'});
     }

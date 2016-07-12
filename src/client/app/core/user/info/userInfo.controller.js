@@ -14,6 +14,8 @@
     var vm = this;
 
     vm.cache = userInfoService.cache;
+    
+    vm.disableApplyButton = disableApplyButton;
 
     if(paramsURL.mode && paramsURL.facebook === 'connected') {
       var alert = vm.cache.alert;
@@ -23,6 +25,7 @@
         email: $rootScope.facebookInfo.email,
         name: $rootScope.facebookInfo.name
       };
+      vm.cache.currentUserJson = angular.toJson(vm.cache.currentUser);
       alert.type = 'danger';
       alert.msg = 'Để đăng nhập bằng Facebook. Vui lòng nhập đầy đủ thông tin của bạn vào bên dưới...';
       alert.show = true;
@@ -31,6 +34,7 @@
     vm.goToViewChangeInfoUser = function goToViewChangeInfoUser() {
       vm.cache.view = 'writeInfo';
       vm.cache.currentUser = angular.copy(_.get($rootScope, 'currentUser.user'));
+      vm.cache.currentUserJson = angular.toJson(vm.cache.currentUser);
     };
 
     vm.backReadInfoUserView = function backReadInfoUserView() {
@@ -88,12 +92,18 @@
           vm.cache.spinnerLoading = false;
         });
     };
+    
+    function disableApplyButton (newInfo) {
+      var json = angular.toJson(newInfo);
+      return json === vm.cache.currentUserJson;
+    }
 
     $scope.$on('$destroy', function () {
       console.log('$rootScope.facebookInfo: ', $rootScope.facebookInfo);
       if(paramsURL.facebook === 'connected') {
         delete $rootScope.facebookInfo;
         coreService.facebook.logoutFacebook();
+        vm.cache.spinnerLoading = false;
       }
     })
   }

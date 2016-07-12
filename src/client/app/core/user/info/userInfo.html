@@ -57,7 +57,8 @@
           <md-icon class="email">
             <i class="fa fa-envelope"></i>
           </md-icon>
-          <input required type="email" name="email" ng-model="vm.cache.currentUser.email" ng-pattern="/^.+@.+\..+$/">
+          <input required type="email" name="email" ng-model="vm.cache.currentUser.email" ng-pattern="/^.+@.+\..+$/"
+                  ng-disabled="!vm.facebook">
 
           <div ng-messages="loginForm.email.$error">
             <div ng-message-exp="['required', 'pattern']">
@@ -100,9 +101,11 @@
         </md-input-container>
       </form>
       <div class="pull-right">
-        <md-button ng-if="!vm.facebook" class="md-raised md-primary" ng-disabled="!loginForm.$valid"
+        <md-button ng-if="!vm.facebook" class="md-raised md-primary"
+                   ng-disabled="!loginForm.$valid || vm.disableApplyButton(vm.cache.currentUser)"
                    ng-click="vm.applyNewInfo(vm.cache.currentUser)">Xác Nhận</md-button>
-        <md-button ng-if="vm.facebook" class="md-raised md-primary" ng-disabled="!loginForm.$valid"
+        <md-button ng-if="vm.facebook" class="md-raised md-primary"
+                   ng-disabled="!loginForm.$valid || vm.disableApplyButton(vm.cache.currentUser)"
                    ng-click="vm.registerWithFacebook(vm.cache.currentUser)">Xác Nhận</md-button>
         <md-button ng-if="vm.facebook" class="md-raised"
                    ng-click="vm.destroyAction()">Hủy</md-button>
