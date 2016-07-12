@@ -87,9 +87,12 @@
     /**
      * log out
      */
-    vm.logout = function() {
+    vm.logout = function(user) {
       coreService.removeCurrentUser();
       vm.currentUser = {};
+      if(user.facebookID) {
+        coreService.facebook.logoutFacebook();
+      }
     };
 
     /**

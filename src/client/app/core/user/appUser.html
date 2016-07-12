@@ -24,7 +24,7 @@
         Đăng nhập
       </md-button>
       <md-menu md-position-mode="target-right target" class="user-name-menu top-40-px" ng-if="$root.currentUser">
-        <md-button aria-label="Open user interactions menu" class="md-primary button-user-name" ng-click="vm.openMenu($mdOpenMenu, $event)">
+        <md-button aria-label="Open user interactions menu" class="md-primary button-user-name text-transform-none" ng-click="vm.openMenu($mdOpenMenu, $event)">
           <i class="fa fa-smile-o" aria-hidden="true"></i>
           {{$root.currentUser.user.name}}
         </md-button>
@@ -36,7 +36,7 @@
           </md-menu-item>
           <md-menu-divider></md-menu-divider>
           <md-menu-item>
-            <md-button ng-click="vm.logout()">
+            <md-button ng-click="vm.logout($root.currentUser.user)">
               Thoát
             </md-button>
           </md-menu-item>

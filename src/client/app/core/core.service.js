@@ -146,7 +146,7 @@
      */
     function updateLoginStatus (more) {
       ezfb.getLoginStatus(function (res) {
-        console.log(res);
+        console.log('get login status: ', res);
         //$scope.loginStatus = res;
         $rootScope.facebook = res.status;
         if(res.status === 'connected') {
@@ -208,7 +208,6 @@
     }
 
     updateLoginStatus(updateApiMe);
-    //logoutFacebook();
 
     service.api = api;
     service.getEnv = getEnv;
