@@ -15,7 +15,8 @@
     "morgan": "^1.1.1",
     "serve-favicon": "^2.0.1",
     "jimp": "0.2.24",
-    "nib": "~1.1.0"
+    "nib": "~1.1.0",
+    "prerender-node": "latest"
   },
   "devDependencies": {
     "browser-sync": "^2.7.13",
