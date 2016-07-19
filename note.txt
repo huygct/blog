@@ -1,7 +1,10 @@
 npm install nib
+npm install prerender-node --> cache for SEO on facebook
 
 ui:
 	node server.js ./path 9000 || forever start server_gzip.js ./ 9000
+	---newest: forever start express_static.js ./ 9000
+
 	run server to upload image:
 		Folder: copy server to build
 			run: node app.js || forever start server/app.js
