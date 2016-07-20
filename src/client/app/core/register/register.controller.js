@@ -8,9 +8,9 @@
     .module('app.core')
     .controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['$q', 'dataservice', 'logger', '$scope', 'coreService', '$state'];
+  RegisterController.$inject = ['$rootScope', 'dataservice', 'logger', '$scope', 'coreService', '$state'];
   /* @ngInject */
-  function RegisterController($q, dataservice, logger, $scope, coreService, $state) {
+  function RegisterController($rootScope, dataservice, logger, $scope, coreService, $state) {
     var vm = this;
 
     vm.alert = {
@@ -20,6 +20,7 @@
     };
 
     vm.register = function (user) {
+      $rootScope.spinnerLoading = true;
       coreService.api.addUser(user)
         .then(function (response) {
           vm.alert.show = false;
@@ -31,7 +32,7 @@
           vm.alert.show = true;
         })
         .finally(function () {
-
+          $rootScope.spinnerLoading = false;
         });
     };
 

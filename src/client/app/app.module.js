@@ -27,7 +27,8 @@
       'app.user.blog',
       'app.user.product',
       'app.user.cart',
-      'app.user.order'
+      'app.user.order',
+      'app.user.chat'
     ])
 
     .run(['$rootScope', '$state', 'Auth', function ($rootScope, $state, Auth) {

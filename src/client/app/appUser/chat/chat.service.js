@@ -15,6 +15,22 @@
                         commonService) {
     var service = {};
 
+    var tabs = [
+      {title: 'All User', templateUrl: 'app/appUser/chat/templates/all-user.html'}
+    ];
+
+    var cache = {
+      selectedTabIndex: 0,
+      tabs: tabs
+    };
+
+    var functionList = {
+
+    };
+
+    service.cache = cache;
+    service.functionList = functionList;
+
     return service;
   }
 })();

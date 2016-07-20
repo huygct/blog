@@ -128,7 +128,7 @@
     function getInfoFacebookUser(facebookId) {
       api.getInfoFacebookUser(facebookId)
         .then(function (response) {
-          if(_.get(response, 'data.length') === 0) {
+          if(_.isEmpty(response.data)) {
             // login success with account haven't information yet
             $state.go('app.appUser.userInfo', {mode: 'writeInfo', facebook: 'connected'});
           } else {
@@ -137,7 +137,7 @@
           }
         })
         .catch(function () {
-
+          logoutFacebook();
         })
         .finally(function () {
           $rootScope.spinnerLoading = false;
