@@ -99,6 +99,13 @@
             <div ng-message="required">Bạn phải nhập địa chỉ.</div>
           </div>
         </md-input-container>
+        <md-input-container ng-if="vm.facebook" class="md-block">
+          <label>Mã giới thiệu (nếu có)</label>
+          <md-icon>
+            <i class="fa fa-key"></i>
+          </md-icon>
+          <input name="code" ng-model="vm.cache.currentUser.code">
+        </md-input-container>
       </form>
       <div class="pull-right">
         <md-button ng-if="!vm.facebook" class="md-raised md-primary"

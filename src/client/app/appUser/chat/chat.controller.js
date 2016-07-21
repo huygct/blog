@@ -8,20 +8,21 @@
     .module('app.user.chat')
     .controller('ChatController', chatController);
 
-  chatController.$inject = ['$scope', '$mdDialog', 'localStorageService', 'appConstant', '$state',
+  chatController.$inject = ['$scope', '$rootScope', '$mdDialog', 'localStorageService', 'appConstant', '$state',
     'chatService'];
   /* @ngInject */
-  function chatController($scope, $mdDialog, localStorageService, appConstant, $state,
+  function chatController($scope, $rootScope, $mdDialog, localStorageService, appConstant, $state,
                           chatService) {
 
     var vm = this;
 
     var functionList = chatService.functionList;
     vm.cache = chatService.cache;
+    vm.cache.currentUser = angular.copy(_.get($rootScope, 'currentUser.user'));
 
     console.log('chatSocket: ', chatSocket);
 
-    chatSocket.get("/user", function(data){
+    chatSocket.get("/chat/getUser?id=" + vm.cache.currentUser.id, function(data){
       console.log('was getten success', data);
 
     });

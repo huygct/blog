@@ -102,6 +102,7 @@
       console.log('$rootScope.facebookInfo: ', $rootScope.facebookInfo);
       if(paramsURL.facebook === 'connected') {
         delete $rootScope.facebookInfo;
+        delete $rootScope.facebook;
         coreService.facebook.logoutFacebook();
         vm.cache.spinnerLoading = false;
       }

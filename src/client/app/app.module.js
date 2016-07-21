@@ -33,6 +33,9 @@
 
     .run(['$rootScope', '$state', 'Auth', function ($rootScope, $state, Auth) {
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        if(_.get(toParams, 'facebook') === 'connected' && toState.name === 'app.appUser.userInfo') {
+          return; // login by facebook... access into info user to fill information user
+        }
         if(toState.data && !Auth.authorize(toState.data.access)) {
           event.preventDefault();
           $state.go('app.appUser.blog');
