@@ -19,5 +19,12 @@
     var functionList = chatService.functionList;
     vm.cache = chatService.cache;
 
+    console.log('chatSocket: ', chatSocket);
+
+    chatSocket.get("/user", function(data){
+      console.log('was getten success', data);
+
+    });
+
   }
 })();
