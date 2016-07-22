@@ -18,13 +18,15 @@
 
     var functionList = chatService.functionList;
     vm.cache = chatService.cache;
-    vm.cache.currentUser = angular.copy(_.get($rootScope, 'currentUser.user'));
 
-    console.log('chatSocket: ', chatSocket);
-
-    chatSocket.get("/chat/getUser?id=" + vm.cache.currentUser.id, function(data){
+    var userId = _.get($rootScope, 'currentUser.user.id');
+    if(!userId) {
+      // thong bao
+      return;
+    }
+    chatSocket.get("/chat/getUser?id=" + userId, function(data){
       console.log('was getten success', data);
-
+      vm.cache.currentUser = data;
     });
 
   }
