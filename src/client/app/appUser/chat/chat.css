@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+.chat-app *,
+.chat-app *:before,
+.chat-app *:after {
+  box-sizing: border-box;
+}
+.chat-app .all-user-chat-tab {
+  background: #c5ddeb;
+  font: 14px/20px "Lato", Arial, sans-serif;
+  color: #fff;
+}
+.chat-app .all-user-chat-tab li {
+  list-style-type: none;
+}
+.chat-app .container-layout-chat {
+  margin: 0 auto;
+  width: 100%;
+  background: #444753;
+  border-radius: 5px;
+}
+.chat-app .people-list {
+  width: 260px;
+  float: left;
+}
+.chat-app .people-list .search {
+  padding: 20px;
+}
+.chat-app .people-list input {
+  border-radius: 3px;
+  border: none;
+  padding: 14px;
+  color: #fff;
+  background: #6a6c75;
+  width: 90%;
+  font-size: 14px;
+}
+.chat-app .people-list .fa-search {
+  position: relative;
+  left: -25px;
+}
+.chat-app .people-list ul {
+  padding: 20px;
+  height: 770px;
+}
+.chat-app .people-list ul li {
+  padding-bottom: 20px;
+}
+.chat-app .people-list img {
+  float: left;
+}
+.chat-app .people-list .about {
+  float: left;
+  margin-top: 8px;
+}
+.chat-app .people-list .about {
+  padding-left: 8px;
+}
+.chat-app .people-list .status {
+  color: #92959e;
+  text-align: left;
+}
+.chat-app .chat {
+  width: calc(100% - 260px);
+  float: left;
+  background: #f2f5f8;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #434651;
+}
+.chat-app .chat .chat-header {
+  padding: 20px;
+  border-bottom: 2px solid #fff;
+}
+.chat-app .chat .chat-header img {
+  float: left;
+}
+.chat-app .chat .chat-header .chat-about {
+  float: left;
+  padding-left: 10px;
+  margin-top: 6px;
+}
+.chat-app .chat .chat-header .chat-with {
+  font-weight: bold;
+  font-size: 16px;
+}
+.chat-app .chat .chat-header .chat-num-messages {
+  color: #92959e;
+}
+.chat-app .chat .chat-header .fa-star {
+  float: right;
+  color: #d8dadf;
+  font-size: 20px;
+  margin-top: 12px;
+}
+.chat-app .chat .chat-history {
+  padding: 30px 30px 20px;
+  border-bottom: 2px solid #fff;
+  overflow-y: scroll;
+  height: 575px;
+}
+.chat-app .chat .chat-history .message-data {
+  margin-bottom: 15px;
+}
+.chat-app .chat .chat-history .message-data-time {
+  color: #a8aab1;
+  padding-left: 6px;
+}
+.chat-app .chat .chat-history .message {
+  color: #fff;
+  padding: 18px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  border-radius: 7px;
+  margin-bottom: 30px;
+  width: 90%;
+  position: relative;
+}
+.chat-app .chat .chat-history .message:after {
+  bottom: 100%;
+  left: 7%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: #86bb71;
+  border-width: 10px;
+  margin-left: -10px;
+}
+.chat-app .chat .chat-history .my-message {
+  background: #86bb71;
+}
+.chat-app .chat .chat-history .other-message {
+  background: #94c2ed;
+}
+.chat-app .chat .chat-history .other-message:after {
+  border-bottom-color: #94c2ed;
+  left: 93%;
+}
+.chat-app .chat .chat-message {
+  padding: 30px;
+}
+.chat-app .chat .chat-message textarea {
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  font: 14px/22px "Lato", Arial, sans-serif;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+.chat-app .chat .chat-message .fa-file-o,
+.chat-app .chat .chat-message .fa-file-image-o {
+  font-size: 16px;
+  color: #808080;
+  cursor: pointer;
+}
+.chat-app .chat .chat-message button {
+  float: right;
+  color: #94c2ed;
+  font-size: 16px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #f2f5f8;
+}
+.chat-app .chat .chat-message button:hover {
+  color: #75b1e8;
+}
+.chat-app .online,
+.chat-app .offline,
+.chat-app .me {
+  margin-right: 3px;
+  font-size: 10px;
+}
+.chat-app .online {
+  color: #86bb71;
+}
+.chat-app .offline {
+  color: #e38968;
+}
+.chat-app .me {
+  color: #94c2ed;
+}
+.chat-app .align-left {
+  text-align: left;
+}
+.chat-app .align-right {
+  text-align: right;
+}
+.chat-app .float-right {
+  float: right;
+}
+.chat-app .clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

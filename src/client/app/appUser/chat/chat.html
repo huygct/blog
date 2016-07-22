@@ -1,15 +1,12 @@
-<div class="android-more-section carddemoInCardActions product-view" ng-cloak="">
-  <div class="sample tabsdemoDynamicTabs" layout="column" ng-cloak="">
-    <md-content class="md-padding">
-      <md-tabs md-selected="vm.cache.selectedTabIndex" md-border-bottom="" md-autoselect="">
-        <md-tab ng-repeat="tab in vm.cache.tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
-          <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;">
-            <div ng-include="tab.templateUrl"></div>
-            <br>
-            <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button>
-          </div>
-        </md-tab>
-      </md-tabs>
-    </md-content>
-  </div>
+<div class="android-more-section carddemoInCardActions chat-app" ng-cloak="">
+  <md-content class="md-padding">
+    <md-tabs md-dynamic-height md-selected="vm.cache.selectedTabIndex" md-border-bottom="" md-autoselect="">
+      <md-tab ng-repeat="tab in vm.cache.tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
+        <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;">
+          <div ng-include="tab.templateUrl"></div>
+          <!--<md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button>-->
+        </div>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 </div>

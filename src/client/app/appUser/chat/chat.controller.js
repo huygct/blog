@@ -26,8 +26,19 @@
     }
     chatSocket.get("/chat/getUser?id=" + userId, function(data){
       console.log('was getten success', data);
-      vm.cache.currentUser = data;
+      vm.currentUser = data;
     });
 
+    chatSocket.get("/user", function(data){
+      console.log('all user', data);
+      vm.allUser = data;
+      $scope.$digest();
+    });
+
+    chatSocket.get("/room", function(data){
+      console.log('all room', data);
+      vm.allRoom = data;
+      $scope.$digest();
+    });
   }
 })();
