@@ -9,6 +9,10 @@
   font: 14px/20px "Lato", Arial, sans-serif;
   color: #fff;
 }
+.chat-app .all-user-chat-tab .selecting-user {
+  color: #00f;
+  font-size: 16px;
+}
 .chat-app .all-user-chat-tab li {
   list-style-type: none;
 }

@@ -24,6 +24,13 @@
       // thong bao
       return;
     }
+
+    vm.changeUserToChat = changeUserToChat;
+    
+    function changeUserToChat(user) {
+      vm.chatingUser = user;
+    }
+    
     chatSocket.get("/chat/getUser?id=" + userId, function(data){
       console.log('was getten success', data);
       vm.currentUser = data;
