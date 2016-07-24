@@ -14,8 +14,31 @@
     routerHelper.configureStates(getStates());
   }
 
+  getYourName.$inject = ['$mdDialog', '$window', '$state', 'appConstant'];
+  function getYourName ($mdDialog, $window, $state, appConstant) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.prompt()
+      .title('Bạn tên gì?')
+      .textContent('Tên của bạn sẽ được sử dụng để trò chuyện.')
+      .placeholder('your name')
+      .ariaLabel('tên của bạn')
+      .ok('Đồng ý!')
+      .cancel('Bỏ qua');
+//    var account = null;
+//    var json = $window.sessionStorage.getItem(appConstant.CHAT_APP);
+//    if(json) {
+//      account = JSON.parse(json);
+//    }
+    return $mdDialog.show(confirm)
+        .then(function (result) {
+          return result;
+        }, function () {
+          $state.go('app.appUser.blog');
+        });
+      }
+
   /**
-   * can chat if user have special code: "baconcho"
+   * can chat if user have special code: "nhungconcho"
    */
   function getStates() {
     return [
@@ -26,7 +49,10 @@
           templateUrl: 'app/appUser/chat/chat.html',
           controller: 'ChatController',
           controllerAs: 'vm',
-          title: 'Chat'
+          title: 'Chat',
+          resolve: {
+            yourName: getYourName
+          }
         }
       }
     ];

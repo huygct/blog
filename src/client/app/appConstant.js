@@ -8,6 +8,7 @@
       USER_APP: 'app123456',
       YOUR_CART: 'app123456_cart',
       ADMIN_APP: 'admin_bonbontree_28',
+      CHAT_APP: 'bonbontree_chat_app_28',
 
       ANON: 0,
       USER_AUTH: 9,

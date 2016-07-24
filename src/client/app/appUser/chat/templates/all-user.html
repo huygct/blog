@@ -5,11 +5,11 @@
       <i class="fa fa-search"></i>
     </div>
     <ul class="list">
-      <li class="clearfix" ng-repeat="user in vm.allUser track by user.id" ng-click="vm.changeUserToChat(user)"
-      ng-class="{'selecting-user' : vm.chatingUser.id === user.id}">
+      <li class="clearfix" ng-repeat="account in vm.allAccount track by account.id" ng-click="vm.changeAccountToChat(account)"
+      ng-class="{'selecting-user' : vm.chatingAccount.id === account.id}">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
         <div class="about">
-          <div class="name">{{user.name}}</div>
+          <div class="name">{{account.name}}</div>
           <div class="status">
             <i class="fa fa-circle online"></i> online
           </div>
@@ -33,79 +33,79 @@
       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
 
       <div class="chat-about">
-        <div class="chat-with">{{vm.chatingUser.name}}</div>
+        <div class="chat-with">{{vm.chatingAccount.name}}</div>
         <div class="chat-num-messages">already 1 902 messages</div>
       </div>
       <i class="fa fa-star"></i>
     </div> <!-- end chat-header -->
 
     <div class="chat-history">
-      <ul>
-        <li class="clearfix">
-          <div class="message-data align-right">
-            <span class="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;
-            <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+      <ul ng-bind-html="vm.chatHtml">
+        <!--<li class="clearfix">-->
+          <!--<div class="message-data align-right">-->
+            <!--<span class="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;-->
+            <!--<span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>-->
 
-          </div>
-          <div class="message other-message float-right">
-            Hi Vincent, how are you? How is the project coming along?
-          </div>
-        </li>
+          <!--</div>-->
+          <!--<div class="message other-message float-right">-->
+            <!--Hi Vincent, how are you? How is the project coming along?-->
+          <!--</div>-->
+        <!--</li>-->
 
-        <li>
-          <div class="message-data">
-            <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-            <span class="message-data-time">10:12 AM, Today</span>
-          </div>
-          <div class="message my-message">
-            Are we meeting today? Project has been already finished and I have results to show you.
-          </div>
-        </li>
+        <!--<li>-->
+          <!--<div class="message-data">-->
+            <!--<span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>-->
+            <!--<span class="message-data-time">10:12 AM, Today</span>-->
+          <!--</div>-->
+          <!--<div class="message my-message">-->
+            <!--Are we meeting today? Project has been already finished and I have results to show you.-->
+          <!--</div>-->
+        <!--</li>-->
 
-        <li class="clearfix">
-          <div class="message-data align-right">
-            <span class="message-data-time" >10:14 AM, Today</span> &nbsp; &nbsp;
-            <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+        <!--<li class="clearfix">-->
+          <!--<div class="message-data align-right">-->
+            <!--<span class="message-data-time" >10:14 AM, Today</span> &nbsp; &nbsp;-->
+            <!--<span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>-->
 
-          </div>
-          <div class="message other-message float-right">
-            Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?
-          </div>
-        </li>
+          <!--</div>-->
+          <!--<div class="message other-message float-right">-->
+            <!--Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?-->
+          <!--</div>-->
+        <!--</li>-->
 
-        <li>
-          <div class="message-data">
-            <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-            <span class="message-data-time">10:20 AM, Today</span>
-          </div>
-          <div class="message my-message">
-            Actually everything was fine. I'm very excited to show this to our team.
-          </div>
-        </li>
+        <!--<li>-->
+          <!--<div class="message-data">-->
+            <!--<span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>-->
+            <!--<span class="message-data-time">10:20 AM, Today</span>-->
+          <!--</div>-->
+          <!--<div class="message my-message">-->
+            <!--Actually everything was fine. I'm very excited to show this to our team.-->
+          <!--</div>-->
+        <!--</li>-->
 
-        <li>
-          <div class="message-data">
-            <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-            <span class="message-data-time">10:31 AM, Today</span>
-          </div>
-          <i class="fa fa-circle online"></i>
-          <i class="fa fa-circle online" style="color: #AED2A6"></i>
-          <i class="fa fa-circle online" style="color:#DAE9DA"></i>
-        </li>
+        <!--<li>-->
+          <!--<div class="message-data">-->
+            <!--<span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>-->
+            <!--<span class="message-data-time">10:31 AM, Today</span>-->
+          <!--</div>-->
+          <!--<i class="fa fa-circle online"></i>-->
+          <!--<i class="fa fa-circle online" style="color: #AED2A6"></i>-->
+          <!--<i class="fa fa-circle online" style="color:#DAE9DA"></i>-->
+        <!--</li>-->
 
       </ul>
 
     </div> <!-- end chat-history -->
 
-    <div class="chat-message clearfix">
-      <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+    <from class="chat-message clearfix">
+      <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3">{{vm.cache.currentMessage}}</textarea>
 
       <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
       <i class="fa fa-file-image-o"></i>
 
-      <button>Send</button>
+      <button ng-click="vm.sendMessage()">Send</button>
 
-    </div> <!-- end chat-message -->
+    </from> <!-- end chat-message -->
 
   </div> <!-- end chat -->
 
@@ -116,8 +116,8 @@
   <!--<div flex-gt-sm="20" flex>-->
     <!--<md-content class="md-padding">-->
       <!--<md-list flex>-->
-        <!--<md-subheader class="md-no-sticky">{{vm.allUser.length}} thành viên</md-subheader>-->
-        <!--<md-list-item class="md-3-line" ng-repeat="item in vm.allUser" ng-click="null">-->
+        <!--<md-subheader class="md-no-sticky">{{vm.allAccount.length}} thành viên</md-subheader>-->
+        <!--<md-list-item class="md-3-line" ng-repeat="item in vm.allAccount" ng-click="null">-->
           <!--&lt;!&ndash;<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />&ndash;&gt;-->
           <!--<div class="md-list-item-text" layout="column">-->
             <!--<h3>{{ item.name }}</h3>-->
@@ -132,8 +132,8 @@
   <!--<div flex-gt-sm="80" flex>-->
     <!--<md-content class="md-padding">-->
       <!--<md-list flex>-->
-        <!--<md-subheader class="md-no-sticky">{{vm.allUser.length}} thành viên</md-subheader>-->
-        <!--<md-list-item class="md-3-line" ng-repeat="item in vm.allUser" ng-click="null">-->
+        <!--<md-subheader class="md-no-sticky">{{vm.allAccount.length}} thành viên</md-subheader>-->
+        <!--<md-list-item class="md-3-line" ng-repeat="item in vm.allAccount" ng-click="null">-->
           <!--&lt;!&ndash;<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />&ndash;&gt;-->
           <!--<div class="md-list-item-text" layout="column">-->
             <!--<h3>{{ item.name }}</h3>-->
