@@ -114,7 +114,7 @@
     vm.selectedPhoto = function(photo) {
       vm.disableButtonDeleteImage = false;
       vm.cache.currentPhoto = angular.copy(photo);
-      vm.cache.currentPhoto.urlPhoto = address + 'images'+ vm.cache.currentPhoto.name;
+      vm.cache.currentPhoto.urlPhoto = address + 'images/'+ vm.cache.currentPhoto.name;
     };
 
     vm.selectedIcon = function(icon) {

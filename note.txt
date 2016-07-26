@@ -1,6 +1,7 @@
 npm install nib
 npm install prerender-node --> cache for SEO on facebook
 
+-------------------------------------------------------------------------------------------
 ui:
 	node server.js ./path 9000 || forever start server_gzip.js ./ 9000
 	---newest: forever start express_static.js ./ 9000
@@ -11,3 +12,13 @@ ui:
 
 sails:
   forever start app.js --prod
+
+
+-------------------------------------------------------------------------------------------
+update bower
+	bower_components/ng-image-input-with-preview/bower.json
+		Add:
+			  "main": [
+          "dist/ng-image-input-with-preview.css",
+          "dist/ng-image-input-with-preview.js"
+        ],
