@@ -1,5 +1,11 @@
 <div class="android-more-section carddemoInCardActions chat-app" ng-cloak="">
   <md-content class="md-padding">
+    <div>
+      <my-alert type="vm.alert.type"
+                show="vm.alert.show"
+                msg="vm.alert.msg"
+        ></my-alert>
+    </div>
     <md-tabs md-dynamic-height md-selected="vm.cache.selectedTabIndex" md-border-bottom="" md-autoselect="">
       <md-tab ng-repeat="tab in vm.cache.tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
         <div class="demo-tab tab{{$index%4}}" style="padding: 25px;">

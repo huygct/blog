@@ -41,9 +41,11 @@
     var functionList = chatService.functionList;
     vm.cache = chatService.cache;
     vm.cache.currentMessage = '';
+    vm.alert = vm.cache.alert;
     vm.yourAccount = null;
-    vm.chatingAccount = {};
+    vm.chating = null;
     vm.allAccount = [];
+    vm.allRoom = [];
     vm.chatHtml = '';
 
 //    var jsonAccount = $window.sessionStorage.getItem(appConstant.CHAT_APP);
@@ -52,16 +54,17 @@
 //    }
     vm.changeAccountToChat = changeAccountToChat;
     vm.sendMessage = sendMessage;
+    vm.newRoom = newRoom;
 
     function changeAccountToChat(user) {
-      vm.chatingAccount = user;
+      vm.chating = user;
     }
 
     function sendMessage() {
-      var message = $('#message-to-send').val();
-      chatSocket.post('/chat/private', {to: vm.chatingAccount.id, msg: message});
+      var message = vm.cache.currentMessage;
+      chatSocket.post('/chat/private', {to: vm.chating.id, msg: message});
       vm.chatHtml += meSend + message + endHtml;
-      $('#message-to-send').val("");
+      vm.cache.currentMessage = '';
     }
 
     function updateRoomList (rooms){
@@ -77,18 +80,74 @@
           vm.allAccount.push(account);
         }
       });
+      vm.chating = null;
+      if(vm.allAccount.length > 0) {
+        vm.chating = vm.allAccount[0];
+      }
       $scope.$digest();
     }
 
     function addAccount(account) {
       vm.allAccount.push(account);
-      $scope.$digest();
+      if(vm.allAccount.length === 1) {
+        vm.chating = vm.allAccount[0];
+      }
+      vm.alert.type = 'success';
+      vm.alert.msg = account.name + ' vừa tham gia!...';
+      vm.alert.show = true;
+    }
+
+    function removeAccount(id) {
+      var accountRemove = _.remove(vm.allAccount, function removeAcc(account) {
+        return account.id === id;
+      });
+      if(accountRemove) {
+        if(accountRemove.id === vm.chating.id) {
+          vm.chating = null;
+          if(vm.allAccount.length > 0) {
+            vm.chating = vm.allAccount[0];
+          }
+        }
+        vm.alert.type = 'success';
+        vm.alert.msg = accountRemove[0].name + ' đã thoát!...';
+        vm.alert.show = true;
+      }
     }
 
     function receivePrivateMessage(data) {
       vm.chatHtml += meGet + data.msg || '' + endHtml;
-      $scope.$digest();
     }
+
+    /**
+     * Room
+     */
+    // Add a new room to the list
+    function newRoom($event) {
+      // Appending dialog to document.body to cover sidenav in docs app
+      var confirm = $mdDialog.prompt()
+        .title('Bạn tên gì?')
+        .textContent('Tên của bạn sẽ được sử dụng để trò chuyện.')
+        .placeholder('your name')
+        .ariaLabel('tên của bạn')
+        .targetEvent($event)
+        .ok('Đồng ý!')
+        .cancel('Bỏ qua');
+      $mdDialog.show(confirm)
+        .then(function (roomName) {
+          if(roomName) {
+            io.socket.post('/room', {name: roomName}, function(room) {
+              // Create the room HTML
+              vm.allRoom.push(room);
+              // Join the room
+              io.socket.post('room/'+room.id+'/users', {id: vm.yourAccount.id});
+              // Select it in the list
+              vm.chating = room;
+            });
+          }
+        }, function () {
+        });
+    }
+    //-----------------------------------------------------------------------------------------------------------------
 
     function getUserAndRoom () {
       // Get the current list of users online.  This will also subscribe us to
@@ -145,8 +204,7 @@
 
         // Handle user destruction
         case 'destroyed':
-//          removeUser(message.id);
-          console.log('destroyed user: ', message);
+          removeAccount(message.id);
           break;
 
         // Handle private messages.  Only sockets subscribed to the "message" context of a
@@ -160,7 +218,7 @@
         default:
           break;
       }
-
+      $scope.$digest();
     });
 
     // When the socket disconnects, hide the UI until we reconnect.

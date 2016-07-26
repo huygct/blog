@@ -6,7 +6,7 @@
     </div>
     <ul class="list">
       <li class="clearfix" ng-repeat="account in vm.allAccount track by account.id" ng-click="vm.changeAccountToChat(account)"
-      ng-class="{'selecting-user' : vm.chatingAccount.id === account.id}">
+      ng-class="{'selecting-user' : vm.chating.id === account.id}">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
         <div class="about">
           <div class="name">{{account.name}}</div>
@@ -16,24 +16,22 @@
         </div>
       </li>
 
-      <!--<li class="clearfix">-->
-        <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg" alt="avatar" />-->
-        <!--<div class="about">-->
-          <!--<div class="name">Aiden Chavez</div>-->
-          <!--<div class="status">-->
-            <!--<i class="fa fa-circle offline"></i> left 7 mins ago-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</li>-->
+      <li class="clearfix">
+        <md-button class="md-fab md-mini md-primary" aria-label="Tạo nhóm" ng-click="vm.newRoom($event)">
+          <md-tooltip>
+            Tạo nhóm
+          </md-tooltip>
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </md-button>
+      </li>
     </ul>
   </div>
-
   <div class="chat">
     <div class="chat-header clearfix">
       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
 
       <div class="chat-about">
-        <div class="chat-with">{{vm.chatingAccount.name}}</div>
+        <div class="chat-with">{{vm.chating.name}}</div>
         <div class="chat-num-messages">already 1 902 messages</div>
       </div>
       <i class="fa fa-star"></i>
@@ -98,12 +96,13 @@
     </div> <!-- end chat-history -->
 
     <from class="chat-message clearfix">
-      <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3">{{vm.cache.currentMessage}}</textarea>
+      <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3" ng-model="vm.cache.currentMessage"
+                ng-disabled="!vm.chating"></textarea>
 
       <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
       <i class="fa fa-file-image-o"></i>
 
-      <button ng-click="vm.sendMessage()">Send</button>
+      <button ng-click="vm.sendMessage()" ng-disabled="!vm.chating">Send</button>
 
     </from> <!-- end chat-message -->
 

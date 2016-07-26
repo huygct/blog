@@ -20,6 +20,7 @@
     ];
 
     var cache = {
+      alert: commonService.createAlert('danger', '', false),
       selectedTabIndex: 0,
       tabs: tabs
     };
